@@ -1,0 +1,69 @@
+﻿@model OiWeb.CMS.Models.CitiesViewModel
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">SKU</th>
+            <th class="sortable">Nome</th>
+            <th class="sortable">Preço Fid</th>
+            <th class="sortable">Preço Não Fid</th>
+            <th class="sortable">Preço Fid (Combo) </th>
+            <th class="sortable">Preço Não Fid (Combo)</th>
+            <th class="sortable">Status</th>
+            <th class="sortable">Gestão</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var plan in Model.plans)
+        {
+            if (plan.Prices.Where(p => p.idPriceGroup == Model.group.idPriceGroup).Count() > 0)
+            {
+                <tr>
+                    <td class="text-truncate"><strong>@Html.Raw(plan.idPlan)</strong></td>
+                    <td class="text-truncate"><a href="/Produto/Plano/@Html.Raw(plan.idPlan)/Alterar">@Html.Raw(plan.name)</a></td>
+                    <td class="text-truncate">@Html.Raw(plan.Prices.Where(p => p.idPriceGroup == Model.group.idPriceGroup && p.idPriceLoyalty == 1).FirstOrDefault().value)</td>
+                    <td class="text-truncate">
+                        @Html.Raw(
+                            plan.Prices.Where(
+                                p => p.idPriceGroup == Model.group.idPriceGroup && 
+                                     p.idPriceLoyalty == 2
+                            ).Count() > 0 ? 
+                                plan.Prices.Where(
+                                    p => p.idPriceGroup == Model.group.idPriceGroup && 
+                                    p.idPriceLoyalty == 2
+                                ).FirstOrDefault().value.ToString() : "Não Definido")                    
+                    </td>
+                    <td class="text-truncate">@Html.Raw(plan.Prices.Where(p => p.idPriceGroup == Model.group.idPriceGroup && p.idPriceLoyalty == 1).FirstOrDefault().valueCombo)</td>
+                    <td class="text-truncate">
+                        @Html.Raw(
+                            plan.Prices.Where(
+                                p => p.idPriceGroup == Model.group.idPriceGroup &&
+                                     p.idPriceLoyalty == 2
+                            ).Count() > 0 ?
+                                plan.Prices.Where(
+                                    p => p.idPriceGroup == Model.group.idPriceGroup &&
+                                    p.idPriceLoyalty == 2
+                             ).FirstOrDefault().valueCombo.ToString() : "Não Definido")
+                    </td>
+
+                    <td class="text-truncate"><span class="lable-tag @Html.Raw(plan.isVisible == true ? "tag-success" : "tag-unpaid")">@Html.Raw(plan.isVisible == true ? "Ativo" : "Inativo")</span></td>
+                    <td class="text-truncate"><a href="/Grupos/@Html.Raw(Model.group.idPriceGroup)/@Html.Raw(plan.idPlan)/Precos" class="btn btn-danger btn-outline btn-rounded">Alterar Preços</a></td>
+                    <td class="text-truncate"><a href="/Grupos/@Html.Raw(Model.group.idPriceGroup)/@Html.Raw(plan.idPlan)/Excluir" class="btn btn-danger btn-outline btn-rounded">Desvincular Plano</a></td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td class="text-truncate"><strong>@Html.Raw(plan.idPlan)</strong></td>
+                    <td class="text-truncate"><a href="/Produto/Plano/@Html.Raw(plan.idPlan)/Alterar">@Html.Raw(plan.name)</a></td>
+                    <td class="text-truncate">-</td>
+                    <td class="text-truncate">-</td>
+                    <td class="text-truncate">-</td>
+                    <td class="text-truncate">-</td>
+                    <td class="text-truncate"><span class="lable-tag @Html.Raw(plan.isVisible == true ? "tag-success" : "tag-unpaid")">@Html.Raw(plan.isVisible == true ? "Ativo" : "Inativo")</span></td>
+                    <td class="text-truncate"><a href="/Grupos/@Html.Raw(Model.group.idPriceGroup)/@Html.Raw(plan.idPlan)/Precos" class="btn btn-danger btn-outline btn-rounded">Vincular Plano</a></td>
+                    <td class="text-truncate"></td>
+                </tr>
+            }
+        }
+}
+</table>

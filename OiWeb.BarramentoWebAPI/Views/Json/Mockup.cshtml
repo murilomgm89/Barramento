@@ -1,0 +1,17 @@
+﻿@model OiWeb.BarramentoWebAPI.Models.CustomDataViewModel
+
+{"@Model.identifierParent.nameComponent":{    
+    @{
+        int i = 0;
+
+        foreach (var identifier in Model.identifierParent.identifiers)
+        {
+            if (i != 0)
+            {
+                @Html.Raw(",");
+            }
+            Html.RenderPartial("~/Views/Json/IdentifiersPartial.cshtml", identifier);
+            i++;
+        }
+    }
+}}

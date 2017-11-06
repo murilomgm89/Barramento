@@ -1,0 +1,55 @@
+﻿@model OiWeb.Entity.City
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4><strong>@Html.Raw(Model.name)</strong></h4>
+                    <p>Detalhes da Cidade</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Estado: <strong>@Html.Raw(Model.state)</strong></li>
+                        <li class="list-group-item">DDD: <strong>@Html.Raw(Model.DDD)</strong></li>
+                        <li class="list-group-item">ID: <strong>@Html.Raw(Model.idCity)</strong></li>                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>Grupos de Preços</strong></h4>
+                    <ul class="list-group">
+                        @{
+                            foreach (var priceGroup in Model.PriceGroupCities.Select(pg => pg.PriceGroup))
+                            {
+                                <li class="list-group-item"><a href="/Grupos/@Html.Raw(priceGroup.idPriceGroup)">@Html.Raw(priceGroup.name)</a> - <strong>ID: @Html.Raw(priceGroup.idPriceGroup)</strong> </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>Grupos de CustomData</strong></h4>
+                    <ul class="list-group">
+                        @{
+                            foreach (var groupCustom in Model.GroupCustomDataPages)
+                            {
+                                <li class="list-group-item"><a href="/Grupos/@Html.Raw(groupCustom.GroupCustomData.idGroup)">@Html.Raw(groupCustom.GroupCustomData.name)</a> - <strong>ID: @Html.Raw(groupCustom.GroupCustomData.idGroup)</strong> </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            @*<div class="col-md-12">
+                <div class="chart-box">
+                    <h4>
+                        Planos de @Html.Raw(Model.name)
+                        <button type="button" class="btn btn-success btn-rounded">Criar novo Plano</button>
+                    </h4>
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialView.cshtml", Model)
+                </div>
+            </div>*@
+        </div>
+    </section>
+</div>

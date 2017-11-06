@@ -1,0 +1,42 @@
+﻿@model List<OiWeb.Entity.City>
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            @*<div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>Cidades</strong></h4>                    
+                    <ul class="list-group">
+                        <li class="list-group-item">Quantidade de Cidades: <strong>@Html.Raw(Model.Count())</strong></li>                       
+                    </ul>
+                </div>
+            </div>*@            
+            <div class="col-md-12" id="tableCity" style="display:none">
+                <div class="chart-box">
+                    <h4>
+                        Lista de Cidades:
+                    </h4>
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialCitiesView.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="/Content/plugins/tables/dataTables.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        $('.table').DataTable({
+            "info": false
+        });
+        $('#DataTables_Table_0_length').hide();
+        $('#DataTables_Table_0_paginate').hide();
+        $('#DataTables_Table_0').hide();
+        $('#tableCity').show();
+        $("#DataTables_Table_0_filter input").keyup(function () {
+            if ($("#DataTables_Table_0_filter input").length > 0) {
+                $('#DataTables_Table_0').show();
+            }
+        });
+    };
+</script>

@@ -1,0 +1,23 @@
+﻿@model List<OiWeb.Entity.PriceGroup>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">Nome</th>
+            <th class="sortable">Produto</th>
+            <th class="sortable">Status</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var group in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(group.idPriceGroup)</td>
+                <td class="text-truncate"><a href="/Grupos/@(Html.Raw(group.idPriceGroup))">@Html.Raw(group.name)</a></td>
+                <td class="text-truncate">@Html.Raw(group.Product.name) (<strong>SKU - @Html.Raw(group.Product.idProduct)</strong> )</td>
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(group.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(group.isActive == true ? "Ativo" : "Inativo")</span></td>
+            </tr>
+        }
+    }
+</table>

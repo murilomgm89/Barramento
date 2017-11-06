@@ -1,0 +1,110 @@
+﻿<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Adicionar Novo Usuário</h4>
+                    <div class="row">
+                        <form method="POST" action="/Account/CreateUser" id="FormUpdateUser">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divName">
+                                    <label class="control-label">Nome</label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nome">
+                                    <span class="fa fa-briefcase form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divEmail">
+                                    <label class="control-label">E-mail</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divNewPassword">
+                                    <label class="control-label">Senha:</label>
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Senha">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divNewPasswordConfirmation">
+                                    <label class="control-label">Confirme a senha:</label>
+                                    <input type="text" class="form-control" name="NewPasswordConfirmation" id="NewPasswordConfirmation" placeholder="Confirme a senha">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Produto</label>
+                                    <select class="form-control" name="idPermission">
+                                        <option value="1">Gestão</option>
+                                        <option value="2">Edição - Inserção</option>
+                                        <option value="3" selected>Consultas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Produto</label>
+                                    <select class="form-control" name="isActive">
+                                        <option value=true>Ativo</option>
+                                        <option value=false selected>Desativado</option>
+                                    </select>
+                                </div>
+                            </div>                           
+                            <div class="col-md-12">
+                                <a id="SubmitCreateUser" class="btn btn-default">Salvar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $("#SubmitCreateUser").click(function () {
+        var isValidate = true;
+        if ($("#password").val().length != 0) {
+            if ($("#password").val() != $("#NewPasswordConfirmation").val()) {
+                isValidate = false;
+                $("#divNewPassword").addClass("has-error");
+                $("#divNewPasswordConfirmation").addClass("has-error");
+            }else{
+                $("#divNewPassword").removeClass("has-error");
+                $("#divNewPasswordConfirmation").removeClass("has-error");
+            }
+        }else{
+            $("#divNewPassword").addClass("has-error");
+            $("#divNewPasswordConfirmation").addClass("has-error");
+        }
+        if ($("#email").val().length != 0) {
+            var sEmail = $("#email").val();
+            var emailFilter = /^.+@Html.Raw("@").+\..{2,}$/;
+            var illegalChars = /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+
+            if (!(emailFilter.test(sEmail)) || sEmail.match(illegalChars)){
+                $("#divEmail").addClass("has-error");
+                isValidate = false;
+            }else{
+                $("#divEmail").removeClass("has-error");
+            }
+        } else {
+            $("#divEmail").addClass("has-error");
+            isValidate = false;
+        }
+
+        if($("#name").val().length == 0){
+            $("#divName").addClass("has-error");
+            isValidate = false;
+        }else{
+            $("#divName").removeClass("has-error");
+        }
+
+        if (isValidate) {
+            $("#FormUpdateUser").submit();
+        }
+    });
+</script>

@@ -1,0 +1,1788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="oibarramentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="idCity" />
+          </Key>
+          <Property Name="idCity" Type="int" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DDD" Type="int" Nullable="false" />
+          <Property Name="idPriceGroupTV" Type="int" />
+          <Property Name="idPriceGroupFixo" Type="int" />
+          <Property Name="idPriceGroupBandaLarga" Type="int" />
+          <Property Name="idPriceGroupCombo" Type="int" />
+          <Property Name="idPriceGroupCelularPos" Type="int" />
+          <Property Name="idPriceGroupCelularPre" Type="int" />
+          <Property Name="idPriceGroupCelularControle" Type="int" />
+          <Property Name="idGroupHomePage" Type="int" Nullable="false" />
+          <Property Name="idGroupMenu" Type="int" Nullable="false" />
+          <Property Name="idGroupControlePage" Type="int" Nullable="false" />
+          <Property Name="idGroupPosPago" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Account">
+          <Key>
+            <PropertyRef Name="idAccount" />
+          </Key>
+          <Property Name="idAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPermission" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_AccountLoginLog">
+          <Key>
+            <PropertyRef Name="idAccountLoginLog" />
+          </Key>
+          <Property Name="idAccountLoginLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAccount" Type="int" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="dtRegister" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMS_Permission">
+          <Key>
+            <PropertyRef Name="idPermission" />
+          </Key>
+          <Property Name="idPermission" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ComponentPage">
+          <Key>
+            <PropertyRef Name="idComponentPage" />
+          </Key>
+          <Property Name="idComponentPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPage" Type="int" Nullable="false" />
+          <Property Name="idComponentType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComponentType">
+          <Key>
+            <PropertyRef Name="idComponentType" />
+          </Key>
+          <Property Name="idComponentType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="identifier" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CustomData">
+          <Key>
+            <PropertyRef Name="idData" />
+          </Key>
+          <Property Name="idData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVersion" Type="int" Nullable="false" />
+          <Property Name="idComponentType" Type="int" Nullable="false" />
+          <Property Name="idGroup" Type="int" Nullable="false" />
+          <Property Name="value" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupCustomData">
+          <Key>
+            <PropertyRef Name="idGroup" />
+          </Key>
+          <Property Name="idGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="dtCreate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupCustomDataPage">
+          <Key>
+            <PropertyRef Name="idGroupCustomDataPage" />
+          </Key>
+          <Property Name="idGroupCustomDataPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCity" Type="int" Nullable="false" />
+          <Property Name="idPage" Type="int" Nullable="false" />
+          <Property Name="idGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupModal">
+          <Key>
+            <PropertyRef Name="idGroupModal" />
+          </Key>
+          <Property Name="idGroupModal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupModalCities">
+          <Key>
+            <PropertyRef Name="idGroupModalCities" />
+          </Key>
+          <Property Name="idGroupModalCities" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGroupModal" Type="int" Nullable="false" />
+          <Property Name="idCity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupModalPage">
+          <Key>
+            <PropertyRef Name="idGroupModalPage" />
+          </Key>
+          <Property Name="idGroupModalPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idModal" Type="int" Nullable="false" />
+          <Property Name="idPage" Type="int" Nullable="false" />
+          <Property Name="idGroupModal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modal">
+          <Key>
+            <PropertyRef Name="idModal" />
+          </Key>
+          <Property Name="idModal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="idPage" />
+          </Key>
+          <Property Name="idPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="isCommon" Type="bit" />
+        </EntityType>
+        <EntityType Name="PlanGroup">
+          <Key>
+            <PropertyRef Name="idPlanGroup" />
+          </Key>
+          <Property Name="idPlanGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPlan" Type="int" Nullable="false" />
+          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanProduct">
+          <Key>
+            <PropertyRef Name="idPlan" />
+          </Key>
+          <Property Name="idPlan" Type="int" Nullable="false" />
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="defaultSKU" Type="bit" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="linkEcommerce" Type="varchar" MaxLength="200" />
+          <Property Name="isVisible" Type="bit" Nullable="false" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanRegulation">
+          <Key>
+            <PropertyRef Name="idPlanRegulation" />
+          </Key>
+          <Property Name="idPlanRegulation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="link" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="idPrice" />
+          </Key>
+          <Property Name="idPrice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPlan" Type="int" Nullable="false" />
+          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+          <Property Name="idPriceLoyalty" Type="int" Nullable="false" />
+          <Property Name="idTypeClient" Type="int" Nullable="false" />
+          <Property Name="idPaymentMethod" Type="int" Nullable="false" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="valueCombo" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PriceGroup">
+          <Key>
+            <PropertyRef Name="idPriceGroup" />
+          </Key>
+          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="dtCreate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceGroupCities">
+          <Key>
+            <PropertyRef Name="idPriceGroupCities" />
+          </Key>
+          <Property Name="idPriceGroupCities" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCity" Type="int" Nullable="false" />
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceLoyalty">
+          <Key>
+            <PropertyRef Name="idPriceLoyalty" />
+          </Key>
+          <Property Name="idPriceLoyalty" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PricePaymentMethod">
+          <Key>
+            <PropertyRef Name="idPaymentMethod" />
+          </Key>
+          <Property Name="idPaymentMethod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isVisible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceTypeClient">
+          <Key>
+            <PropertyRef Name="idTypeClient" />
+          </Key>
+          <Property Name="idTypeClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProductFamily" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isVisible" Type="bit" Nullable="false" />
+          <Property Name="valueGroupPrice" Type="varchar" MaxLength="30" />
+          <Property Name="dtCreate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductFamily">
+          <Key>
+            <PropertyRef Name="idProductFamily" />
+          </Key>
+          <Property Name="idProductFamily" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VersionAPI">
+          <Key>
+            <PropertyRef Name="idVersion" />
+          </Key>
+          <Property Name="idVersion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CMS_Account_CMS_Permission">
+          <End Role="CMS_Permission" Type="Self.CMS_Permission" Multiplicity="1" />
+          <End Role="CMS_Account" Type="Self.CMS_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Permission">
+              <PropertyRef Name="idPermission" />
+            </Principal>
+            <Dependent Role="CMS_Account">
+              <PropertyRef Name="idPermission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_AccountLoginLog_CMS_Account">
+          <End Role="CMS_Account" Type="Self.CMS_Account" Multiplicity="1" />
+          <End Role="CMS_AccountLoginLog" Type="Self.CMS_AccountLoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="CMS_AccountLoginLog">
+              <PropertyRef Name="idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPage_ComponentType">
+          <End Role="ComponentType" Type="Self.ComponentType" Multiplicity="1" />
+          <End Role="ComponentPage" Type="Self.ComponentPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="idComponentType" />
+            </Principal>
+            <Dependent Role="ComponentPage">
+              <PropertyRef Name="idComponentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPage_Page">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="ComponentPage" Type="Self.ComponentPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="ComponentPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomData_ComponentType">
+          <End Role="ComponentType" Type="Self.ComponentType" Multiplicity="1" />
+          <End Role="CustomData" Type="Self.CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="idComponentType" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idComponentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Data_Group">
+          <End Role="GroupCustomData" Type="Self.GroupCustomData" Multiplicity="1" />
+          <End Role="CustomData" Type="Self.CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCustomData">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Data_Version">
+          <End Role="VersionAPI" Type="Self.VersionAPI" Multiplicity="1" />
+          <End Role="CustomData" Type="Self.CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VersionAPI">
+              <PropertyRef Name="idVersion" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="GroupCustomDataPage" Type="Self.GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_GroupCustomData">
+          <End Role="GroupCustomData" Type="Self.GroupCustomData" Multiplicity="1" />
+          <End Role="GroupCustomDataPage" Type="Self.GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCustomData">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_Page">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="GroupCustomDataPage" Type="Self.GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalCities_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="GroupModalCities" Type="Self.GroupModalCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="GroupModalCities">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalCities_GroupModal">
+          <End Role="GroupModal" Type="Self.GroupModal" Multiplicity="1" />
+          <End Role="GroupModalCities" Type="Self.GroupModalCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupModal">
+              <PropertyRef Name="idGroupModal" />
+            </Principal>
+            <Dependent Role="GroupModalCities">
+              <PropertyRef Name="idGroupModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_GroupModal">
+          <End Role="GroupModal" Type="Self.GroupModal" Multiplicity="1" />
+          <End Role="GroupModalPage" Type="Self.GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupModal">
+              <PropertyRef Name="idGroupModal" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idGroupModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_Modal">
+          <End Role="Modal" Type="Self.Modal" Multiplicity="1" />
+          <End Role="GroupModalPage" Type="Self.GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modal">
+              <PropertyRef Name="idModal" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_Page">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="GroupModalPage" Type="Self.GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanGroup_PlanProduct">
+          <End Role="PlanProduct" Type="Self.PlanProduct" Multiplicity="1" />
+          <End Role="PlanGroup" Type="Self.PlanGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanProduct">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="PlanGroup">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PlanProduct" Type="Self.PlanProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PlanProduct">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanRegulation_PriceGroup">
+          <End Role="PriceGroup" Type="Self.PriceGroup" Multiplicity="1" />
+          <End Role="PlanRegulation" Type="Self.PlanRegulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PlanRegulation">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PlanProduct">
+          <End Role="PlanProduct" Type="Self.PlanProduct" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanProduct">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PriceLoyalty">
+          <End Role="PriceLoyalty" Type="Self.PriceLoyalty" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceLoyalty">
+              <PropertyRef Name="idPriceLoyalty" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPriceLoyalty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PricePaymentMethod">
+          <End Role="PricePaymentMethod" Type="Self.PricePaymentMethod" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricePaymentMethod">
+              <PropertyRef Name="idPaymentMethod" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPaymentMethod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PriceTypeClient">
+          <End Role="PriceTypeClient" Type="Self.PriceTypeClient" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceTypeClient">
+              <PropertyRef Name="idTypeClient" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idTypeClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroup_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PriceGroup" Type="Self.PriceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PriceGroup">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="PriceGroupCities" Type="Self.PriceGroupCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="PriceGroupCities">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_PriceGroup">
+          <End Role="PriceGroup" Type="Self.PriceGroup" Multiplicity="1" />
+          <End Role="PriceGroupCities" Type="Self.PriceGroupCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PriceGroupCities">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PriceGroupCities" Type="Self.PriceGroupCities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PriceGroupCities">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductFamily">
+          <End Role="ProductFamily" Type="Self.ProductFamily" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductFamily">
+              <PropertyRef Name="idProductFamily" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="idProductFamily" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="oibarramentoModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Account" EntityType="Self.CMS_Account" Schema="dbo" Table="CMS.Account" store:Type="Tables" />
+          <EntitySet Name="CMS_AccountLoginLog" EntityType="Self.CMS_AccountLoginLog" Schema="dbo" Table="CMS.AccountLoginLog" store:Type="Tables" />
+          <EntitySet Name="CMS_Permission" EntityType="Self.CMS_Permission" Schema="dbo" Table="CMS.Permission" store:Type="Tables" />
+          <EntitySet Name="ComponentPage" EntityType="Self.ComponentPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomData" EntityType="Self.CustomData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupCustomData" EntityType="Self.GroupCustomData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupCustomDataPage" EntityType="Self.GroupCustomDataPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupModal" EntityType="Self.GroupModal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupModalCities" EntityType="Self.GroupModalCities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupModalPage" EntityType="Self.GroupModalPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modal" EntityType="Self.Modal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanGroup" EntityType="Self.PlanGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanProduct" EntityType="Self.PlanProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanRegulation" EntityType="Self.PlanRegulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceGroup" EntityType="Self.PriceGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceGroupCities" EntityType="Self.PriceGroupCities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceLoyalty" EntityType="Self.PriceLoyalty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PricePaymentMethod" EntityType="Self.PricePaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceTypeClient" EntityType="Self.PriceTypeClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductFamily" EntityType="Self.ProductFamily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VersionAPI" EntityType="Self.VersionAPI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CMS_Account_CMS_Permission" Association="Self.FK_CMS_Account_CMS_Permission">
+            <End Role="CMS_Permission" EntitySet="CMS_Permission" />
+            <End Role="CMS_Account" EntitySet="CMS_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_AccountLoginLog_CMS_Account" Association="Self.FK_CMS_AccountLoginLog_CMS_Account">
+            <End Role="CMS_Account" EntitySet="CMS_Account" />
+            <End Role="CMS_AccountLoginLog" EntitySet="CMS_AccountLoginLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPage_ComponentType" Association="Self.FK_ComponentPage_ComponentType">
+            <End Role="ComponentType" EntitySet="ComponentType" />
+            <End Role="ComponentPage" EntitySet="ComponentPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPage_Page" Association="Self.FK_ComponentPage_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="ComponentPage" EntitySet="ComponentPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomData_ComponentType" Association="Self.FK_CustomData_ComponentType">
+            <End Role="ComponentType" EntitySet="ComponentType" />
+            <End Role="CustomData" EntitySet="CustomData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Data_Group" Association="Self.FK_Data_Group">
+            <End Role="GroupCustomData" EntitySet="GroupCustomData" />
+            <End Role="CustomData" EntitySet="CustomData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Data_Version" Association="Self.FK_Data_Version">
+            <End Role="VersionAPI" EntitySet="VersionAPI" />
+            <End Role="CustomData" EntitySet="CustomData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_City" Association="Self.FK_GroupCustomDataPage_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_GroupCustomData" Association="Self.FK_GroupCustomDataPage_GroupCustomData">
+            <End Role="GroupCustomData" EntitySet="GroupCustomData" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_Page" Association="Self.FK_GroupCustomDataPage_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalCities_City" Association="Self.FK_GroupModalCities_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="GroupModalCities" EntitySet="GroupModalCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalCities_GroupModal" Association="Self.FK_GroupModalCities_GroupModal">
+            <End Role="GroupModal" EntitySet="GroupModal" />
+            <End Role="GroupModalCities" EntitySet="GroupModalCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_GroupModal" Association="Self.FK_GroupModalPage_GroupModal">
+            <End Role="GroupModal" EntitySet="GroupModal" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_Modal" Association="Self.FK_GroupModalPage_Modal">
+            <End Role="Modal" EntitySet="Modal" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_Page" Association="Self.FK_GroupModalPage_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanGroup_PlanProduct" Association="Self.FK_PlanGroup_PlanProduct">
+            <End Role="PlanProduct" EntitySet="PlanProduct" />
+            <End Role="PlanGroup" EntitySet="PlanGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanProduct_Product" Association="Self.FK_PlanProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PlanProduct" EntitySet="PlanProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanRegulation_PriceGroup" Association="Self.FK_PlanRegulation_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroup" />
+            <End Role="PlanRegulation" EntitySet="PlanRegulation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PlanProduct" Association="Self.FK_Price_PlanProduct">
+            <End Role="PlanProduct" EntitySet="PlanProduct" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PriceLoyalty" Association="Self.FK_Price_PriceLoyalty">
+            <End Role="PriceLoyalty" EntitySet="PriceLoyalty" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PricePaymentMethod" Association="Self.FK_Price_PricePaymentMethod">
+            <End Role="PricePaymentMethod" EntitySet="PricePaymentMethod" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PriceTypeClient" Association="Self.FK_Price_PriceTypeClient">
+            <End Role="PriceTypeClient" EntitySet="PriceTypeClient" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroup_Product" Association="Self.FK_PriceGroup_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PriceGroup" EntitySet="PriceGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_City" Association="Self.FK_PriceGroupCities_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="PriceGroupCities" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_PriceGroup" Association="Self.FK_PriceGroupCities_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroup" />
+            <End Role="PriceGroupCities" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_Product" Association="Self.FK_PriceGroupCities_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PriceGroupCities" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductFamily" Association="Self.FK_Product_ProductFamily">
+            <End Role="ProductFamily" EntitySet="ProductFamily" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="oibarramentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OiWeb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="oibarramentoModel.City" />
+          <EntitySet Name="ComponentPages" EntityType="oibarramentoModel.ComponentPage" />
+          <EntitySet Name="ComponentTypes" EntityType="oibarramentoModel.ComponentType" />
+          <EntitySet Name="CustomDatas" EntityType="oibarramentoModel.CustomData" />
+          <EntitySet Name="GroupCustomDatas" EntityType="oibarramentoModel.GroupCustomData" />
+          <EntitySet Name="GroupCustomDataPages" EntityType="oibarramentoModel.GroupCustomDataPage" />
+          <EntitySet Name="Pages" EntityType="oibarramentoModel.Page" />
+          <EntitySet Name="PlanGroups" EntityType="oibarramentoModel.PlanGroup" />
+          <EntitySet Name="PlanRegulations" EntityType="oibarramentoModel.PlanRegulation" />
+          <EntitySet Name="PriceGroups" EntityType="oibarramentoModel.PriceGroup" />
+          <EntitySet Name="PriceGroupCities" EntityType="oibarramentoModel.PriceGroupCity" />
+          <EntitySet Name="PriceLoyalties" EntityType="oibarramentoModel.PriceLoyalty" />
+          <EntitySet Name="PricePaymentMethods" EntityType="oibarramentoModel.PricePaymentMethod" />
+          <EntitySet Name="PriceTypeClients" EntityType="oibarramentoModel.PriceTypeClient" />
+          <EntitySet Name="ProductFamilies" EntityType="oibarramentoModel.ProductFamily" />
+          <EntitySet Name="VersionAPIs" EntityType="oibarramentoModel.VersionAPI" />
+          <AssociationSet Name="FK_GroupCustomDataPage_City" Association="oibarramentoModel.FK_GroupCustomDataPage_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_City" Association="oibarramentoModel.FK_PriceGroupCities_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPage_ComponentType" Association="oibarramentoModel.FK_ComponentPage_ComponentType">
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+            <End Role="ComponentPage" EntitySet="ComponentPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPage_Page" Association="oibarramentoModel.FK_ComponentPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="ComponentPage" EntitySet="ComponentPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomData_ComponentType" Association="oibarramentoModel.FK_CustomData_ComponentType">
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+            <End Role="CustomData" EntitySet="CustomDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Data_Group" Association="oibarramentoModel.FK_Data_Group">
+            <End Role="GroupCustomData" EntitySet="GroupCustomDatas" />
+            <End Role="CustomData" EntitySet="CustomDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Data_Version" Association="oibarramentoModel.FK_Data_Version">
+            <End Role="VersionAPI" EntitySet="VersionAPIs" />
+            <End Role="CustomData" EntitySet="CustomDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_GroupCustomData" Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData">
+            <End Role="GroupCustomData" EntitySet="GroupCustomDatas" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_Page" Association="oibarramentoModel.FK_GroupCustomDataPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanRegulation_PriceGroup" Association="oibarramentoModel.FK_PlanRegulation_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+            <End Role="PlanRegulation" EntitySet="PlanRegulations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_PriceGroup" Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+            <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="oibarramentoModel.Product" />
+          <AssociationSet Name="FK_PriceGroup_Product" Association="oibarramentoModel.FK_PriceGroup_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_Product" Association="oibarramentoModel.FK_PriceGroupCities_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductFamily" Association="oibarramentoModel.FK_Product_ProductFamily">
+            <End Role="ProductFamily" EntitySet="ProductFamilies" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Prices" EntityType="oibarramentoModel.Price" />
+          <AssociationSet Name="FK_Price_PriceLoyalty" Association="oibarramentoModel.FK_Price_PriceLoyalty">
+            <End Role="PriceLoyalty" EntitySet="PriceLoyalties" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PricePaymentMethod" Association="oibarramentoModel.FK_Price_PricePaymentMethod">
+            <End Role="PricePaymentMethod" EntitySet="PricePaymentMethods" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PriceTypeClient" Association="oibarramentoModel.FK_Price_PriceTypeClient">
+            <End Role="PriceTypeClient" EntitySet="PriceTypeClients" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <EntitySet Name="PlanProducts" EntityType="oibarramentoModel.PlanProduct" />
+          <AssociationSet Name="FK_PlanGroup_PlanProduct" Association="oibarramentoModel.FK_PlanGroup_PlanProduct">
+            <End Role="PlanProduct" EntitySet="PlanProducts" />
+            <End Role="PlanGroup" EntitySet="PlanGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanProduct_Product" Association="oibarramentoModel.FK_PlanProduct_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PlanProduct" EntitySet="PlanProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_PlanProduct" Association="oibarramentoModel.FK_Price_PlanProduct">
+            <End Role="PlanProduct" EntitySet="PlanProducts" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <EntitySet Name="CMS_Account" EntityType="oibarramentoModel.CMS_Account" />
+          <EntitySet Name="CMS_AccountLoginLog" EntityType="oibarramentoModel.CMS_AccountLoginLog" />
+          <EntitySet Name="CMS_Permission" EntityType="oibarramentoModel.CMS_Permission" />
+          <AssociationSet Name="FK_CMS_Account_CMS_Permission" Association="oibarramentoModel.FK_CMS_Account_CMS_Permission">
+            <End Role="CMS_Permission" EntitySet="CMS_Permission" />
+            <End Role="CMS_Account" EntitySet="CMS_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_AccountLoginLog_CMS_Account" Association="oibarramentoModel.FK_CMS_AccountLoginLog_CMS_Account">
+            <End Role="CMS_Account" EntitySet="CMS_Account" />
+            <End Role="CMS_AccountLoginLog" EntitySet="CMS_AccountLoginLog" />
+          </AssociationSet>
+          <EntitySet Name="GroupModals" EntityType="oibarramentoModel.GroupModal" />
+          <EntitySet Name="GroupModalCities" EntityType="oibarramentoModel.GroupModalCity" />
+          <EntitySet Name="GroupModalPages" EntityType="oibarramentoModel.GroupModalPage" />
+          <AssociationSet Name="FK_GroupModalCities_City" Association="oibarramentoModel.FK_GroupModalCities_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="GroupModalCity" EntitySet="GroupModalCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalCities_GroupModal" Association="oibarramentoModel.FK_GroupModalCities_GroupModal">
+            <End Role="GroupModal" EntitySet="GroupModals" />
+            <End Role="GroupModalCity" EntitySet="GroupModalCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_GroupModal" Association="oibarramentoModel.FK_GroupModalPage_GroupModal">
+            <End Role="GroupModal" EntitySet="GroupModals" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_Page" Association="oibarramentoModel.FK_GroupModalPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPages" />
+          </AssociationSet>
+          <EntitySet Name="Modals" EntityType="oibarramentoModel.Modal" />
+          <AssociationSet Name="FK_GroupModalPage_Modal" Association="oibarramentoModel.FK_GroupModalPage_Modal">
+            <End Role="Modal" EntitySet="Modals" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPages" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="idCity" />
+          </Key>
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DDD" Type="Int32" Nullable="false" />
+          <Property Name="idPriceGroupTV" Type="Int32" />
+          <Property Name="idPriceGroupFixo" Type="Int32" />
+          <Property Name="idPriceGroupBandaLarga" Type="Int32" />
+          <Property Name="idPriceGroupCombo" Type="Int32" />
+          <Property Name="idPriceGroupCelularPos" Type="Int32" />
+          <Property Name="idPriceGroupCelularPre" Type="Int32" />
+          <Property Name="idPriceGroupCelularControle" Type="Int32" />
+          <Property Name="idGroupHomePage" Type="Int32" Nullable="false" />
+          <Property Name="idGroupMenu" Type="Int32" Nullable="false" />
+          <Property Name="idGroupControlePage" Type="Int32" Nullable="false" />
+          <Property Name="idGroupPosPago" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="City" ToRole="GroupCustomDataPage" />
+          <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_City" FromRole="City" ToRole="PriceGroupCity" />
+          <NavigationProperty Name="GroupModalCities" Relationship="oibarramentoModel.FK_GroupModalCities_City" FromRole="City" ToRole="GroupModalCity" />
+        </EntityType>
+        <EntityType Name="ComponentPage">
+          <Key>
+            <PropertyRef Name="idComponentPage" />
+          </Key>
+          <Property Name="idComponentPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPage" Type="Int32" Nullable="false" />
+          <Property Name="idComponentType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComponentType" Relationship="oibarramentoModel.FK_ComponentPage_ComponentType" FromRole="ComponentPage" ToRole="ComponentType" />
+          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_ComponentPage_Page" FromRole="ComponentPage" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="ComponentType">
+          <Key>
+            <PropertyRef Name="idComponentType" />
+          </Key>
+          <Property Name="idComponentType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComponentPages" Relationship="oibarramentoModel.FK_ComponentPage_ComponentType" FromRole="ComponentType" ToRole="ComponentPage" />
+          <NavigationProperty Name="CustomDatas" Relationship="oibarramentoModel.FK_CustomData_ComponentType" FromRole="ComponentType" ToRole="CustomData" />
+        </EntityType>
+        <EntityType Name="CustomData">
+          <Key>
+            <PropertyRef Name="idData" />
+          </Key>
+          <Property Name="idData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVersion" Type="Int32" Nullable="false" />
+          <Property Name="idComponentType" Type="Int32" Nullable="false" />
+          <Property Name="idGroup" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComponentType" Relationship="oibarramentoModel.FK_CustomData_ComponentType" FromRole="CustomData" ToRole="ComponentType" />
+          <NavigationProperty Name="GroupCustomData" Relationship="oibarramentoModel.FK_Data_Group" FromRole="CustomData" ToRole="GroupCustomData" />
+          <NavigationProperty Name="VersionAPI" Relationship="oibarramentoModel.FK_Data_Version" FromRole="CustomData" ToRole="VersionAPI" />
+        </EntityType>
+        <EntityType Name="GroupCustomData">
+          <Key>
+            <PropertyRef Name="idGroup" />
+          </Key>
+          <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CustomDatas" Relationship="oibarramentoModel.FK_Data_Group" FromRole="GroupCustomData" ToRole="CustomData" />
+          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" FromRole="GroupCustomData" ToRole="GroupCustomDataPage" />
+        </EntityType>
+        <EntityType Name="GroupCustomDataPage">
+          <Key>
+            <PropertyRef Name="idGroupCustomDataPage" />
+          </Key>
+          <Property Name="idGroupCustomDataPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="idPage" Type="Int32" Nullable="false" />
+          <Property Name="idGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="GroupCustomDataPage" ToRole="City" />
+          <NavigationProperty Name="GroupCustomData" Relationship="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" FromRole="GroupCustomDataPage" ToRole="GroupCustomData" />
+          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="GroupCustomDataPage" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="idPage" />
+          </Key>
+          <Property Name="idPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="isCommon" Type="Boolean" />
+          <NavigationProperty Name="ComponentPages" Relationship="oibarramentoModel.FK_ComponentPage_Page" FromRole="Page" ToRole="ComponentPage" />
+          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="Page" ToRole="GroupCustomDataPage" />
+          <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="Page" ToRole="GroupModalPage" />
+        </EntityType>
+        <EntityType Name="PlanGroup">
+          <Key>
+            <PropertyRef Name="idPlanGroup" />
+          </Key>
+          <Property Name="idPlanGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPlan" Type="Int32" Nullable="false" />
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanProduct" Relationship="oibarramentoModel.FK_PlanGroup_PlanProduct" FromRole="PlanGroup" ToRole="PlanProduct" />
+        </EntityType>
+        <EntityType Name="PlanRegulation">
+          <Key>
+            <PropertyRef Name="idPlanRegulation" />
+          </Key>
+          <Property Name="idPlanRegulation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PriceGroup" Relationship="oibarramentoModel.FK_PlanRegulation_PriceGroup" FromRole="PlanRegulation" ToRole="PriceGroup" />
+        </EntityType>
+        <EntityType Name="PriceGroup">
+          <Key>
+            <PropertyRef Name="idPriceGroup" />
+          </Key>
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PlanRegulations" Relationship="oibarramentoModel.FK_PlanRegulation_PriceGroup" FromRole="PriceGroup" ToRole="PlanRegulation" />
+          <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroup" ToRole="PriceGroupCity" />
+          <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="PriceGroup" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PriceGroupCity">
+          <Key>
+            <PropertyRef Name="idPriceGroupCities" />
+          </Key>
+          <Property Name="idPriceGroupCities" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_PriceGroupCities_City" FromRole="PriceGroupCity" ToRole="City" />
+          <NavigationProperty Name="PriceGroup" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroupCity" ToRole="PriceGroup" />
+          <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PriceGroupCities_Product" FromRole="PriceGroupCity" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PriceLoyalty">
+          <Key>
+            <PropertyRef Name="idPriceLoyalty" />
+          </Key>
+          <Property Name="idPriceLoyalty" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prices" Relationship="oibarramentoModel.FK_Price_PriceLoyalty" FromRole="PriceLoyalty" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="PricePaymentMethod">
+          <Key>
+            <PropertyRef Name="idPaymentMethod" />
+          </Key>
+          <Property Name="idPaymentMethod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isVisible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Prices" Relationship="oibarramentoModel.FK_Price_PricePaymentMethod" FromRole="PricePaymentMethod" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="PriceTypeClient">
+          <Key>
+            <PropertyRef Name="idTypeClient" />
+          </Key>
+          <Property Name="idTypeClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prices" Relationship="oibarramentoModel.FK_Price_PriceTypeClient" FromRole="PriceTypeClient" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="ProductFamily">
+          <Key>
+            <PropertyRef Name="idProductFamily" />
+          </Key>
+          <Property Name="idProductFamily" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="oibarramentoModel.FK_Product_ProductFamily" FromRole="ProductFamily" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="VersionAPI">
+          <Key>
+            <PropertyRef Name="idVersion" />
+          </Key>
+          <Property Name="idVersion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CustomDatas" Relationship="oibarramentoModel.FK_Data_Version" FromRole="VersionAPI" ToRole="CustomData" />
+        </EntityType>
+        <Association Name="FK_GroupCustomDataPage_City">
+          <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_City">
+          <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="PriceGroupCity">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPage_ComponentType">
+          <End Type="oibarramentoModel.ComponentType" Role="ComponentType" Multiplicity="1" />
+          <End Type="oibarramentoModel.ComponentPage" Role="ComponentPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="idComponentType" />
+            </Principal>
+            <Dependent Role="ComponentPage">
+              <PropertyRef Name="idComponentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.ComponentPage" Role="ComponentPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="ComponentPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomData_ComponentType">
+          <End Type="oibarramentoModel.ComponentType" Role="ComponentType" Multiplicity="1" />
+          <End Type="oibarramentoModel.CustomData" Role="CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="idComponentType" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idComponentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Data_Group">
+          <End Type="oibarramentoModel.GroupCustomData" Role="GroupCustomData" Multiplicity="1" />
+          <End Type="oibarramentoModel.CustomData" Role="CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCustomData">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Data_Version">
+          <End Type="oibarramentoModel.VersionAPI" Role="VersionAPI" Multiplicity="1" />
+          <End Type="oibarramentoModel.CustomData" Role="CustomData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VersionAPI">
+              <PropertyRef Name="idVersion" />
+            </Principal>
+            <Dependent Role="CustomData">
+              <PropertyRef Name="idVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_GroupCustomData">
+          <End Type="oibarramentoModel.GroupCustomData" Role="GroupCustomData" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCustomData">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanRegulation_PriceGroup">
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
+          <End Type="oibarramentoModel.PlanRegulation" Role="PlanRegulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PlanRegulation">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_PriceGroup">
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PriceGroupCity">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProductFamily" Type="Int32" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isVisible" Type="Boolean" Nullable="false" />
+          <Property Name="valueGroupPrice" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PriceGroups" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="Product" ToRole="PriceGroup" />
+          <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_Product" FromRole="Product" ToRole="PriceGroupCity" />
+          <NavigationProperty Name="ProductFamily" Relationship="oibarramentoModel.FK_Product_ProductFamily" FromRole="Product" ToRole="ProductFamily" />
+          <NavigationProperty Name="PlanProducts" Relationship="oibarramentoModel.FK_PlanProduct_Product" FromRole="Product" ToRole="PlanProduct" />
+        </EntityType>
+        <Association Name="FK_PriceGroup_Product">
+          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PriceGroup">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_Product">
+          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PriceGroupCity">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductFamily">
+          <End Type="oibarramentoModel.ProductFamily" Role="ProductFamily" Multiplicity="0..1" />
+          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductFamily">
+              <PropertyRef Name="idProductFamily" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="idProductFamily" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="idPrice" />
+          </Key>
+          <Property Name="idPrice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPlan" Type="Int32" Nullable="false" />
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
+          <Property Name="idPriceLoyalty" Type="Int32" Nullable="false" />
+          <Property Name="idTypeClient" Type="Int32" Nullable="false" />
+          <Property Name="idPaymentMethod" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="valueCombo" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="PriceLoyalty" Relationship="oibarramentoModel.FK_Price_PriceLoyalty" FromRole="Price" ToRole="PriceLoyalty" />
+          <NavigationProperty Name="PricePaymentMethod" Relationship="oibarramentoModel.FK_Price_PricePaymentMethod" FromRole="Price" ToRole="PricePaymentMethod" />
+          <NavigationProperty Name="PriceTypeClient" Relationship="oibarramentoModel.FK_Price_PriceTypeClient" FromRole="Price" ToRole="PriceTypeClient" />
+          <NavigationProperty Name="PlanProduct" Relationship="oibarramentoModel.FK_Price_PlanProduct" FromRole="Price" ToRole="PlanProduct" />
+        </EntityType>
+        <Association Name="FK_Price_PriceLoyalty">
+          <End Type="oibarramentoModel.PriceLoyalty" Role="PriceLoyalty" Multiplicity="1" />
+          <End Type="oibarramentoModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceLoyalty">
+              <PropertyRef Name="idPriceLoyalty" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPriceLoyalty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PricePaymentMethod">
+          <End Type="oibarramentoModel.PricePaymentMethod" Role="PricePaymentMethod" Multiplicity="1" />
+          <End Type="oibarramentoModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricePaymentMethod">
+              <PropertyRef Name="idPaymentMethod" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPaymentMethod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PriceTypeClient">
+          <End Type="oibarramentoModel.PriceTypeClient" Role="PriceTypeClient" Multiplicity="1" />
+          <End Type="oibarramentoModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceTypeClient">
+              <PropertyRef Name="idTypeClient" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idTypeClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlanProduct">
+          <Key>
+            <PropertyRef Name="idPlan" />
+          </Key>
+          <Property Name="idPlan" Type="Int32" Nullable="false" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="defaultSKU" Type="Boolean" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="linkEcommerce" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="isVisible" Type="Boolean" Nullable="false" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PlanGroups" Relationship="oibarramentoModel.FK_PlanGroup_PlanProduct" FromRole="PlanProduct" ToRole="PlanGroup" />
+          <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PlanProduct_Product" FromRole="PlanProduct" ToRole="Product" />
+          <NavigationProperty Name="Prices" Relationship="oibarramentoModel.FK_Price_PlanProduct" FromRole="PlanProduct" ToRole="Price" />
+        </EntityType>
+        <Association Name="FK_PlanGroup_PlanProduct">
+          <End Type="oibarramentoModel.PlanProduct" Role="PlanProduct" Multiplicity="1" />
+          <End Type="oibarramentoModel.PlanGroup" Role="PlanGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanProduct">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="PlanGroup">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanProduct_Product">
+          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="oibarramentoModel.PlanProduct" Role="PlanProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PlanProduct">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_PlanProduct">
+          <End Type="oibarramentoModel.PlanProduct" Role="PlanProduct" Multiplicity="1" />
+          <End Type="oibarramentoModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanProduct">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CMS_Account">
+          <Key>
+            <PropertyRef Name="idAccount" />
+          </Key>
+          <Property Name="idAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPermission" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CMS_Permission" Relationship="oibarramentoModel.FK_CMS_Account_CMS_Permission" FromRole="CMS_Account" ToRole="CMS_Permission" />
+          <NavigationProperty Name="CMS_AccountLoginLog" Relationship="oibarramentoModel.FK_CMS_AccountLoginLog_CMS_Account" FromRole="CMS_Account" ToRole="CMS_AccountLoginLog" />
+        </EntityType>
+        <EntityType Name="CMS_AccountLoginLog">
+          <Key>
+            <PropertyRef Name="idAccountLoginLog" />
+          </Key>
+          <Property Name="idAccountLoginLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAccount" Type="Int32" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="dtRegister" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CMS_Account" Relationship="oibarramentoModel.FK_CMS_AccountLoginLog_CMS_Account" FromRole="CMS_AccountLoginLog" ToRole="CMS_Account" />
+        </EntityType>
+        <EntityType Name="CMS_Permission">
+          <Key>
+            <PropertyRef Name="idPermission" />
+          </Key>
+          <Property Name="idPermission" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CMS_Account" Relationship="oibarramentoModel.FK_CMS_Account_CMS_Permission" FromRole="CMS_Permission" ToRole="CMS_Account" />
+        </EntityType>
+        <Association Name="FK_CMS_Account_CMS_Permission">
+          <End Type="oibarramentoModel.CMS_Permission" Role="CMS_Permission" Multiplicity="1" />
+          <End Type="oibarramentoModel.CMS_Account" Role="CMS_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Permission">
+              <PropertyRef Name="idPermission" />
+            </Principal>
+            <Dependent Role="CMS_Account">
+              <PropertyRef Name="idPermission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_AccountLoginLog_CMS_Account">
+          <End Type="oibarramentoModel.CMS_Account" Role="CMS_Account" Multiplicity="1" />
+          <End Type="oibarramentoModel.CMS_AccountLoginLog" Role="CMS_AccountLoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="CMS_AccountLoginLog">
+              <PropertyRef Name="idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GroupModal">
+          <Key>
+            <PropertyRef Name="idGroupModal" />
+          </Key>
+          <Property Name="idGroupModal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GroupModalCities" Relationship="oibarramentoModel.FK_GroupModalCities_GroupModal" FromRole="GroupModal" ToRole="GroupModalCity" />
+          <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_GroupModal" FromRole="GroupModal" ToRole="GroupModalPage" />
+        </EntityType>
+        <EntityType Name="GroupModalCity">
+          <Key>
+            <PropertyRef Name="idGroupModalCities" />
+          </Key>
+          <Property Name="idGroupModalCities" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGroupModal" Type="Int32" Nullable="false" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_GroupModalCities_City" FromRole="GroupModalCity" ToRole="City" />
+          <NavigationProperty Name="GroupModal" Relationship="oibarramentoModel.FK_GroupModalCities_GroupModal" FromRole="GroupModalCity" ToRole="GroupModal" />
+        </EntityType>
+        <EntityType Name="GroupModalPage">
+          <Key>
+            <PropertyRef Name="idGroupModalPage" />
+          </Key>
+          <Property Name="idGroupModalPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPage" Type="Int32" Nullable="false" />
+          <Property Name="idGroupModal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupModal" Relationship="oibarramentoModel.FK_GroupModalPage_GroupModal" FromRole="GroupModalPage" ToRole="GroupModal" />
+          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="GroupModalPage" ToRole="Page" />
+          <Property Name="idModal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Modal" Relationship="oibarramentoModel.FK_GroupModalPage_Modal" FromRole="GroupModalPage" ToRole="Modal" />
+        </EntityType>
+        <Association Name="FK_GroupModalCities_City">
+          <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalCity" Role="GroupModalCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="GroupModalCity">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalCities_GroupModal">
+          <End Type="oibarramentoModel.GroupModal" Role="GroupModal" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalCity" Role="GroupModalCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupModal">
+              <PropertyRef Name="idGroupModal" />
+            </Principal>
+            <Dependent Role="GroupModalCity">
+              <PropertyRef Name="idGroupModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_GroupModal">
+          <End Type="oibarramentoModel.GroupModal" Role="GroupModal" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalPage" Role="GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupModal">
+              <PropertyRef Name="idGroupModal" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idGroupModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalPage" Role="GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Modal">
+          <Key>
+            <PropertyRef Name="idModal" />
+          </Key>
+          <Property Name="idModal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_Modal" FromRole="Modal" ToRole="GroupModalPage" />
+        </EntityType>
+        <Association Name="FK_GroupModalPage_Modal">
+          <End Type="oibarramentoModel.Modal" Role="Modal" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalPage" Role="GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modal">
+              <PropertyRef Name="idModal" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idModal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="oibarramentoModelStoreContainer" CdmEntityContainer="OiWeb">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="oibarramentoModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="idGroupPosPago" ColumnName="idGroupPosPago" />
+                <ScalarProperty Name="idGroupControlePage" ColumnName="idGroupControlePage" />
+                <ScalarProperty Name="idGroupMenu" ColumnName="idGroupMenu" />
+                <ScalarProperty Name="idGroupHomePage" ColumnName="idGroupHomePage" />
+                <ScalarProperty Name="idPriceGroupCelularControle" ColumnName="idPriceGroupCelularControle" />
+                <ScalarProperty Name="idPriceGroupCelularPre" ColumnName="idPriceGroupCelularPre" />
+                <ScalarProperty Name="idPriceGroupCelularPos" ColumnName="idPriceGroupCelularPos" />
+                <ScalarProperty Name="idPriceGroupCombo" ColumnName="idPriceGroupCombo" />
+                <ScalarProperty Name="idPriceGroupBandaLarga" ColumnName="idPriceGroupBandaLarga" />
+                <ScalarProperty Name="idPriceGroupFixo" ColumnName="idPriceGroupFixo" />
+                <ScalarProperty Name="idPriceGroupTV" ColumnName="idPriceGroupTV" />
+                <ScalarProperty Name="DDD" ColumnName="DDD" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponentPages">
+            <EntityTypeMapping TypeName="oibarramentoModel.ComponentPage">
+              <MappingFragment StoreEntitySet="ComponentPage">
+                <ScalarProperty Name="idComponentType" ColumnName="idComponentType" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+                <ScalarProperty Name="idComponentPage" ColumnName="idComponentPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponentTypes">
+            <EntityTypeMapping TypeName="oibarramentoModel.ComponentType">
+              <MappingFragment StoreEntitySet="ComponentType">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="identifier" ColumnName="identifier" />
+                <ScalarProperty Name="idComponentType" ColumnName="idComponentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomDatas">
+            <EntityTypeMapping TypeName="oibarramentoModel.CustomData">
+              <MappingFragment StoreEntitySet="CustomData">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+                <ScalarProperty Name="idComponentType" ColumnName="idComponentType" />
+                <ScalarProperty Name="idVersion" ColumnName="idVersion" />
+                <ScalarProperty Name="idData" ColumnName="idData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupCustomDatas">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupCustomData">
+              <MappingFragment StoreEntitySet="GroupCustomData">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupCustomDataPages">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupCustomDataPage">
+              <MappingFragment StoreEntitySet="GroupCustomDataPage">
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="idGroupCustomDataPage" ColumnName="idGroupCustomDataPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="oibarramentoModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="isCommon" ColumnName="isCommon" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanGroups">
+            <EntityTypeMapping TypeName="oibarramentoModel.PlanGroup">
+              <MappingFragment StoreEntitySet="PlanGroup">
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+                <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+                <ScalarProperty Name="idPlanGroup" ColumnName="idPlanGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanRegulations">
+            <EntityTypeMapping TypeName="oibarramentoModel.PlanRegulation">
+              <MappingFragment StoreEntitySet="PlanRegulation">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+                <ScalarProperty Name="idPlanRegulation" ColumnName="idPlanRegulation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceGroups">
+            <EntityTypeMapping TypeName="oibarramentoModel.PriceGroup">
+              <MappingFragment StoreEntitySet="PriceGroup">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceGroupCities">
+            <EntityTypeMapping TypeName="oibarramentoModel.PriceGroupCity">
+              <MappingFragment StoreEntitySet="PriceGroupCities">
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="idPriceGroupCities" ColumnName="idPriceGroupCities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceLoyalties">
+            <EntityTypeMapping TypeName="oibarramentoModel.PriceLoyalty">
+              <MappingFragment StoreEntitySet="PriceLoyalty">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPriceLoyalty" ColumnName="idPriceLoyalty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PricePaymentMethods">
+            <EntityTypeMapping TypeName="oibarramentoModel.PricePaymentMethod">
+              <MappingFragment StoreEntitySet="PricePaymentMethod">
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPaymentMethod" ColumnName="idPaymentMethod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceTypeClients">
+            <EntityTypeMapping TypeName="oibarramentoModel.PriceTypeClient">
+              <MappingFragment StoreEntitySet="PriceTypeClient">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idTypeClient" ColumnName="idTypeClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductFamilies">
+            <EntityTypeMapping TypeName="oibarramentoModel.ProductFamily">
+              <MappingFragment StoreEntitySet="ProductFamily">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idProductFamily" ColumnName="idProductFamily" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VersionAPIs">
+            <EntityTypeMapping TypeName="oibarramentoModel.VersionAPI">
+              <MappingFragment StoreEntitySet="VersionAPI">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idVersion" ColumnName="idVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="oibarramentoModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="valueGroupPrice" ColumnName="valueGroupPrice" />
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idProductFamily" ColumnName="idProductFamily" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="oibarramentoModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="valueCombo" ColumnName="valueCombo" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="idPaymentMethod" ColumnName="idPaymentMethod" />
+                <ScalarProperty Name="idTypeClient" ColumnName="idTypeClient" />
+                <ScalarProperty Name="idPriceLoyalty" ColumnName="idPriceLoyalty" />
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+                <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+                <ScalarProperty Name="idPrice" ColumnName="idPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanProducts">
+            <EntityTypeMapping TypeName="oibarramentoModel.PlanProduct">
+              <MappingFragment StoreEntitySet="PlanProduct">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="linkEcommerce" ColumnName="linkEcommerce" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="defaultSKU" ColumnName="defaultSKU" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Account">
+            <EntityTypeMapping TypeName="oibarramentoModel.CMS_Account">
+              <MappingFragment StoreEntitySet="CMS_Account">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPermission" ColumnName="idPermission" />
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_AccountLoginLog">
+            <EntityTypeMapping TypeName="oibarramentoModel.CMS_AccountLoginLog">
+              <MappingFragment StoreEntitySet="CMS_AccountLoginLog">
+                <ScalarProperty Name="dtRegister" ColumnName="dtRegister" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+                <ScalarProperty Name="idAccountLoginLog" ColumnName="idAccountLoginLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Permission">
+            <EntityTypeMapping TypeName="oibarramentoModel.CMS_Permission">
+              <MappingFragment StoreEntitySet="CMS_Permission">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPermission" ColumnName="idPermission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupModals">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupModal">
+              <MappingFragment StoreEntitySet="GroupModal">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idGroupModal" ColumnName="idGroupModal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupModalCities">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupModalCity">
+              <MappingFragment StoreEntitySet="GroupModalCities">
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="idGroupModal" ColumnName="idGroupModal" />
+                <ScalarProperty Name="idGroupModalCities" ColumnName="idGroupModalCities" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupModalPages">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupModalPage">
+              <MappingFragment StoreEntitySet="GroupModalPage">
+                <ScalarProperty Name="idModal" ColumnName="idModal" />
+                <ScalarProperty Name="idGroupModal" ColumnName="idGroupModal" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+                <ScalarProperty Name="idGroupModalPage" ColumnName="idGroupModalPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modals">
+            <EntityTypeMapping TypeName="oibarramentoModel.Modal">
+              <MappingFragment StoreEntitySet="Modal">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idModal" ColumnName="idModal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

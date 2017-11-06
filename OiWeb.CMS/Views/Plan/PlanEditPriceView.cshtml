@@ -1,0 +1,63 @@
+﻿@model OiWeb.Entity.PlanProduct
+
+<div class="content-wrapper">
+       
+    <section class="content container-fluid">
+        <div class="row">             
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h3>Editar Preços do Plano </h3>
+                    <div class="row">
+                        <form method="POST" action="/SaveUpdatePlanPrice">
+                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <div class="form-group has-feedback">
+                                        <label><strong>SKU</strong></label>
+                                        <input type="text" class="form-control" disabled name="SKU" placeholder="SKU" value="@Html.Raw(Model.idPlan)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Preços Alone</h4>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Fidelizado</label>
+                                        <input type="text" class="form-control" name="valueFid" placeholder="Não Definido" value="@Html.Raw(Model.Prices.Where(p => p.idPriceLoyalty == 1).Count() > 0 ? Model.Prices.Where(p => p.idPriceLoyalty == 1).First().value.ToString() : "")">
+                                        <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Não Fidelizado</label>
+                                        <input type="text" class="form-control" name="valueNoFid" placeholder="Não Definido" value="@Html.Raw(Model.Prices.Where(p => p.idPriceLoyalty == 2).Count() > 0 ? Model.Prices.Where(p => p.idPriceLoyalty == 2).FirstOrDefault().value.ToString() : "")">
+                                        <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Preços no Combo</h4>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Fidelizado no <strong>Combo</strong></label>
+                                        <input type="text" class="form-control" name="valueFidCombo" placeholder="Não Definido" value="@Html.Raw(Model.Prices.Where(p => p.idPriceLoyalty == 1).Count() > 0 ? Model.Prices.Where(p => p.idPriceLoyalty == 1).First().valueCombo.ToString() : "")">
+                                        <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Não Fidelizado no <strong>Combo</strong></label>
+                                        <input type="text" class="form-control" name="valueNoFidCombo" placeholder="Não Definido" value="@Html.Raw(Model.Prices.Where(p => p.idPriceLoyalty == 2).Count() > 0 ? Model.Prices.Where(p => p.idPriceLoyalty == 2).First().valueCombo.ToString() : "")">
+                                        <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="idPlan" value=@Html.Raw(Model.idPlan) />
+                            <input type="hidden" name="idPriceGroup" value=@Html.Raw(Model.Prices.Count() > 0 ? Model.Prices.First().idPriceGroup : ViewBag.idPriceGroup) />
+                            <input type="hidden" name="idTypeClient" value=@Html.Raw(Model.Prices.Count() > 0 ? Model.Prices.First().idTypeClient : 1) />
+                            <input type="hidden" name="idPaymentMethod" value=@Html.Raw(Model.Prices.Count() > 0 ? Model.Prices.First().idPaymentMethod : 1) />
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-default">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+</div>

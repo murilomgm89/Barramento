@@ -1,0 +1,28 @@
+﻿@model OiWeb.Entity.Product
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">SKU</th>
+            <th class="sortable">Plano</th> 
+            <th class="sortable">DefaultSKU</th>          
+            <th class="sortable">Criado em</th>  
+            <th class="sortable">Status</th>          
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach (var plan in Model.PlanProducts)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(plan.idPlan)</td>
+                <td class="text-truncate"><a href="Produto/Plano/@Html.Raw(plan.idPlan)/Alterar/"><strong>@Html.Raw(plan.name)</strong></a></td>
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(plan.defaultSKU == true ? "tag-success" : "tag-unpaid")">@Html.Raw(plan.defaultSKU == true ? "TRUE" : "FALSE")</span></td>               
+                <td class="text-truncate"><strong>@Html.Raw(plan.dtCreate)</strong></td>
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(plan.isVisible == true ? "tag-success" : "tag-unpaid")">@Html.Raw(plan.isVisible == true ? "Ativo" : "Inativo")</span></td>
+                <td class="text-truncate"><a href="/Produto/Plano/@Html.Raw(plan.idPlan)/Alterar" class="btn btn-danger btn-outline btn-rounded">Alterar</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

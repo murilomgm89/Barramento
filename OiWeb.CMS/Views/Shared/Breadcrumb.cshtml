@@ -1,0 +1,16 @@
+﻿@{
+    var Model = ViewBag.breadcrumbViewModel;
+}
+<section class="content-header">
+    <h1>@Html.Raw(Model.H1)</h1>
+    <ol class="breadcrumb">
+        <li><a href="/Home"><i class="fa fa-home"></i> Home</a></li>
+        @*<li class="active"><i class="fa fa-envelope-o"></i> Forms</li>*@
+        @{
+            if (Model.Icon != null && Model.Session != null)
+            {
+                <li class="active"><i class="fa @Html.Raw(Model.Icon)"></i> @Html.Raw(Model.Session)</li>
+            }
+        }              
+    </ol>
+</section>

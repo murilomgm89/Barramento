@@ -1,0 +1,74 @@
+﻿@{    
+    var userSession = (OiWeb.Entity.CMS_Account)ViewBag.userSession;    
+}
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar dark-bg">
+    <section class="sidebar">
+        <div class="user-panel black-bg">
+            <div class="pull-left image"> <img src="/Content/dist/img/img1.jpg" class="img-circle" alt="User Image"> </div>
+            <div class="pull-left info">
+                <p>@Html.Raw(userSession.name)</p>                
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header dark-bg">Catálogo de Produtos</li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-table"></i> <span>Produtos</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Produto/1"><i class="fa fa-angle-right"></i> TV</a></li>
+                    <li><a href="/Produto/2"><i class="fa fa-angle-right"></i> FIXO</a></li>
+                    <li><a href="/Produto/3"><i class="fa fa-angle-right"></i> Banda Larga</a></li>
+                    <li><a href="/Produto/5"><i class="fa fa-angle-right"></i> Combo</a></li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-angle-right"></i>Celular<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li><a href="/Produto/6"><i class="fa fa-angle-right"></i> PÓS-Pago</a></li>
+                            <li><a href="/Produto/8"><i class="fa fa-angle-right"></i> Controle</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            @*<li class="treeview active">*@
+            <li class="treeview">
+                <a href="#"><i class="fa fa-files-o"></i> <span>Regionalização</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Cidades"><i class="fa fa-angle-right"></i> Consulta a Cidade</a></li>
+                    <li><a href="/Grupos"><i class="fa fa-angle-right"></i> Grupos</a></li>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Vínculo a Cidades</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-files-o"></i> <span>Regulamentos</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Cidades"><i class="fa fa-angle-right"></i> Visualizar</a></li>
+                    <li><a href="/Grupos"><i class="fa fa-angle-right"></i> Novo Vínculo</a></li>                  
+                </ul>
+            </li>
+            @*<li class="header dark-bg">Custom Data</li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-pencil-square-o"></i> <span>Dados</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-angle-right"></i> Consulta a Cidade</a></li>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Grupos</a></li>
+                    <li><a href=""><i class="fa fa-angle-right"></i> Vínculo a Cidades</a></li>                        
+                </ul>
+            </li>*@
+            <li class="header dark-bg">Conta</li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-bullseye"></i> <span>Perfil</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-angle-right"></i> Editar Perfil</a></li> 
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-files-o"></i> <span>Usuários</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Usuarios"><i class="fa fa-angle-right"></i>Gerenciar Usuários</a></li>
+                    <li><a href="/Grupos"><i class="fa fa-angle-right"></i>Novo Usuário</a></li>                  
+                </ul>
+            </li>            
+        </ul>
+        <!-- sidebar-menu -->
+    </section>
+</aside>

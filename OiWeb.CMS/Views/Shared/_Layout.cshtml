@@ -1,0 +1,61 @@
+﻿@{    
+    var userSession = (OiWeb.Entity.CMS_Account)Session.Contents["User"];
+    if (userSession == null)
+    {
+        Response.Redirect("/Login");
+        return;
+    }
+    
+    ViewBag.userSession = userSession;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>CMS - Portal Oi</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="/Content/bootstrap/css/bootstrap.min.css">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+        <!-- Template style -->
+        <link rel="stylesheet" href="/Content/dist/css/style.css">
+        <link rel="stylesheet" href="/Content/dist/et-line-font/et-line-font.css">
+        <link rel="stylesheet" href="/Content/dist/font-awesome/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="/Content/dist/weather/weather-icons.min.css">
+        <link type="text/css" rel="stylesheet" href="/Content/dist/weather/weather-icons-wind.min.css">
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+        @Scripts.Render("~/Content/dist/js/jquery.min.js")
+        @Scripts.Render("~/Content/bootstrap/js/bootstrap.min.js")
+        @Scripts.Render("~/Content/dist/js/ovio.js")
+        @RenderSection("scripts", required: false)        
+    </head>
+    <body class="sidebar-mini">
+        <div class="wrapper">  
+            @* Header *@
+            @RenderPage("~/Views/Shared/Header.cshtml")
+
+            @* MENU *@
+            @RenderPage("~/Views/Shared/Menu.cshtml")
+
+            @* AQUI VAI A PAGINA *@
+            @RenderBody()
+
+            @* Footer *@
+            @RenderPage("~/Views/Shared/Footer.cshtml")      
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,26 @@
+﻿@model List<OiWeb.Entity.CMS_Account>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">Nome</th>            
+            <th class="sortable">E-mail</th>
+            <th class="sortable">Permissão</th>
+            <th class="sortable">Criado Em</th>
+            <th class="sortable">Status</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var user in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(user.name)</td>
+                <td class="text-truncate">@Html.Raw(user.email)</td>
+                <td class="text-truncate"><strong>@Html.Raw(user.CMS_Permission.name)</strong></td>
+                <td class="text-truncate">@Html.Raw(user.dtCreate)</td>
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(user.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(user.isActive == true ? "Ativo" : "Inativo")</span></td>
+                <td class="text-truncate"><a href="/Usuarios/@Html.Raw(user.idAccount)" class="btn btn-danger btn-outline btn-rounded">Alterar</a></td>
+            </tr>
+        }
+    }
+</table>

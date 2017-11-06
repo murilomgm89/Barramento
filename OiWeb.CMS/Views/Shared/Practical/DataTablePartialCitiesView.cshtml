@@ -1,0 +1,22 @@
+﻿@model List<OiWeb.Entity.City>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">SP</th>
+            <th class="sortable">Cidade</th>
+            <th class="sortable">DDD</th>           
+        </tr>
+    </thead>
+    @{
+        foreach (var cities in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(cities.idCity)</td>
+                <td class="text-truncate">@Html.Raw(cities.state)</td>
+                <td class="text-truncate"><a href="/Cidades/@Html.Raw(cities.idCity)">@Html.Raw(cities.name)</a></td>
+                <td class="text-truncate">@Html.Raw(cities.DDD)</td>
+            </tr>
+        }
+    }
+</table>

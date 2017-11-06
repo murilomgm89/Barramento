@@ -1,0 +1,125 @@
+﻿<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")   
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="chart-box">                    
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#ultimas" aria-controls="recomendar" role="tab" data-toggle="tab" aria-expanded="false">Log Geração</a></li>    
+                        <li role="presentation" class=""><a href="#acessos" aria-controls="acessos" role="tab" data-toggle="tab" aria-expanded="true">Gerar Estrutura</a></li>
+                    </ul>                    
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="ultimas">
+                            <div class="chart-box">
+                                <h4>Últimas Gerações</h4>
+                                <div class="message-widget">
+                                    <a href="#">
+                                        <div class="user-img pull-left"> <img src="/Content/dist/img/img1.jpg" class="img-circle img-responsive" alt="User Image"></div>
+                                        <div class="mail-contnet">
+                                            <h5>{User}</h5>
+                                            <span>{Description}</span> <span class="time">{DateTime}</span>
+                                        </div>
+                                    </a> 
+                                    <a href="#">
+                                        <div class="user-img pull-left"> <img src="/Content/dist/img/img1.jpg" class="img-circle img-responsive" alt="User Image"></div>
+                                        <div class="mail-contnet">
+                                            <h5>{User}</h5>
+                                            <span>{Description}</span> <span class="time">{DateTime}</span>
+                                        </div>
+                                    </a> 
+                                    <a href="#">
+                                        <div class="user-img pull-left"> <img src="/Content/dist/img/img1.jpg" class="img-circle img-responsive" alt="User Image"></div>
+                                        <div class="mail-contnet">
+                                            <h5>{User}</h5>
+                                            <span>{Description}</span> <span class="time">{DateTime}</span>
+                                        </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="user-img pull-left"> <img src="/Content/dist/img/img1.jpg" class="img-circle img-responsive" alt="User Image"></div>
+                                        <div class="mail-contnet">
+                                            <h5>{User}</h5>
+                                            <span>{Description}</span> <span class="time">{DateTime}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="acessos">
+                            <div class="message-widget">
+                                <div>
+                                    <div class="user-img pull-left"> <img src="/Content/dist/img/img3.jpg" class="img-circle img-responsive" alt="JSON"> </div>
+                                    <div class="mail-contnet">
+                                        <h5>Gerar API (JSON)</h5>
+                                        <fieldset class="form-group">                                            
+                                            <textarea class="form-control" id="placeTextarea" rows="6" placeholder="Descrição..."></textarea>
+                                        </fieldset>
+                                        <button data-original-title="Atenção" data-placement="bottom" rel="popover" data-content="Ao termino da geração automática, será disparado um E-mail notificando os envolvidos." id="popoverOption" type="button" class="btn btn-danger btn-rounded">Gerar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="chart-box">
+                    <h4 class="m-bot-3">Atividades Recentes</h4>
+                    <div class="sl-item sl-primary">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 5 mins</small>
+                            <p>{User}, alterou preços do produto {Product} no grupo {NameGroupPrice}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-danger">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 8 mins</small>
+                            <p>{User}, modificou as cidades vínculadas ao grupo de preços {NameGroupPrice}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-primary">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 10 mins</small>
+                            <p>{User}, criou um novo Grupo de preços, chamado {NameGroupPrice}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-warning">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 12 mins</small>
+                            <p>{User}, alterou o CustomData atribuido a pagina {NamePage} no grupo {GroupCustomData}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-danger">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 8 mins</small>
+                            <p>{User}, modificou as cidades vínculadas ao grupo de preços {NameGroupPrice}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-primary">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 10 mins</small>
+                            <p>{User}, criou um novo Grupo de preços, chamado {NameGroupPrice}</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-warning">
+                        <div class="sl-content">
+                            <small class="text-muted"><i class="fa fa-user position-left"></i> 12 mins</small>
+                            <p>{User}, alterou o CustomData atribuido a pagina {NamePage} no grupo {GroupCustomData}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </section>
+    <!-- content -->
+</div>
+<script type="text/javascript" DEFER="DEFER">
+    window.onload = function () {
+        $('#popoverOption').popover({ trigger: "hover" });
+        $('[data-toggle="popover"]').popover()
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    };
+</script>

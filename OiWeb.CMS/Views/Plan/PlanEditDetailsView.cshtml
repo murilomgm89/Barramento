@@ -1,0 +1,71 @@
+﻿@model OiWeb.Entity.PlanProduct
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")        
+    <section class="content container-fluid">
+        <div class="row">             
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Editar Plano @Html.Raw(Model.name)</h4>
+                    <div class="row">
+                        <form method="POST" action="/SaveUpdatePlan">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">SKU</label>
+                                    <input type="text" class="form-control" disabled name="SKU" placeholder="SKU" value="@Html.Raw(Model.idPlan)">
+                                    <span class="fa fa-briefcase form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Descrição</label>
+                                    <input type="text" class="form-control" name="description" placeholder="Descrição" value="@Html.Raw(Model.description)">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Nome</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Nome do plano" value="@Html.Raw(Model.name)">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Link Carrinho</label>
+                                    <input type="text" class="form-control" name="linkEcommerce" placeholder="Link Carrinho" value="@Html.Raw(Model.linkEcommerce)">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Status</label>
+                                    <select class="form-control" name="isVisible">
+                                        <option value=true @Html.Raw(Model.isVisible == true ? "selected" : "")>Ativo</option>
+                                        <option value=false @Html.Raw(Model.isVisible == false ? "selected" : "")>Desativado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Default SKU</label>
+                                    <select class="form-control" name="defaultSKU">
+                                        <option value=true @Html.Raw(Model.defaultSKU == true ? "selected" : "")>Ativo</option>
+                                        <option value=false @Html.Raw(Model.defaultSKU == false ? "selected" : "")>Desativado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="SKU" value=@Model.idPlan />
+                            <input type="hidden" name="idProduct" value=@Model.idProduct />
+                            <input type="hidden" name="dtCreate" value=@Model.dtCreate />                            
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-default">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+</div>

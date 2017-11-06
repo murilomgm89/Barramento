@@ -1,0 +1,15 @@
+﻿@model OiWeb.BarramentoWebAPI.Models.CatalogViewModel.Catalog
+{"catalog":{"@Html.Raw(Model.Product.name)":{"category":"@Html.Raw(Model.Product.productFamily)","plans":[{
+@{
+    int i = 0;
+    foreach (var plan in Model.Plans)
+    {
+        if (i != 0)
+        {
+            @Html.Raw(",");
+                   
+        }
+        Html.RenderPartial("~/Views/Json/Catalog/CatalogPlanPartialView.cshtml", plan);
+        i++;
+    }
+}}]}}}

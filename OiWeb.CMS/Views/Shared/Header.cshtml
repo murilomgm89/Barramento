@@ -1,0 +1,37 @@
+﻿@{
+    var userSession = (OiWeb.Entity.CMS_Account)ViewBag.userSession;    
+}
+<header class="main-header dark-bg">
+    <!-- Logo -->
+    <a href="index.html" class="logo dark-bg">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><img src="~/Content/dist/img/logo-oimae.png" alt="Oi"></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><img src="~/Content/dist/img/logo-oimae.png" alt="Oi"></span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>       
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">               
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/Content/dist/img/img1.jpg" class="user-image" alt="@Html.Raw(userSession.name)"> 
+                        <span class="hidden-xs">@Html.Raw(userSession.name)</span> 
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <div class="pull-left user-img"><img src="/Content/dist/img/img1.jpg" class="img-responsive" alt="@Html.Raw(userSession.name)"></div>
+                            <p class="text-left">@Html.Raw(userSession.name)<small>@Html.Raw(userSession.email)</small> </p>
+                        </li>
+                        <li><a href="#"><i class="icon-profile-male"></i> Meu Perfil</a></li>                       
+                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
