@@ -8,7 +8,7 @@ using AttributeRouting.Web.Mvc;
 
 namespace OiWeb.CMS.Controllers
 {
-    public class GroupsController : Controller
+    public class GroupCustomDataController : Controller
     {
         [GET("/Grupos/CustomData")]
         public ActionResult GetGroupsCustomData()

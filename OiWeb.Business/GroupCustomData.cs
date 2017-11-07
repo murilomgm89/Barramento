@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static IEnumerable<Entity.GroupCustomData> GetGroupCustomDatas()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _G in context.GroupCustomDatas 
                             select _G;                
@@ -18,7 +18,7 @@ namespace OiWeb.Business
         }
         public static Entity.GroupCustomData GetGroupCustomData(int idGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.GroupCustomDatas
                             where c.idGroup == idGroup
@@ -28,7 +28,7 @@ namespace OiWeb.Business
         }
         public static void Create(Entity.GroupCustomData groupCustomData)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.GroupCustomDatas.Add(groupCustomData);
                 context.SaveChanges();
@@ -36,7 +36,7 @@ namespace OiWeb.Business
         }
         public static void Update(Entity.GroupCustomData groupCustomData)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.GroupCustomDatas
                              where c.idGroup == groupCustomData.idGroup

@@ -107,9 +107,6 @@ namespace OiWeb.CMS.Controllers
         [POST("/Grupos/Cidades")]
         public RedirectResult SaveNewCities(Entity.PriceGroup group)
         {
-            
-
-
             //Quer dizer que tem excel para realizer a inserção
             if (group.file != null)
             {

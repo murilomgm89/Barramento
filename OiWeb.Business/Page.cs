@@ -10,7 +10,7 @@ namespace OiWeb.Business
     {
         public static IEnumerable<Entity.Page> GetPages()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.Pages                            
                             select c;
@@ -19,7 +19,7 @@ namespace OiWeb.Business
         }
         public static Entity.Page GetPage(int idPage)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.Pages
                             where c.idPage == idPage                          
@@ -29,7 +29,7 @@ namespace OiWeb.Business
         }
         public static void Create(Entity.Page page)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.Pages.Add(page);
                 context.SaveChanges();
@@ -37,7 +37,7 @@ namespace OiWeb.Business
         }
         public static void Update(Entity.Page page)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.Pages
                              where c.idPage == page.idPage
