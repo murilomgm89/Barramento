@@ -1,8 +1,4 @@
-﻿using OiWeb.Entity;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
-using System;
+﻿
 
 namespace OiWeb.Business
 {
@@ -10,7 +6,7 @@ namespace OiWeb.Business
     {
         public static void Create(Entity.CMS_AccountLoginLog accountLoginLog)
         {            
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {               
                 context.CMS_AccountLoginLog.Add(accountLoginLog);
                 context.SaveChanges();

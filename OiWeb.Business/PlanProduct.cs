@@ -10,7 +10,7 @@ namespace OiWeb.Business
     {
         public static Entity.PlanProduct GetPlan(int idPlan)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.PlanProducts
                             where c.idPlan == idPlan                          
@@ -20,7 +20,7 @@ namespace OiWeb.Business
         }
         public static void Create(Entity.PlanProduct planProduct)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.PlanProducts.Add(planProduct);
                 context.SaveChanges();
@@ -28,7 +28,7 @@ namespace OiWeb.Business
         }
         public static void Update(Entity.PlanProduct planProduct)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.PlanProducts
                             where c.idPlan == planProduct.idPlan

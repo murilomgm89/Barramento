@@ -16,7 +16,7 @@ namespace OiWeb.Business
             //var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
             //return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.CMS_Account
                             where o.email == account.email && o.password == account.password
@@ -27,7 +27,7 @@ namespace OiWeb.Business
 
         public static Entity.CMS_Account IsValidEmail(Entity.CMS_Account account)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.CMS_Account
                             where o.email == account.email
@@ -38,7 +38,7 @@ namespace OiWeb.Business
 
         public static IEnumerable<Entity.CMS_Account> GetUsers()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.CMS_Account                            
                             select o;
@@ -49,7 +49,7 @@ namespace OiWeb.Business
 
         public static Entity.CMS_Account GetUser(int idAccount)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.CMS_Account
                             where o.idAccount == idAccount
@@ -63,7 +63,7 @@ namespace OiWeb.Business
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(account.password);
             account.password = System.Convert.ToBase64String(plainTextBytes);
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.CMS_Account
                              where c.idAccount == account.idAccount
@@ -85,7 +85,7 @@ namespace OiWeb.Business
 
         public static void SaveUser(Entity.CMS_Account account)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.CMS_Account.Add(account);
                 context.SaveChanges();

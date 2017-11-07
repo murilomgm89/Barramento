@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static IEnumerable<Entity.PlanRegulation> GetPlanRegulations(int idPriceGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.PlanRegulations
                             where c.idPriceGroup == idPriceGroup

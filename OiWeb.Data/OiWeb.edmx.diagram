@@ -4,23 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fde988b09cdb4eb9987aa161888eb21a" Name="Diagram1" ZoomLevel="65">
-        <EntityTypeShape EntityType="oibarramentoModel.City" Width="1.5" PointX="8.25" PointY="15.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.ComponentPage" Width="1.5" PointX="10.5" PointY="19.625" />
-        <EntityTypeShape EntityType="oibarramentoModel.ComponentType" Width="1.5" PointX="0.75" PointY="11.875" />
-        <EntityTypeShape EntityType="oibarramentoModel.CustomData" Width="1.5" PointX="3" PointY="14.75" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomData" Width="1.5" PointX="0.75" PointY="15" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomDataPage" Width="1.5" PointX="10.5" PointY="16" />
-        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="8.25" PointY="21.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.PlanGroup" Width="1.5" PointX="7.5" PointY="5.75" />
-        <EntityTypeShape EntityType="oibarramentoModel.PlanRegulation" Width="1.5" PointX="7.5" PointY="9.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.PriceGroup" Width="1.5" PointX="5.25" PointY="8.875" />
+      <Diagram DiagramId="fde988b09cdb4eb9987aa161888eb21a" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="oibarramentoModel.City" Width="1.5" PointX="8.25" PointY="16" />
+        <EntityTypeShape EntityType="oibarramentoModel.ComponentPage" Width="1.5" PointX="15" PointY="4.375" />
+        <EntityTypeShape EntityType="oibarramentoModel.ComponentType" Width="1.5" PointX="12.75" PointY="1.375" />
+        <EntityTypeShape EntityType="oibarramentoModel.CustomData" Width="1.5" PointX="15" PointY="7.625" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomData" Width="1.5" PointX="12.75" PointY="14.25" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomDataPage" Width="1.5" PointX="15" PointY="11.125" />
+        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="12.75" PointY="4.125" />
+        <EntityTypeShape EntityType="oibarramentoModel.PlanGroup" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="oibarramentoModel.PlanRegulation" Width="1.5" PointX="7.5" PointY="12.25" />
         <EntityTypeShape EntityType="oibarramentoModel.PriceGroupCity" Width="1.5" PointX="10.5" PointY="9.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.PriceLoyalty" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="oibarramentoModel.PricePaymentMethod" Width="1.5" PointX="8.25" PointY="12.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.PriceTypeClient" Width="1.5" PointX="8.25" PointY="3.375" />
-        <EntityTypeShape EntityType="oibarramentoModel.ProductFamily" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="oibarramentoModel.VersionAPI" Width="1.5" PointX="0.75" PointY="18.5" />
+        <EntityTypeShape EntityType="oibarramentoModel.PriceLoyalty" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="oibarramentoModel.PricePaymentMethod" Width="1.5" PointX="5.25" PointY="16.125" />
+        <EntityTypeShape EntityType="oibarramentoModel.PriceTypeClient" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="oibarramentoModel.ProductFamily" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="oibarramentoModel.VersionAPI" Width="1.5" PointX="12.75" PointY="18" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_City" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_City" />
         <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_ComponentType" />
@@ -30,34 +29,35 @@
         <AssociationConnector Association="oibarramentoModel.FK_Data_Version" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_Page" />
-        <AssociationConnector Association="oibarramentoModel.FK_PlanRegulation_PriceGroup" />
-        <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup" />
-        <EntityTypeShape EntityType="oibarramentoModel.Product" Width="1.5" PointX="3" PointY="7" />
-        <AssociationConnector Association="oibarramentoModel.FK_PriceGroup_Product" />
+        <EntityTypeShape EntityType="oibarramentoModel.Product" Width="1.5" PointX="3" PointY="5.875" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_Product" />
         <AssociationConnector Association="oibarramentoModel.FK_Product_ProductFamily" />
-        <EntityTypeShape EntityType="oibarramentoModel.Price" Width="1.5" PointX="10.5" PointY="4.625" />
+        <EntityTypeShape EntityType="oibarramentoModel.Price" Width="1.5" PointX="7.5" PointY="4" />
         <AssociationConnector Association="oibarramentoModel.FK_Price_PriceLoyalty" />
         <AssociationConnector Association="oibarramentoModel.FK_Price_PricePaymentMethod" />
         <AssociationConnector Association="oibarramentoModel.FK_Price_PriceTypeClient" />
-        <EntityTypeShape EntityType="oibarramentoModel.PlanProduct" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="oibarramentoModel.PlanProduct" Width="1.5" PointX="5.25" PointY="4" />
         <AssociationConnector Association="oibarramentoModel.FK_PlanGroup_PlanProduct" />
         <AssociationConnector Association="oibarramentoModel.FK_PlanProduct_Product" />
         <AssociationConnector Association="oibarramentoModel.FK_Price_PlanProduct" />
-        <EntityTypeShape EntityType="oibarramentoModel.CMS_Account" Width="1.5" PointX="15.625" PointY="1" />
-        <EntityTypeShape EntityType="oibarramentoModel.CMS_AccountLoginLog" Width="1.5" PointX="17.875" PointY="1.25" />
-        <EntityTypeShape EntityType="oibarramentoModel.CMS_Permission" Width="1.5" PointX="13.375" PointY="1.5" />
+        <EntityTypeShape EntityType="oibarramentoModel.CMS_Account" Width="1.5" PointX="20" PointY="1" />
+        <EntityTypeShape EntityType="oibarramentoModel.CMS_AccountLoginLog" Width="1.5" PointX="22.25" PointY="1.25" />
+        <EntityTypeShape EntityType="oibarramentoModel.CMS_Permission" Width="1.5" PointX="17.75" PointY="1.5" />
         <AssociationConnector Association="oibarramentoModel.FK_CMS_Account_CMS_Permission" />
         <AssociationConnector Association="oibarramentoModel.FK_CMS_AccountLoginLog_CMS_Account" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupModal" Width="1.5" PointX="8.25" PointY="25.25" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupModalCity" Width="1.5" PointX="13.5" PointY="20.25" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupModalPage" Width="1.5" PointX="10.5" PointY="23.375" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupModal" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupModalCity" Width="1.5" PointX="15" PointY="14.625" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupModalPage" Width="1.5" PointX="15" PointY="1.125" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalCities_City" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalCities_GroupModal" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_GroupModal" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Page" />
-        <EntityTypeShape EntityType="oibarramentoModel.Modal" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="oibarramentoModel.Modal" Width="1.5" PointX="12.75" PointY="8.125" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Modal" />
+        <EntityTypeShape EntityType="oibarramentoModel.PriceGroup" Width="1.5" PointX="5.25" PointY="12" />
+        <AssociationConnector Association="oibarramentoModel.FK_PlanRegulation_PriceGroup" />
+        <AssociationConnector Association="oibarramentoModel.FK_PriceGroup_Product" />
+        <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

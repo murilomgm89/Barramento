@@ -10,7 +10,7 @@ namespace OiWeb.Business
     {
         public static List<Entity.GroupModalPage> GetGroupModalPage(int idPage, int idCity)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.Configuration.LazyLoadingEnabled = false;
                 var query = from _P in context.GroupModalPages

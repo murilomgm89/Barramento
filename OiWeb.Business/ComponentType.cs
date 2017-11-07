@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static IEnumerable<Entity.ComponentType> GetAllComponentTypes()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.ComponentTypes                           
                             select o;
@@ -18,7 +18,7 @@ namespace OiWeb.Business
         }
         public static Entity.ComponentType GetComponentType(string nameComponent)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.ComponentTypes
                             where
@@ -30,7 +30,7 @@ namespace OiWeb.Business
 
         public static Entity.ComponentType GetIdentifierParent(string nameComponent, int idGroup, int idVersion)
         {            
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 return context.ComponentTypes
                     .Where(cw => cw.identifier == nameComponent).FirstOrDefault();                

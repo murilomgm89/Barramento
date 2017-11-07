@@ -77,6 +77,7 @@
     <Reference Include="System.Core">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -139,6 +140,7 @@
     <Compile Include="CustomData.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enum\EProduct.cs" />
     <Compile Include="Exceptions\FormattedDbEntityValidationException.cs" />
     <Compile Include="GroupCustomData.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
@@ -189,6 +191,7 @@
     <Compile Include="PriceGroupCity.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PriceGroupPartial.cs" />
     <Compile Include="PriceLoyalty.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
@@ -225,7 +228,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enum\" />
     <Folder Include="Poco\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

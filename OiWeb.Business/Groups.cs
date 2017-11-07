@@ -10,7 +10,7 @@ namespace OiWeb.Business
     {
         public static List<Entity.PriceGroup> GetPriceGroups()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.Configuration.LazyLoadingEnabled = false;
                 var query = from _PG in context.PriceGroups
@@ -22,7 +22,7 @@ namespace OiWeb.Business
         }
         public static Entity.PriceGroup GetPriceGroup(int idPriceGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.Configuration.LazyLoadingEnabled = false;
                 var query = from _PG in context.PriceGroups
@@ -36,7 +36,7 @@ namespace OiWeb.Business
         }
         public static void Save(Entity.PriceGroup group)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 context.PriceGroups.Add(group);
                 context.SaveChanges();

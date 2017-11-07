@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static List<Entity.GroupCustomDataPage> GetGroupCustomDataPage(int idCity)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _G in context.GroupCustomDataPages                            
                             where _G.idCity == idCity

@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static IEnumerable<Entity.City> GetCities()
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from c in context.Cities                     
                             select c;
@@ -18,7 +18,7 @@ namespace OiWeb.Business
         }
         public static Entity.City GetCity(int idCity)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _C in context.Cities
                             join _CG in context.PriceGroupCities on _C.idCity equals _CG.idCity
@@ -37,7 +37,7 @@ namespace OiWeb.Business
         }
         public static IEnumerable<Entity.City> GetCities(int idPriceGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _C in context.Cities
                             join _CG in context.PriceGroupCities on _C.idCity equals _CG.idCity
@@ -45,6 +45,14 @@ namespace OiWeb.Business
                                 _CG.idPriceGroup == idPriceGroup
                             select _C;
                 return query.ToList();
+            }
+        }
+
+        public static List<Entity.City> GetCititesByDdd(int ddd)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.Cities.Where(w => w.DDD == ddd).ToList();
             }
         }
     }

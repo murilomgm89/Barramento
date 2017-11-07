@@ -11,7 +11,7 @@ namespace OiWeb.Business
 
         public static Entity.CustomData GetCustomData(int id_Data)
         {           
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 return context.CustomDatas.Where(cw => cw.idData == id_Data).FirstOrDefault();
             }
@@ -20,7 +20,7 @@ namespace OiWeb.Business
         public static IEnumerable<Entity.CustomData> GetCustomDataPage(string namePage,int idVersion ,int idGroup)
         {
             //Get CustomData Page ( List Componentes da Pagina )
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                  var query = from _C in context.CustomDatas
                              join _CP in context.ComponentPages on _C.idComponentType equals _CP.idComponentType

@@ -25,6 +25,7 @@ namespace OiWeb.Entity
         public string name { get; set; }
         public string description { get; set; }
         public Nullable<bool> isCommon { get; set; }
+        public System.DateTime dtCreate { get; set; }
     
         public virtual ICollection<ComponentPage> ComponentPages { get; set; }
         public virtual ICollection<GroupCustomDataPage> GroupCustomDataPages { get; set; }

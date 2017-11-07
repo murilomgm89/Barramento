@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static List<Entity.PriceGroupCity> GetPriceGroupCity(int idCity)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _G in context.PriceGroupCities                            
                             where _G.idCity == idCity
@@ -18,5 +18,35 @@ namespace OiWeb.Business
                 return query.ToList();
             }
         }
+
+        public static void Insert(List<PriceGroupCity> datas)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                context.PriceGroupCities.AddRange(datas);
+                context.SaveChanges();
+            }
+        }
+
+        public static void Insert(PriceGroupCity data)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                context.PriceGroupCities.Add(data);
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveByIdPriceGroup(int id)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var datas = context.PriceGroupCities.Where(w => w.idPriceGroup == id).ToList();
+
+                context.PriceGroupCities.RemoveRange(datas);
+                context.SaveChanges();
+            }
+        }
     }
+
 }

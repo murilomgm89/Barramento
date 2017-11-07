@@ -28,7 +28,7 @@ namespace OiWeb.Entity
         public bool isActive { get; set; }
     
         public virtual ICollection<PlanRegulation> PlanRegulations { get; set; }
-        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
         public virtual Product Product { get; set; }
+        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
     }
 }

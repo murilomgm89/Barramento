@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using OiWeb.CMS.Models;
 using AttributeRouting.Web.Mvc;
+using OiWeb.CMS.Extensions;
 
 namespace OiWeb.CMS.Controllers
 {
@@ -84,8 +85,49 @@ namespace OiWeb.CMS.Controllers
         [POST("/Grupos/SaveGroup")]
         public RedirectResult SaveNewGroup(Entity.PriceGroup group)
         {
+
             Business.Groups.Save(group);
+
+            //Quer dizer que tem excel para realizer a inserção
+            if (group.file != null)
+            {
+                //verifica se é por dd ou por idcity
+                //se for por idcity insere o range
+
+                string fileLocation = string.Format("{0}/{1}", Server.MapPath("~/Content/Upload/Excel/PriceCity"), "pricegroupcities" + "id_" + group.idPriceGroup + DateTime.Now.Day + ".csv");
+                if (group.isByCity)
+                    group.file.InsertPriceGroupCitiesByExcelIdCity(fileLocation, group.idProduct, group.idPriceGroup);
+                else
+                    group.file.InsertPriceGroupCitiesByExcelDdd(fileLocation, group.idProduct, group.idPriceGroup);
+
+            }
+
             return Redirect("/Grupos");
+        }
+        [POST("/Grupos/Cidades")]
+        public RedirectResult SaveNewCities(Entity.PriceGroup group)
+        {
+            
+
+
+            //Quer dizer que tem excel para realizer a inserção
+            if (group.file != null)
+            {
+                //Deleta os pricesgroups existentes
+                Business.PriceGroupCities.RemoveByIdPriceGroup(group.idPriceGroup);
+
+                //verifica se é por dd ou por idcity
+                //se for por idcity insere o range
+
+                string fileLocation = string.Format("{0}/{1}", Server.MapPath("~/Content/Upload/Excel/PriceCity"), "pricegroupcities" + "id_" + group.idPriceGroup + DateTime.Now.Day + ".csv");
+                if (group.isByCity)
+                    group.file.InsertPriceGroupCitiesByExcelIdCity(fileLocation, group.idProduct, group.idPriceGroup);
+                else
+                    group.file.InsertPriceGroupCitiesByExcelDdd(fileLocation, group.idProduct, group.idPriceGroup);
+
+            }
+
+            return Redirect("/Grupos/" + group.idPriceGroup);
         }
     }
 }

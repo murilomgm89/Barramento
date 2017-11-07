@@ -141,6 +141,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="isCommon" Type="bit" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanGroup">
           <Key>
@@ -190,7 +191,7 @@
           <Key>
             <PropertyRef Name="idPriceGroup" />
           </Key>
-          <Property Name="idPriceGroup" Type="int" Nullable="false" />
+          <Property Name="idPriceGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProduct" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="200" />
@@ -728,7 +729,6 @@
           <EntitySet Name="Pages" EntityType="oibarramentoModel.Page" />
           <EntitySet Name="PlanGroups" EntityType="oibarramentoModel.PlanGroup" />
           <EntitySet Name="PlanRegulations" EntityType="oibarramentoModel.PlanRegulation" />
-          <EntitySet Name="PriceGroups" EntityType="oibarramentoModel.PriceGroup" />
           <EntitySet Name="PriceGroupCities" EntityType="oibarramentoModel.PriceGroupCity" />
           <EntitySet Name="PriceLoyalties" EntityType="oibarramentoModel.PriceLoyalty" />
           <EntitySet Name="PricePaymentMethods" EntityType="oibarramentoModel.PricePaymentMethod" />
@@ -771,19 +771,7 @@
             <End Role="Page" EntitySet="Pages" />
             <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
           </AssociationSet>
-          <AssociationSet Name="FK_PlanRegulation_PriceGroup" Association="oibarramentoModel.FK_PlanRegulation_PriceGroup">
-            <End Role="PriceGroup" EntitySet="PriceGroups" />
-            <End Role="PlanRegulation" EntitySet="PlanRegulations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceGroupCities_PriceGroup" Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup">
-            <End Role="PriceGroup" EntitySet="PriceGroups" />
-            <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
-          </AssociationSet>
           <EntitySet Name="Products" EntityType="oibarramentoModel.Product" />
-          <AssociationSet Name="FK_PriceGroup_Product" Association="oibarramentoModel.FK_PriceGroup_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="PriceGroup" EntitySet="PriceGroups" />
-          </AssociationSet>
           <AssociationSet Name="FK_PriceGroupCities_Product" Association="oibarramentoModel.FK_PriceGroupCities_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
@@ -852,6 +840,19 @@
           <AssociationSet Name="FK_GroupModalPage_Modal" Association="oibarramentoModel.FK_GroupModalPage_Modal">
             <End Role="Modal" EntitySet="Modals" />
             <End Role="GroupModalPage" EntitySet="GroupModalPages" />
+          </AssociationSet>
+          <EntitySet Name="PriceGroups" EntityType="oibarramentoModel.PriceGroup" />
+          <AssociationSet Name="FK_PlanRegulation_PriceGroup" Association="oibarramentoModel.FK_PlanRegulation_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+            <End Role="PlanRegulation" EntitySet="PlanRegulations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroup_Product" Association="oibarramentoModel.FK_PriceGroup_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceGroupCities_PriceGroup" Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup">
+            <End Role="PriceGroup" EntitySet="PriceGroups" />
+            <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="City">
@@ -944,6 +945,7 @@
           <NavigationProperty Name="ComponentPages" Relationship="oibarramentoModel.FK_ComponentPage_Page" FromRole="Page" ToRole="ComponentPage" />
           <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="Page" ToRole="GroupCustomDataPage" />
           <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="Page" ToRole="GroupModalPage" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="PlanGroup">
           <Key>
@@ -965,20 +967,6 @@
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PriceGroup" Relationship="oibarramentoModel.FK_PlanRegulation_PriceGroup" FromRole="PlanRegulation" ToRole="PriceGroup" />
         </EntityType>
-        <EntityType Name="PriceGroup">
-          <Key>
-            <PropertyRef Name="idPriceGroup" />
-          </Key>
-          <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
-          <Property Name="idProduct" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="dtCreate" Type="DateTime" Precision="3" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="PlanRegulations" Relationship="oibarramentoModel.FK_PlanRegulation_PriceGroup" FromRole="PriceGroup" ToRole="PlanRegulation" />
-          <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroup" ToRole="PriceGroupCity" />
-          <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="PriceGroup" ToRole="Product" />
-        </EntityType>
         <EntityType Name="PriceGroupCity">
           <Key>
             <PropertyRef Name="idPriceGroupCities" />
@@ -988,8 +976,8 @@
           <Property Name="idProduct" Type="Int32" Nullable="false" />
           <Property Name="idPriceGroup" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_PriceGroupCities_City" FromRole="PriceGroupCity" ToRole="City" />
-          <NavigationProperty Name="PriceGroup" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroupCity" ToRole="PriceGroup" />
           <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PriceGroupCities_Product" FromRole="PriceGroupCity" ToRole="Product" />
+          <NavigationProperty Name="PriceGroup" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroupCity" ToRole="PriceGroup" />
         </EntityType>
         <EntityType Name="PriceLoyalty">
           <Key>
@@ -1141,30 +1129,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PlanRegulation_PriceGroup">
-          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
-          <End Type="oibarramentoModel.PlanRegulation" Role="PlanRegulation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PriceGroup">
-              <PropertyRef Name="idPriceGroup" />
-            </Principal>
-            <Dependent Role="PlanRegulation">
-              <PropertyRef Name="idPriceGroup" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PriceGroupCities_PriceGroup">
-          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
-          <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PriceGroup">
-              <PropertyRef Name="idPriceGroup" />
-            </Principal>
-            <Dependent Role="PriceGroupCity">
-              <PropertyRef Name="idPriceGroup" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="idProduct" />
@@ -1175,23 +1139,11 @@
           <Property Name="isVisible" Type="Boolean" Nullable="false" />
           <Property Name="valueGroupPrice" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dtCreate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="PriceGroups" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="Product" ToRole="PriceGroup" />
           <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_Product" FromRole="Product" ToRole="PriceGroupCity" />
           <NavigationProperty Name="ProductFamily" Relationship="oibarramentoModel.FK_Product_ProductFamily" FromRole="Product" ToRole="ProductFamily" />
           <NavigationProperty Name="PlanProducts" Relationship="oibarramentoModel.FK_PlanProduct_Product" FromRole="Product" ToRole="PlanProduct" />
+          <NavigationProperty Name="PriceGroups" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="Product" ToRole="PriceGroup" />
         </EntityType>
-        <Association Name="FK_PriceGroup_Product">
-          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="idProduct" />
-            </Principal>
-            <Dependent Role="PriceGroup">
-              <PropertyRef Name="idProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PriceGroupCities_Product">
           <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
           <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
@@ -1481,6 +1433,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PriceGroup">
+          <Key>
+            <PropertyRef Name="idPriceGroup" />
+          </Key>
+          <Property Name="idPriceGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProduct" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dtCreate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PlanRegulations" Relationship="oibarramentoModel.FK_PlanRegulation_PriceGroup" FromRole="PriceGroup" ToRole="PlanRegulation" />
+          <NavigationProperty Name="Product" Relationship="oibarramentoModel.FK_PriceGroup_Product" FromRole="PriceGroup" ToRole="Product" />
+          <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_PriceGroup" FromRole="PriceGroup" ToRole="PriceGroupCity" />
+        </EntityType>
+        <Association Name="FK_PlanRegulation_PriceGroup">
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
+          <End Type="oibarramentoModel.PlanRegulation" Role="PlanRegulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PlanRegulation">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroup_Product">
+          <End Type="oibarramentoModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="PriceGroup">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceGroupCities_PriceGroup">
+          <End Type="oibarramentoModel.PriceGroup" Role="PriceGroup" Multiplicity="1" />
+          <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceGroup">
+              <PropertyRef Name="idPriceGroup" />
+            </Principal>
+            <Dependent Role="PriceGroupCity">
+              <PropertyRef Name="idPriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1560,6 +1562,7 @@
           <EntitySetMapping Name="Pages">
             <EntityTypeMapping TypeName="oibarramentoModel.Page">
               <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
                 <ScalarProperty Name="isCommon" ColumnName="isCommon" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1584,18 +1587,6 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
                 <ScalarProperty Name="idPlanRegulation" ColumnName="idPlanRegulation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PriceGroups">
-            <EntityTypeMapping TypeName="oibarramentoModel.PriceGroup">
-              <MappingFragment StoreEntitySet="PriceGroup">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1759,6 +1750,18 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idModal" ColumnName="idModal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceGroups">
+            <EntityTypeMapping TypeName="oibarramentoModel.PriceGroup">
+              <MappingFragment StoreEntitySet="PriceGroup">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

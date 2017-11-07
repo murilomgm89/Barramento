@@ -9,7 +9,7 @@ namespace OiWeb.Business
     {
         public static ICollection<Entity.Price> GetPrices(int idPlan, int idPriceGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = from _P in context.Prices
                             where _P.idPlan == idPlan && _P.idPriceGroup == idPriceGroup
@@ -20,7 +20,7 @@ namespace OiWeb.Business
         }
         public static void Update(Entity.Price price)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.Prices
                              where c.idPlan == price.idPlan
@@ -42,7 +42,7 @@ namespace OiWeb.Business
         }
         public static void Delete(int idPlan, int idPriceGroup)
         {
-            using (var context = new OiWebDB())
+            using (var context = new Entity.OiWeb())
             {
                 var deletePrices =
                     from prices in context.Prices

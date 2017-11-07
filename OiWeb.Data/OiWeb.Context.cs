@@ -13,9 +13,9 @@ namespace OiWeb.Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OiWebDB : DbContext
+    public partial class OiWeb : DbContext
     {
-        public OiWebDB()
+        public OiWeb()
             : base("name=OiWeb")
         {
         }
@@ -34,7 +34,6 @@ namespace OiWeb.Entity
         public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<PlanGroup> PlanGroups { get; set; }
         public virtual DbSet<PlanRegulation> PlanRegulations { get; set; }
-        public virtual DbSet<PriceGroup> PriceGroups { get; set; }
         public virtual DbSet<PriceGroupCity> PriceGroupCities { get; set; }
         public virtual DbSet<PriceLoyalty> PriceLoyalties { get; set; }
         public virtual DbSet<PricePaymentMethod> PricePaymentMethods { get; set; }
@@ -51,5 +50,6 @@ namespace OiWeb.Entity
         public virtual DbSet<GroupModalCity> GroupModalCities { get; set; }
         public virtual DbSet<GroupModalPage> GroupModalPages { get; set; }
         public virtual DbSet<Modal> Modals { get; set; }
+        public virtual DbSet<PriceGroup> PriceGroups { get; set; }
     }
 }
