@@ -1,0 +1,49 @@
+﻿@model OiWeb.Entity.PlanProduct
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")        
+    <section class="content container-fluid">
+        <div class="row">             
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Novo Grupo de preços</h4>
+                    <div class="row">
+                        <form method="POST" action="/Grupos/SaveGroup">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">SKU</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Nome">
+                                    <span class="fa fa-briefcase form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Descrição</label>
+                                    <input type="text" class="form-control" name="description" placeholder="Descrição">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Produto</label>
+                                    <select class="form-control" name="idProduct">
+                                        <option value="1">TV</option>
+                                        <option value="2">FIXO</option>
+                                        <option value="3">BL</option>
+                                        <option value="5">COMBO</option>
+                                        <option value="6">POS</option>
+                                        <option value="7">PRE</option>
+                                        <option value="8">CONTROLE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-default">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+</div>

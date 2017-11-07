@@ -125,6 +125,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroupCustomData.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="PriceGroupCities.cs" />
     <Compile Include="GroupCustomDataPage.cs" />

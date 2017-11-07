@@ -1,0 +1,23 @@
+﻿@model List<OiWeb.Entity.GroupCustomData>
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+   
+    <section class="content container-fluid">        
+        <div class="row">
+            <div class="col-md-12">  
+                <div class="chart-box">
+                    <h4>Grupos de CustomData
+                        <a href="/Grupos/CustomData/Cadastro/Novo" class="btn btn-success btn-rounded">Criar novo Grupo</a>
+                    </h4>
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialGroupCustomDataView.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        $("table").tablesort();
+    };
+</script>

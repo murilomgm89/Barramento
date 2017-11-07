@@ -1,0 +1,23 @@
+﻿@model List<OiWeb.Entity.GroupCustomData>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">Nome</th>            
+            <th class="sortable">Status</th>
+            <th class="sortable">Criado Em</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var group in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(group.idGroup)</td>
+                <td class="text-truncate"><a href="/Grupos/CustomData/@(Html.Raw(group.idGroup))">@Html.Raw(group.name)</a></td>                
+                <td class="text-truncate">@*<span class="lable-tag @Html.Raw(group.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(group.isActive == true ? "Ativo" : "Inativo")</span>*@</td>
+                <td class="text-truncate">ddd</td>
+            </tr>
+        }
+    }
+</table>
