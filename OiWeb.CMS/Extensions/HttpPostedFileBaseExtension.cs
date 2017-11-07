@@ -41,6 +41,9 @@ namespace OiWeb.CMS.Extensions
                     PriceGroupCity data;
                     try
                     {
+                        if(string.IsNullOrEmpty(s[names[0].Trim()].ToString()))
+                            continue;
+
                         var ddd = Convert.ToInt32(s[names[0].Trim()].ToString());
 
                         if(ddd.Equals(0))
