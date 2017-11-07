@@ -27,11 +27,11 @@ namespace OiWeb.CMS.Extensions
                 file.SaveAs(fileLocation);
 
                 //Caso for csv
-                if (file.FileName.Contains(".csv"))
+                if (fileLocation.Contains(".csv"))
                     dt = DataTableHandle.GetDataTabletFromCsvFile(fileLocation);
 
 
-                if (file.FileName.Contains(".xlsx"))
+                if (fileLocation.Contains(".xlsx"))
                     using (var reader = new ExcelDataReader(fileLocation))
                         dt.Load(reader);
 
@@ -93,11 +93,11 @@ namespace OiWeb.CMS.Extensions
                 file.SaveAs(fileLocation);
 
                 //Caso for csv
-                if (file.FileName.Contains(".csv"))
+                if (fileLocation.Contains(".csv"))
                     dt = DataTableHandle.GetDataTabletFromCsvFile(fileLocation);
 
 
-                if (file.FileName.Contains(".xlsx"))
+                if (fileLocation.Contains(".xlsx"))
                     using (var reader = new ExcelDataReader(fileLocation))
                         dt.Load(reader);
 
