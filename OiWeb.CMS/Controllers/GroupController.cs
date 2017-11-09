@@ -109,7 +109,7 @@ namespace OiWeb.CMS.Controllers
         [POST("/Grupos/SaveGroup")]
         public RedirectResult SaveNewGroup(Entity.PriceGroup group)
         {
-
+            group.isActive = true;
             Business.Groups.Save(group);
 
             //Quer dizer que tem excel para realizer a inserção
