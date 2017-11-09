@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>
+                        Grupos de Preços
+                        <a href="/regulamentos/criar" class="btn btn-success btn-rounded">Novo Regulamento</a>
+                    </h4>
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialRegulationView.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        $("table").tablesort();
+    };
+</script>
+

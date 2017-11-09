@@ -44,6 +44,30 @@ namespace OiWeb.CMS.Controllers
 
             return View("/Views/Group/GroupDetailsView.cshtml", citiesViewModel);
         }
+        [GET("/Grupos/{idPriceGroup}/regulamentos")]
+        public ActionResult GetRegulationGroup(int idPriceGroup)
+        {
+            var breadcrumbViewModel = new BreadcrumbViewModel
+            {
+                H1 = "Regulamentos",
+                Icon = "fa-table",
+                Session = "Regulamento"
+            };
+            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+
+            var group = Business.Groups.GetPriceGroup(idPriceGroup);
+            var cities = Business.City.GetCities(idPriceGroup);
+            var planregulations = Business.PlanRegulation.GetPlanRegulations(idPriceGroup);
+
+            CitiesViewModel citiesViewModel = new CitiesViewModel
+            {
+                @group = @group,
+                cities = cities,
+                plans = @group.Product.PlanProducts
+            };
+
+            return View("/Views/Regulation/RegulationDetailsView.cshtml", planregulations.ToList());
+        }
 
         [GET("/Grupos/Cadastro/Novo")]
         public ActionResult GetCreateGroup()

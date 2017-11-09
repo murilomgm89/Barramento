@@ -1,0 +1,34 @@
+﻿@model List<OiWeb.Entity.PlanRegulation>
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-box">
+                    @*<h4><strong>@Html.Raw(Model.group.name)</strong></h4>*@
+                    <p>Detalhes do grupo</p>
+                    @*<ul class="list-group">
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.group.dtCreate)</strong></li>
+                        <li class="list-group-item">Produto Vinculado: <a href="/Produto/@Html.Raw(Model.group.Product.idProduct)"><strong>@Html.Raw(Model.group.Product.name) - (SKU @Html.Raw(Model.group.Product.idProduct))</strong></a></li>
+                        <li class="list-group-item">Cidades com Vinculo: <strong>@Html.Raw(Model.cities.Count())</strong></li>
+                    </ul>*@
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>
+                        Lista de Regulamentos disponíveis:
+                    </h4>
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialRegulationsView.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        $("table").tablesort();
+    };
+</script>

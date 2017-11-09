@@ -1,0 +1,38 @@
+﻿@model List<OiWeb.Entity.PlanRegulation>
+
+<table class="table table-responsive">
+    <thead>
+    <tr>
+        <th class="sortable">ID</th>
+        <th class="sortable">Grupo de Preço</th>
+        <th class="sortable">Nome</th>
+        <th class="sortable">Link</th>
+        <th class="sortable">Tipo</th>
+        <th class="sortable">Opções</th>
+    </tr>
+    </thead>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(item.idPlanRegulation)</td>
+                <td class="text-truncate"><a href="/Grupos/@(Html.Raw(item.idPriceGroup))">@Html.Raw(item.PriceGroup.name)</a></td>
+                <td class="text-truncate">@Html.Raw(item.name)</td>
+                <td class="text-truncate">@Html.Raw(item.link)</td>
+                <td class="text-truncate">@Html.Raw(item.type)</td>
+                <td class="text-truncate">
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/regulamentos/@(Html.Raw(item.idPlanRegulation))/excluir">Excluir</a></li>
+                            <li><a href="/regulamentos/@(Html.Raw(item.idPlanRegulation))/alterar">Alterar</a></li>
+                            
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    }
+</table>
