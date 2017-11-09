@@ -15,14 +15,14 @@ namespace OiWeb.CMS.Controllers
         public ActionResult Index()
         {
             BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Grupos";
+            breadcrumbViewModel.H1 = "Regulamentos";
             breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Grupos";
+            breadcrumbViewModel.Session = "Regulamentos";
             ViewBag.breadcrumbViewModel = breadcrumbViewModel;
 
-            var groups = Business.Groups.GetPriceGroups();
+            var regulations = Business.PlanRegulation.GetPlanRegulations();
 
-            return View(groups);
+            return View(regulations);
         }
 
         [GET("regulamentos/criar")]

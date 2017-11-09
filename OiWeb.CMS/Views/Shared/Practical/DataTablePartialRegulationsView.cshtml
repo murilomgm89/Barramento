@@ -1,11 +1,11 @@
-﻿@model List<OiWeb.Entity.PlanRegulation>
+﻿@model IEnumerable<OiWeb.Entity.PlanRegulation>
 
 <table class="table table-responsive">
     <thead>
     <tr>
         <th class="sortable">ID</th>
-        <th class="sortable">Grupo de Preço</th>
-        <th class="sortable">Nome</th>
+        <th class="sortable">Grupo</th>
+        <th class="sortable">Nome</th>       
         <th class="sortable">Link</th>
         <th class="sortable">Tipo</th>
         <th class="sortable">Opções</th>
@@ -16,9 +16,9 @@
         {
             <tr>
                 <td class="text-truncate">@Html.Raw(item.idPlanRegulation)</td>
-                <td class="text-truncate"><a href="/Grupos/@(Html.Raw(item.idPriceGroup))">@Html.Raw(item.PriceGroup.name)</a></td>
-                <td class="text-truncate">@Html.Raw(item.name)</td>
-                <td class="text-truncate">@Html.Raw(item.link)</td>
+                <td class="text-truncate">@Html.Raw(item.PriceGroup.name)</td>
+                <td class="text-truncate"><a href="/regulamentos/@Html.Raw(item.idPlanRegulation)/alterar">@Html.Raw(item.name)</a></td>              
+                <td class="text-truncate"><a href="@Html.Raw(item.link)">Visualizar</a></td>
                 <td class="text-truncate">@Html.Raw(item.type)</td>
                 <td class="text-truncate">
                     

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OiWeb.Entity.PlanRegulation>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,10 +12,10 @@
             <div class="col-md-12">
                 <div class="chart-box">
                     <h4>
-                        Grupos de Preços
+                        Lista de Regulamentos
                         <a href="/regulamentos/criar" class="btn btn-success btn-rounded">Novo Regulamento</a>
                     </h4>
-                    @RenderPage("~/Views/Shared/Practical/DataTablePartialRegulationView.cshtml", Model)
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialRegulationsView.cshtml", Model)
                 </div>
             </div>
         </div>

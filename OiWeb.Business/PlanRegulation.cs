@@ -7,6 +7,18 @@ namespace OiWeb.Business
 {
     public class PlanRegulation
     {
+        public static IEnumerable<Entity.PlanRegulation> GetPlanRegulations()
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var query = from c in context.PlanRegulations
+                            .Include(e => e.PriceGroup)                            
+                            orderby c.type
+                            select c;
+                return query.ToList();
+            }
+        }
+
         public static IEnumerable<Entity.PlanRegulation> GetPlanRegulations(int idPriceGroup)
         {
             using (var context = new Entity.OiWeb())
