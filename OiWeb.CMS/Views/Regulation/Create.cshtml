@@ -11,60 +11,56 @@
         <section class="content container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-horizontal">
+                    <div class="chart-box">
                         <h4>Novo regulamento</h4>
                         <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.name, "Nome", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>                        
-                        <div class="form-group">
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-md-2" for="idPriceGroup">Grupo de Preço</label>
-                                <div class="col-md-9">
-                                    @Html.DropDownList("idPriceGroup", new SelectList(ViewBag.Groups, "idPriceGroup", "name"),new{@class="form-control"})
-
+                        <div class="row">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    @Html.LabelFor(model => model.name, "Nome", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-md-2" for="type">Tipo</label>
-                                <div class="col-md-9">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Grupo de Preço</label>
+                                    @Html.DropDownList("idPriceGroup", new SelectList(ViewBag.Groups, "idPriceGroup", "name"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="type">Tipo</label>
+
                                     <select class="form-control" name="type">
                                         <option value="summary">Sumário </option>
                                         <option value="regulation">Regulamento </option>
                                         <option value="others">Outros</option>
                                     </select>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.link, "Link", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                                @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    @Html.LabelFor(model => model.link, "Link", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control"} })
+                                </div>
                             </div>
-                        </div>                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="file">Regulamento</label>
-                                <input type="file" id="file" name="file" >
-                               
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label for="file">Regulamento</label>
+                                    <input type="file" id="file" name="file">
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
+                            <div class="col-md-12">
                                 <input type="submit" value="Cadastrar" class="btn btn-default" />
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
     </div>
-   </form>
+</form>

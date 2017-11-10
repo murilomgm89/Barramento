@@ -442,6 +442,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Upload\Excel\PriceCity\" />
+    <Folder Include="Content\Upload\Regulation\" />
     <Folder Include="Views\Import\" />
   </ItemGroup>
   <ItemGroup>

@@ -38,8 +38,16 @@ namespace OiWeb.CMS.Controllers
         [POST("regulamentos/salvar")]
         public RedirectResult Save(Entity.PlanRegulation entity)
         {
-            Business.PlanRegulation.Insert(entity);
 
+            if (entity.file != null)
+            {
+                var fileLocation = Server.MapPath("~/Content/Upload/Regulation/" + entity.file.FileName);
+                entity.file.SaveAs(fileLocation);
+            }
+
+            entity.link = "/Content/Upload/Regulation/" + entity.file.FileName;
+            Business.PlanRegulation.Insert(entity);
+            
             return Redirect("/regulamentos");
         }
 
@@ -59,6 +67,10 @@ namespace OiWeb.CMS.Controllers
         public ActionResult Alterar(int idPlanRegulation)
         {
             var data = Business.PlanRegulation.GetById(idPlanRegulation);
+            
+            var groups = Business.Groups.GetPriceGroups();
+            ViewBag.Groups = groups;
+            
             return View(data);
         }
 

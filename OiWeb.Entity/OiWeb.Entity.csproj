@@ -182,6 +182,7 @@
     <Compile Include="PlanRegulation.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlanRegulationPartial.cs" />
     <Compile Include="Price.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
