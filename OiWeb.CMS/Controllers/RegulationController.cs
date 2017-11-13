@@ -43,9 +43,9 @@ namespace OiWeb.CMS.Controllers
             {
                 var fileLocation = Server.MapPath("~/Content/Upload/Regulation/" + entity.file.FileName);
                 entity.file.SaveAs(fileLocation);
+                entity.link = "/Content/Upload/Regulation/" + entity.file.FileName;
             }
 
-            entity.link = "/Content/Upload/Regulation/" + entity.file.FileName;
             Business.PlanRegulation.Insert(entity);
             
             return Redirect("/regulamentos");
@@ -57,7 +57,6 @@ namespace OiWeb.CMS.Controllers
             if (!idPlanRegulation.Equals(0))
             {
                 Business.PlanRegulation.Remove(idPlanRegulation);
-
             }
 
             return Redirect("~/Grupos/" + idPlanRegulation + "/regulamentos");
@@ -67,7 +66,6 @@ namespace OiWeb.CMS.Controllers
         public ActionResult Alterar(int idPlanRegulation)
         {
             var data = Business.PlanRegulation.GetById(idPlanRegulation);
-            
             var groups = Business.Groups.GetPriceGroups();
             ViewBag.Groups = groups;
             
@@ -80,8 +78,8 @@ namespace OiWeb.CMS.Controllers
             if (!entity.idPlanRegulation.Equals(0))
             {
                 Business.PlanRegulation.Update(entity);
-
             }
+
             return Redirect("~/Grupos/" + entity.idPlanRegulation + "/regulamentos");
         }
     }
