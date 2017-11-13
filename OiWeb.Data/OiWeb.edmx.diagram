@@ -10,8 +10,6 @@
         <EntityTypeShape EntityType="oibarramentoModel.ComponentType" Width="1.5" PointX="12.75" PointY="1.375" />
         <EntityTypeShape EntityType="oibarramentoModel.CustomData" Width="1.5" PointX="15" PointY="7.625" />
         <EntityTypeShape EntityType="oibarramentoModel.GroupCustomData" Width="1.5" PointX="12.75" PointY="14.25" />
-        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomDataPage" Width="1.5" PointX="15" PointY="11.125" />
-        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="12.75" PointY="4.125" />
         <EntityTypeShape EntityType="oibarramentoModel.PlanGroup" Width="1.5" PointX="7.5" PointY="8.75" />
         <EntityTypeShape EntityType="oibarramentoModel.PlanRegulation" Width="1.5" PointX="7.5" PointY="12.25" />
         <EntityTypeShape EntityType="oibarramentoModel.PriceGroupCity" Width="1.5" PointX="10.5" PointY="9.125" />
@@ -20,15 +18,11 @@
         <EntityTypeShape EntityType="oibarramentoModel.PriceTypeClient" Width="1.5" PointX="5.25" PointY="8.75" />
         <EntityTypeShape EntityType="oibarramentoModel.ProductFamily" Width="1.5" PointX="0.75" PointY="6.625" />
         <EntityTypeShape EntityType="oibarramentoModel.VersionAPI" Width="1.5" PointX="12.75" PointY="18" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_City" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_City" />
         <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_ComponentType" />
-        <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_Page" />
         <AssociationConnector Association="oibarramentoModel.FK_CustomData_ComponentType" />
         <AssociationConnector Association="oibarramentoModel.FK_Data_Group" />
         <AssociationConnector Association="oibarramentoModel.FK_Data_Version" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_Page" />
         <EntityTypeShape EntityType="oibarramentoModel.Product" Width="1.5" PointX="3" PointY="5.875" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_Product" />
         <AssociationConnector Association="oibarramentoModel.FK_Product_ProductFamily" />
@@ -51,13 +45,19 @@
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalCities_City" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalCities_GroupModal" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_GroupModal" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Page" />
         <EntityTypeShape EntityType="oibarramentoModel.Modal" Width="1.5" PointX="12.75" PointY="8.125" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Modal" />
         <EntityTypeShape EntityType="oibarramentoModel.PriceGroup" Width="1.5" PointX="5.25" PointY="12" />
         <AssociationConnector Association="oibarramentoModel.FK_PlanRegulation_PriceGroup" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroup_Product" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup" />
+        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="9.75" PointY="4.875" />
+        <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_Page" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Page" />
+        <EntityTypeShape EntityType="oibarramentoModel.GroupCustomDataPage" Width="1.5" PointX="15" PointY="11.5" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_City" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_Page" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

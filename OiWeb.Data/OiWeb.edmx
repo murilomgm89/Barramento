@@ -85,9 +85,10 @@
             <PropertyRef Name="idGroup" />
           </Key>
           <Property Name="idGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
-          <Property Name="dtCreate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="dtCreate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="GroupCustomDataPage">
           <Key>
@@ -140,7 +141,8 @@
           <Property Name="idPage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="isCommon" Type="bit" />
+          <Property Name="isCommon" Type="bit" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="dtCreate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanGroup">
@@ -725,8 +727,6 @@
           <EntitySet Name="ComponentTypes" EntityType="oibarramentoModel.ComponentType" />
           <EntitySet Name="CustomDatas" EntityType="oibarramentoModel.CustomData" />
           <EntitySet Name="GroupCustomDatas" EntityType="oibarramentoModel.GroupCustomData" />
-          <EntitySet Name="GroupCustomDataPages" EntityType="oibarramentoModel.GroupCustomDataPage" />
-          <EntitySet Name="Pages" EntityType="oibarramentoModel.Page" />
           <EntitySet Name="PlanGroups" EntityType="oibarramentoModel.PlanGroup" />
           <EntitySet Name="PlanRegulations" EntityType="oibarramentoModel.PlanRegulation" />
           <EntitySet Name="PriceGroupCities" EntityType="oibarramentoModel.PriceGroupCity" />
@@ -735,20 +735,12 @@
           <EntitySet Name="PriceTypeClients" EntityType="oibarramentoModel.PriceTypeClient" />
           <EntitySet Name="ProductFamilies" EntityType="oibarramentoModel.ProductFamily" />
           <EntitySet Name="VersionAPIs" EntityType="oibarramentoModel.VersionAPI" />
-          <AssociationSet Name="FK_GroupCustomDataPage_City" Association="oibarramentoModel.FK_GroupCustomDataPage_City">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
-          </AssociationSet>
           <AssociationSet Name="FK_PriceGroupCities_City" Association="oibarramentoModel.FK_PriceGroupCities_City">
             <End Role="City" EntitySet="Cities" />
             <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
           </AssociationSet>
           <AssociationSet Name="FK_ComponentPage_ComponentType" Association="oibarramentoModel.FK_ComponentPage_ComponentType">
             <End Role="ComponentType" EntitySet="ComponentTypes" />
-            <End Role="ComponentPage" EntitySet="ComponentPages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentPage_Page" Association="oibarramentoModel.FK_ComponentPage_Page">
-            <End Role="Page" EntitySet="Pages" />
             <End Role="ComponentPage" EntitySet="ComponentPages" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomData_ComponentType" Association="oibarramentoModel.FK_CustomData_ComponentType">
@@ -762,14 +754,6 @@
           <AssociationSet Name="FK_Data_Version" Association="oibarramentoModel.FK_Data_Version">
             <End Role="VersionAPI" EntitySet="VersionAPIs" />
             <End Role="CustomData" EntitySet="CustomDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupCustomDataPage_GroupCustomData" Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData">
-            <End Role="GroupCustomData" EntitySet="GroupCustomDatas" />
-            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupCustomDataPage_Page" Association="oibarramentoModel.FK_GroupCustomDataPage_Page">
-            <End Role="Page" EntitySet="Pages" />
-            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
           </AssociationSet>
           <EntitySet Name="Products" EntityType="oibarramentoModel.Product" />
           <AssociationSet Name="FK_PriceGroupCities_Product" Association="oibarramentoModel.FK_PriceGroupCities_Product">
@@ -832,10 +816,6 @@
             <End Role="GroupModal" EntitySet="GroupModals" />
             <End Role="GroupModalPage" EntitySet="GroupModalPages" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupModalPage_Page" Association="oibarramentoModel.FK_GroupModalPage_Page">
-            <End Role="Page" EntitySet="Pages" />
-            <End Role="GroupModalPage" EntitySet="GroupModalPages" />
-          </AssociationSet>
           <EntitySet Name="Modals" EntityType="oibarramentoModel.Modal" />
           <AssociationSet Name="FK_GroupModalPage_Modal" Association="oibarramentoModel.FK_GroupModalPage_Modal">
             <End Role="Modal" EntitySet="Modals" />
@@ -853,6 +833,28 @@
           <AssociationSet Name="FK_PriceGroupCities_PriceGroup" Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup">
             <End Role="PriceGroup" EntitySet="PriceGroups" />
             <End Role="PriceGroupCity" EntitySet="PriceGroupCities" />
+          </AssociationSet>
+          <EntitySet Name="Pages" EntityType="oibarramentoModel.Page" />
+          <AssociationSet Name="FK_ComponentPage_Page" Association="oibarramentoModel.FK_ComponentPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="ComponentPage" EntitySet="ComponentPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupModalPage_Page" Association="oibarramentoModel.FK_GroupModalPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="GroupModalPage" EntitySet="GroupModalPages" />
+          </AssociationSet>
+          <EntitySet Name="GroupCustomDataPages" EntityType="oibarramentoModel.GroupCustomDataPage" />
+          <AssociationSet Name="FK_GroupCustomDataPage_City" Association="oibarramentoModel.FK_GroupCustomDataPage_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_GroupCustomData" Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData">
+            <End Role="GroupCustomData" EntitySet="GroupCustomDatas" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupCustomDataPage_Page" Association="oibarramentoModel.FK_GroupCustomDataPage_Page">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="GroupCustomDataPage" EntitySet="GroupCustomDataPages" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="City">
@@ -874,9 +876,9 @@
           <Property Name="idGroupMenu" Type="Int32" Nullable="false" />
           <Property Name="idGroupControlePage" Type="Int32" Nullable="false" />
           <Property Name="idGroupPosPago" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="City" ToRole="GroupCustomDataPage" />
           <NavigationProperty Name="PriceGroupCities" Relationship="oibarramentoModel.FK_PriceGroupCities_City" FromRole="City" ToRole="PriceGroupCity" />
           <NavigationProperty Name="GroupModalCities" Relationship="oibarramentoModel.FK_GroupModalCities_City" FromRole="City" ToRole="GroupModalCity" />
+          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="City" ToRole="GroupCustomDataPage" />
         </EntityType>
         <EntityType Name="ComponentPage">
           <Key>
@@ -916,36 +918,12 @@
             <PropertyRef Name="idGroup" />
           </Key>
           <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dtCreate" Type="DateTime" Precision="3" />
+          <Property Name="dtCreate" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="CustomDatas" Relationship="oibarramentoModel.FK_Data_Group" FromRole="GroupCustomData" ToRole="CustomData" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" FromRole="GroupCustomData" ToRole="GroupCustomDataPage" />
-        </EntityType>
-        <EntityType Name="GroupCustomDataPage">
-          <Key>
-            <PropertyRef Name="idGroupCustomDataPage" />
-          </Key>
-          <Property Name="idGroupCustomDataPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCity" Type="Int32" Nullable="false" />
-          <Property Name="idPage" Type="Int32" Nullable="false" />
-          <Property Name="idGroup" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="GroupCustomDataPage" ToRole="City" />
-          <NavigationProperty Name="GroupCustomData" Relationship="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" FromRole="GroupCustomDataPage" ToRole="GroupCustomData" />
-          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="GroupCustomDataPage" ToRole="Page" />
-        </EntityType>
-        <EntityType Name="Page">
-          <Key>
-            <PropertyRef Name="idPage" />
-          </Key>
-          <Property Name="idPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="isCommon" Type="Boolean" />
-          <NavigationProperty Name="ComponentPages" Relationship="oibarramentoModel.FK_ComponentPage_Page" FromRole="Page" ToRole="ComponentPage" />
-          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="Page" ToRole="GroupCustomDataPage" />
-          <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="Page" ToRole="GroupModalPage" />
-          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="PlanGroup">
           <Key>
@@ -1021,18 +999,6 @@
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomDatas" Relationship="oibarramentoModel.FK_Data_Version" FromRole="VersionAPI" ToRole="CustomData" />
         </EntityType>
-        <Association Name="FK_GroupCustomDataPage_City">
-          <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
-          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="idCity" />
-            </Principal>
-            <Dependent Role="GroupCustomDataPage">
-              <PropertyRef Name="idCity" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PriceGroupCities_City">
           <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
           <End Type="oibarramentoModel.PriceGroupCity" Role="PriceGroupCity" Multiplicity="*" />
@@ -1054,18 +1020,6 @@
             </Principal>
             <Dependent Role="ComponentPage">
               <PropertyRef Name="idComponentType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComponentPage_Page">
-          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
-          <End Type="oibarramentoModel.ComponentPage" Role="ComponentPage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Page">
-              <PropertyRef Name="idPage" />
-            </Principal>
-            <Dependent Role="ComponentPage">
-              <PropertyRef Name="idPage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1102,30 +1056,6 @@
             </Principal>
             <Dependent Role="CustomData">
               <PropertyRef Name="idVersion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupCustomDataPage_GroupCustomData">
-          <End Type="oibarramentoModel.GroupCustomData" Role="GroupCustomData" Multiplicity="1" />
-          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GroupCustomData">
-              <PropertyRef Name="idGroup" />
-            </Principal>
-            <Dependent Role="GroupCustomDataPage">
-              <PropertyRef Name="idGroup" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupCustomDataPage_Page">
-          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
-          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Page">
-              <PropertyRef Name="idPage" />
-            </Principal>
-            <Dependent Role="GroupCustomDataPage">
-              <PropertyRef Name="idPage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1359,9 +1289,9 @@
           <Property Name="idPage" Type="Int32" Nullable="false" />
           <Property Name="idGroupModal" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GroupModal" Relationship="oibarramentoModel.FK_GroupModalPage_GroupModal" FromRole="GroupModalPage" ToRole="GroupModal" />
-          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="GroupModalPage" ToRole="Page" />
           <Property Name="idModal" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Modal" Relationship="oibarramentoModel.FK_GroupModalPage_Modal" FromRole="GroupModalPage" ToRole="Modal" />
+          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="GroupModalPage" ToRole="Page" />
         </EntityType>
         <Association Name="FK_GroupModalCities_City">
           <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
@@ -1396,18 +1326,6 @@
             </Principal>
             <Dependent Role="GroupModalPage">
               <PropertyRef Name="idGroupModal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupModalPage_Page">
-          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
-          <End Type="oibarramentoModel.GroupModalPage" Role="GroupModalPage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Page">
-              <PropertyRef Name="idPage" />
-            </Principal>
-            <Dependent Role="GroupModalPage">
-              <PropertyRef Name="idPage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1483,6 +1401,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="idPage" />
+          </Key>
+          <Property Name="idPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="isCommon" Type="Boolean" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="dtCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ComponentPages" Relationship="oibarramentoModel.FK_ComponentPage_Page" FromRole="Page" ToRole="ComponentPage" />
+          <NavigationProperty Name="GroupModalPages" Relationship="oibarramentoModel.FK_GroupModalPage_Page" FromRole="Page" ToRole="GroupModalPage" />
+          <NavigationProperty Name="GroupCustomDataPages" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="Page" ToRole="GroupCustomDataPage" />
+        </EntityType>
+        <Association Name="FK_ComponentPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.ComponentPage" Role="ComponentPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="ComponentPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupModalPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupModalPage" Role="GroupModalPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupModalPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GroupCustomDataPage">
+          <Key>
+            <PropertyRef Name="idGroupCustomDataPage" />
+          </Key>
+          <Property Name="idGroupCustomDataPage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="idPage" Type="Int32" Nullable="false" />
+          <Property Name="idGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="oibarramentoModel.FK_GroupCustomDataPage_City" FromRole="GroupCustomDataPage" ToRole="City" />
+          <NavigationProperty Name="GroupCustomData" Relationship="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" FromRole="GroupCustomDataPage" ToRole="GroupCustomData" />
+          <NavigationProperty Name="Page" Relationship="oibarramentoModel.FK_GroupCustomDataPage_Page" FromRole="GroupCustomDataPage" ToRole="Page" />
+        </EntityType>
+        <Association Name="FK_GroupCustomDataPage_City">
+          <End Type="oibarramentoModel.City" Role="City" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_GroupCustomData">
+          <End Type="oibarramentoModel.GroupCustomData" Role="GroupCustomData" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCustomData">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupCustomDataPage_Page">
+          <End Type="oibarramentoModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="oibarramentoModel.GroupCustomDataPage" Role="GroupCustomDataPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="idPage" />
+            </Principal>
+            <Dependent Role="GroupCustomDataPage">
+              <PropertyRef Name="idPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1542,31 +1546,11 @@
           <EntitySetMapping Name="GroupCustomDatas">
             <EntityTypeMapping TypeName="oibarramentoModel.GroupCustomData">
               <MappingFragment StoreEntitySet="GroupCustomData">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idGroup" ColumnName="idGroup" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GroupCustomDataPages">
-            <EntityTypeMapping TypeName="oibarramentoModel.GroupCustomDataPage">
-              <MappingFragment StoreEntitySet="GroupCustomDataPage">
-                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
-                <ScalarProperty Name="idPage" ColumnName="idPage" />
-                <ScalarProperty Name="idCity" ColumnName="idCity" />
-                <ScalarProperty Name="idGroupCustomDataPage" ColumnName="idGroupCustomDataPage" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pages">
-            <EntityTypeMapping TypeName="oibarramentoModel.Page">
-              <MappingFragment StoreEntitySet="Page">
-                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
-                <ScalarProperty Name="isCommon" ColumnName="isCommon" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="idPage" ColumnName="idPage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1762,6 +1746,28 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idProduct" ColumnName="idProduct" />
                 <ScalarProperty Name="idPriceGroup" ColumnName="idPriceGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="oibarramentoModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="dtCreate" ColumnName="dtCreate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isCommon" ColumnName="isCommon" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupCustomDataPages">
+            <EntityTypeMapping TypeName="oibarramentoModel.GroupCustomDataPage">
+              <MappingFragment StoreEntitySet="GroupCustomDataPage">
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+                <ScalarProperty Name="idPage" ColumnName="idPage" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="idGroupCustomDataPage" ColumnName="idGroupCustomDataPage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

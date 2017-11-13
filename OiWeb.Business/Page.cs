@@ -27,6 +27,18 @@ namespace OiWeb.Business
                 return query.FirstOrDefault();
             }
         }
+        public static IEnumerable<Entity.Page> GetPagesInGroupCustomData(int idGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var query = from c in context.Pages                            
+                            join _GP in context.GroupCustomDataPages on c.idPage equals _GP.idPage
+                            where _GP.idGroup == idGroup
+                            group c by new {c.idPage} into myGroup
+                            select myGroup.FirstOrDefault();                
+                return query.ToList();
+            }
+        }
         public static void Create(Entity.Page page)
         {
             using (var context = new Entity.OiWeb())
@@ -45,7 +57,8 @@ namespace OiWeb.Business
 
                 query.name = page.name;
                 query.description = page.description;
-                query.isCommon = page.isCommon;                    
+                query.isCommon = page.isCommon;
+                query.isActive = page.isActive;    
                 context.SaveChanges();
             }
         }         

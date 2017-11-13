@@ -1,0 +1,19 @@
+﻿@model OiWeb.CMS.Models.CitiesViewModel
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">Nome</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var page in Model.pages)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(page.idPage)</td>
+                <td class="text-truncate"><a href="/Paginas/Editar/@(Html.Raw(page.idPage))">@Html.Raw(page.name)</a></td>                 
+            </tr>
+        }
+    }
+</table>

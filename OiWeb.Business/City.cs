@@ -48,6 +48,21 @@ namespace OiWeb.Business
             }
         }
 
+        public static IEnumerable<Entity.City> GetCitiesCustomData(int idGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var query = from _C in context.Cities
+                            join _CG in context.GroupCustomDataPages on _C.idCity equals _CG.idCity
+                            where
+                                _CG.idGroup == idGroup
+                            select _C;
+                query = query.Include(cds => cds.GroupCustomDataPages);
+                query = query.Include(cds => cds.GroupCustomDataPages.Select(gp => gp.Page));
+                return query.ToList();
+            }
+        }
+
         public static List<Entity.City> GetCititesByDdd(int ddd)
         {
             using (var context = new Entity.OiWeb())

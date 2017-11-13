@@ -7,6 +7,7 @@
             <th class="sortable">Nome</th>            
             <th class="sortable">Status</th>
             <th class="sortable">Criado Em</th>
+            <th class="sortable">Opções</th>
         </tr>
     </thead>
     @{
@@ -14,9 +15,19 @@
         {
             <tr>
                 <td class="text-truncate">@Html.Raw(group.idGroup)</td>
-                <td class="text-truncate"><a href="/Grupos/CustomData/@(Html.Raw(group.idGroup))">@Html.Raw(group.name)</a></td>                
-                <td class="text-truncate">@*<span class="lable-tag @Html.Raw(group.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(group.isActive == true ? "Ativo" : "Inativo")</span>*@</td>
-                <td class="text-truncate">ddd</td>
+                <td class="text-truncate"><a href="/Grupos/CustomData/Editar/@(Html.Raw(group.idGroup))">@Html.Raw(group.name)</a></td>                
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(group.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(group.isActive == true ? "Ativo" : "Desativado")</span></td>
+                <td class="text-truncate">@Html.Raw(group.dtCreate)</td>
+                <td class="text-truncate">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Grupos/CustomData/Paginas/isActive/@Html.Raw(group.isActive == true ? "false" : "true")/@(Html.Raw(group.idGroup))">@Html.Raw(group.isActive == true ? "Desativar" : "Ativar")</a></li>
+                            <li><a href="/Grupos/CustomData/Editar/@(Html.Raw(group.idGroup))">Alterar</a></li>
+
+                        </ul>
+                    </div>
+                </td>
             </tr>
         }
     }

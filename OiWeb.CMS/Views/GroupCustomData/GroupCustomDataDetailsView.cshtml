@@ -6,11 +6,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="chart-box">
-                    <h4><strong>@Html.Raw(Model.group.name)</strong></h4>
+                    <h4><strong>@Html.Raw(Model.groupCustomData.name)</strong></h4>
                     <p>Detalhes do grupo</p>
                     <ul class="list-group">
-                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.group.dtCreate)</strong></li>
-                        <li class="list-group-item">Produto Vinculado: <a href="/Produto/@Html.Raw(Model.group.Product.idProduct)"><strong>@Html.Raw(Model.group.Product.name) - (SKU @Html.Raw(Model.group.Product.idProduct))</strong></a></li>
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.groupCustomData.dtCreate)</strong></li>
+                        @*@{
+                            var vincPage = Model.cities.Count() > 0 ? Model.cities.FirstOrDefault().GroupCustomDataPages.First().Page.name.ToString() : "Sem Vinclulos";
+                        }
+                        <li class="list-group-item">Página Vinculada: <strong>@Html.Raw(vincPage)</strong>*@
+                        </li>                                               
                         <li class="list-group-item">Cidades com Vinculo: <strong>@Html.Raw(Model.cities.Count())</strong></li>                        
                     </ul>
                 </div>
@@ -18,11 +22,11 @@
             <div class="col-md-12">
                 <div class="chart-box">
                     <h4>
-                        Lista de Planos disponíveis:                       
+                        Lista de Páginas Vinculadas:
                     </h4>
-                    @RenderPage("~/Views/Shared/Practical/DataTablePartialPlansView.cshtml", Model)
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialGroupCustomDataPagesView.cshtml", Model)
                 </div>
-            </div>
+            </div>           
         </div>
     </section>
 </div>

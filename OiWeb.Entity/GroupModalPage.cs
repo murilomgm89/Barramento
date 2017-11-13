@@ -20,7 +20,7 @@ namespace OiWeb.Entity
         public int idModal { get; set; }
     
         public virtual GroupModal GroupModal { get; set; }
-        public virtual Page Page { get; set; }
         public virtual Modal Modal { get; set; }
+        public virtual Page Page { get; set; }
     }
 }

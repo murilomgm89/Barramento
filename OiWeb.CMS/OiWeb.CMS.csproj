@@ -215,6 +215,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\GroupCustomDataController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\PlanProductController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Handle\Util\ExcelUtil.cs" />
     <Compile Include="Handle\Util\SafeConverter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\PageViewModels.cs" />
     <Compile Include="Models\SavePriceViewModels.cs" />
     <Compile Include="Models\SavePlanViewModels.cs" />
     <Compile Include="Models\CitiesViewModels.cs" />
@@ -413,7 +415,7 @@
     <Content Include="Views\Shared\Breadcrumb.cshtml" />
     <Content Include="Views\Product\ProductView.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialView.cshtml" />
-    <Content Include="Views\Group\GroupView.cshtml" />
+    <Content Include="Views\Page\PagesView.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialGroupView.cshtml" />
     <Content Include="Views\City\CitiesView.cshtml" />
     <Content Include="Views\Group\GroupDetailsView.cshtml" />
@@ -438,6 +440,10 @@
     <Content Include="Views\Regulation\RegulationDetailsView.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialRegulationsView.cshtml" />
     <Content Include="Views\Regulation\Alterar.cshtml" />
+    <Content Include="Views\Shared\Practical\DataTablePartialPagesView.cshtml" />
+    <Content Include="Views\Page\PageCreateView.cshtml" />
+    <Content Include="Views\Page\PageEditView.cshtml" />
+    <Content Include="Views\Shared\Practical\DataTablePartialGroupCustomDataPagesView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

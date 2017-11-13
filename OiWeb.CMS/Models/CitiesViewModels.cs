@@ -9,7 +9,8 @@ namespace OiWeb.CMS.Models
     {
         public IEnumerable<Entity.City> cities { get; set; }
         public Entity.PriceGroup group { get; set; }
-        public IEnumerable<Entity.PlanProduct> plans { get; set; }
-        
+        public IEnumerable<Entity.Page> pages { get; set; }
+        public Entity.GroupCustomData groupCustomData { get; set; }
+        public IEnumerable<Entity.PlanProduct> plans { get; set; }    
     }
 }
