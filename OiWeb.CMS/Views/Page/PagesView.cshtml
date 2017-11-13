@@ -1,4 +1,4 @@
-﻿@model List<OiWeb.Entity.PriceGroup>
+﻿@model IEnumerable<OiWeb.Entity.Page>
 
 <div class="content-wrapper">
     @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-md-12">  
                 <div class="chart-box">
-                    <h4>Grupos de Preços
-                        <a href="/Grupos/Cadastro/Novo" class="btn btn-success btn-rounded">Criar novo Grupo</a>
+                    <h4>Lista de Páginas
+                        <a href="/Paginas/Cadastro/Novo" class="btn btn-success btn-rounded">Criar nova Página</a>
                     </h4>
-                    @RenderPage("~/Views/Shared/Practical/DataTablePartialGroupView.cshtml", Model)
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialPagesView.cshtml", Model)
                 </div>
             </div>
         </div>

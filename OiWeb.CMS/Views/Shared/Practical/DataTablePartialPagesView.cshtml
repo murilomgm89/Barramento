@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OiWeb.Entity.Page>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">Nome</th>
+            <th class="sortable">Descrição</th>
+            <th class="sortable">IsCommon</th>           
+            <th class="sortable">Status</th>
+            <th class="sortable">Criado Em</th>
+            <th class="sortable">Opções</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var page in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(page.idPage)</td>
+                <td class="text-truncate"><a href="/Paginas/Editar/@(Html.Raw(page.idPage))">@Html.Raw(page.name)</a></td>
+                <td class="text-truncate">@Html.Raw(page.description)</td>
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(page.isCommon == true ? "tag-unpaid" : "tag-success")">@Html.Raw(page.isCommon == true ? "Sim" : "Não")</span></td>                
+                <td class="text-truncate"><span class="lable-tag @Html.Raw(page.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(page.isActive == true ? "Ativo" : "Inativo")</span></td>
+                <td class="text-truncate">@Html.Raw(page.dtCreate)</td>
+                <td class="text-truncate">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Paginas/isActive/@Html.Raw(page.isActive == true ? "false" : "true")/@(Html.Raw(page.idPage))">@Html.Raw(page.isActive == true ? "Desativar" : "Ativar")</a></li>
+                            <li><a href="/Paginas/Editar/@(Html.Raw(page.idPage))">Alterar</a></li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>

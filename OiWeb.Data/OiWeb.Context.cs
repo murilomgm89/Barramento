@@ -30,8 +30,6 @@ namespace OiWeb.Entity
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<CustomData> CustomDatas { get; set; }
         public virtual DbSet<GroupCustomData> GroupCustomDatas { get; set; }
-        public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
-        public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<PlanGroup> PlanGroups { get; set; }
         public virtual DbSet<PlanRegulation> PlanRegulations { get; set; }
         public virtual DbSet<PriceGroupCity> PriceGroupCities { get; set; }
@@ -51,5 +49,7 @@ namespace OiWeb.Entity
         public virtual DbSet<GroupModalPage> GroupModalPages { get; set; }
         public virtual DbSet<Modal> Modals { get; set; }
         public virtual DbSet<PriceGroup> PriceGroups { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
+        public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
     }
 }

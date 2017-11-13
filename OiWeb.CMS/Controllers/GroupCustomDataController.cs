@@ -21,31 +21,44 @@ namespace OiWeb.CMS.Controllers
 
             var groups = Business.GroupCustomData.GetGroupCustomDatas();
 
-            return View("/Views/Group/GroupCustomDataView.cshtml", groups);           
+            return View("/Views/GroupCustomData/GroupCustomDataView.cshtml", groups);           
         }
 
-        [GET("/Grupos/{idPriceGroup}")]
-        public ActionResult GetGroup(int idPriceGroup)
+        [GET("/Grupos/CustomData/Editar/{idGroup}")]
+        public ActionResult GetGroup(int idGroup)
         {
             BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Grupo";
+            breadcrumbViewModel.H1 = "Editar Grupo";
             breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Grupo";
+            breadcrumbViewModel.Session = "Editar Grupo";
             ViewBag.breadcrumbViewModel = breadcrumbViewModel;
 
-            var group = Business.Groups.GetPriceGroup(idPriceGroup);
-            var cities = Business.City.GetCities(idPriceGroup);
+            var group = Business.GroupCustomData.GetGroupCustomData(idGroup);
+            var cities = Business.City.GetCitiesCustomData(idGroup);
+            var pages = Business.Page.GetPagesInGroupCustomData(idGroup);
 
             CitiesViewModel citiesViewModel = new CitiesViewModel();
-            citiesViewModel.group = group;
+            citiesViewModel.groupCustomData = group;
             citiesViewModel.cities = cities;
-            citiesViewModel.plans = group.Product.PlanProducts;           
-
-            return View("/Views/Group/GroupDetailsView.cshtml", citiesViewModel);
+            citiesViewModel.pages = pages;
+       
+            return View("/Views/GroupCustomData/GroupCustomDataDetailsView.cshtml", citiesViewModel);
         }
 
-        [GET("/Grupos/Cadastro/Novo")]
+        [GET("/Grupos/CustomData/Cadastro/Novo")]
         public ActionResult GetCreateGroup()
+        {
+            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
+            breadcrumbViewModel.H1 = "Novo Grupo";
+            breadcrumbViewModel.Icon = "fa-table";
+            breadcrumbViewModel.Session = "Novo Grupo";
+            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+
+            return View("/Views/GroupCustomData/GroupCustomDataCreateView.cshtml");
+        }
+
+        [POST("/Grupos/CustomData/Cadastro/Novo")]
+        public ActionResult CreateGroup()
         {
             BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
             breadcrumbViewModel.H1 = "Novo Grupo";
@@ -56,28 +69,21 @@ namespace OiWeb.CMS.Controllers
             return View("/Views/Group/GroupCreateView.cshtml");
         }
 
-        [GET("/Grupos/{idPriceGroup}/{idPlan}/Precos")]
-        public ActionResult GetUpdatePrices(int idPriceGroup, int idPlan)
+        [GET("/Grupos/CustomData/Paginas/isActive/{isActive}/{idGroup}")]
+        public ActionResult IsActiveCustomData(bool isActive, int idGroup)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Alteração de Precificação";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Alteração de Precificação";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
-
-            var prices = Business.Price.GetPrices(idPlan, idPriceGroup);
-            var plan = new Entity.PlanProduct();
-            plan.Prices = prices;
-            plan.idPlan = idPlan;
-            ViewBag.idPriceGroup = idPriceGroup;
-
-            return View("/Views/Plan/PlanEditPriceView.cshtml", plan);
+            var customData = Business.GroupCustomData.GetGroupCustomData(idGroup);
+            customData.isActive = isActive;
+            Business.GroupCustomData.Update(customData);
+            return Redirect("/Grupos/CustomData");
         }
-        [GET("/Grupos/{idPriceGroup}/{idPlan}/Excluir")]
-        public ActionResult GetDeletePrices(int idPriceGroup, int idPlan)
+
+        [GET("/Grupos/CustomData/Paginas/Desvincular/{idPage}/{idGroup}")]
+        public ActionResult DesvincularPageGroupCustomData(int idPage, int idGroup)
         {
-            Business.Price.Delete(idPlan, idPriceGroup); 
-            return Redirect("/Grupos/" + idPriceGroup);
+            var customData = Business.GroupCustomData.GetGroupCustomData(idGroup);           
+            Business.GroupCustomData.Update(customData);
+            return Redirect("/Grupos/CustomData");
         }
 
 
