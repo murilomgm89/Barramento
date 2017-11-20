@@ -13,13 +13,10 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/CustomData")]
         public ActionResult GetGroupsCustomData()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Grupos Custom Data";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Grupos Custom Data";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
-
-            var groups = Business.GroupCustomData.GetGroupCustomDatas();
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Grupos Custom Data", "fa-table", "Grupos Custom Data");
+            
+            var groups = Business.GroupCustomData.GetGroupCustomDatas().ToList();
 
             return View("/Views/GroupCustomData/GroupCustomDataView.cshtml", groups);           
         }
@@ -27,11 +24,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/CustomData/Editar/{idGroup}")]
         public ActionResult GetGroup(int idGroup)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Editar Grupo";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Editar Grupo";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Editar Grupo", "fa-table", "Editar Grupo"); 
 
             var group = Business.GroupCustomData.GetGroupCustomData(idGroup);
             var cities = Business.City.GetCitiesCustomData(idGroup);
@@ -48,11 +42,7 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/CustomData/Cadastro/Novo")]
         public ActionResult GetCreateGroup()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Novo Grupo";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Novo Grupo";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Grupo", "fa-table", "Novo Grupo"); 
 
             return View("/Views/GroupCustomData/GroupCustomDataCreateView.cshtml");
         }

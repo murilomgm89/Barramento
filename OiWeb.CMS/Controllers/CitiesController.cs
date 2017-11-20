@@ -12,26 +12,18 @@ namespace OiWeb.CMS.Controllers
     {
         [GET("/Cidades")]
         public ActionResult GetCities()
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Cidades";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Cidades";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Cidades", "fa-table", "Cidades"); ;
 
-            var cities = Business.City.GetCities();
+            var cities = Business.City.GetCities().ToList();
 
             return View("/Views/City/CitiesView.cshtml", cities);           
         }
 
         [GET("/Cidades/{idCity}")]
         public ActionResult GetCity(int idCity)
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Cidades";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Cidades";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Cidades", "fa-table", "Cidades");
 
             var city = Business.City.GetCity(idCity);
             city.PriceGroupCities = city.PriceGroupCities.OrderBy(pg => pg.idPriceGroup).ToList();

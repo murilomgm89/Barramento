@@ -14,11 +14,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos")]
         public ActionResult GetGroups()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Grupos";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Grupos";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Grupos", "fa-table", "Grupos"); ;
 
             var groups = Business.Groups.GetPriceGroups();
 
@@ -28,11 +25,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/{idPriceGroup}")]
         public ActionResult GetGroup(int idPriceGroup)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Grupo";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Grupo";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Grupo", "fa-table", "Grupo");
 
             var group = Business.Groups.GetPriceGroup(idPriceGroup);
             var cities = Business.City.GetCities(idPriceGroup);
@@ -46,14 +40,8 @@ namespace OiWeb.CMS.Controllers
         }
         [GET("/Grupos/{idPriceGroup}/regulamentos")]
         public ActionResult GetRegulationGroup(int idPriceGroup)
-        {
-            var breadcrumbViewModel = new BreadcrumbViewModel
-            {
-                H1 = "Regulamentos",
-                Icon = "fa-table",
-                Session = "Regulamento"
-            };
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Regulamentos", "fa-table", "Regulamento"); ;
 
             var group = Business.Groups.GetPriceGroup(idPriceGroup);
             var cities = Business.City.GetCities(idPriceGroup);
@@ -72,11 +60,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/Cadastro/Novo")]
         public ActionResult GetCreateGroup()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Novo Grupo";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Novo Grupo";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Grupo", "fa-table", "Novo Grupo"); 
 
             return View("/Views/Group/GroupCreateView.cshtml");
         }
@@ -84,11 +69,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/{idPriceGroup}/{idPlan}/Precos")]
         public ActionResult GetUpdatePrices(int idPriceGroup, int idPlan)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Alteração de Precificação";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Alteração de Precificação";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Alteração de Precificação", "fa-table", "Alteração de Precificação"); 
 
             var prices = Business.Price.GetPrices(idPlan, idPriceGroup);
             var plan = new Entity.PlanProduct();

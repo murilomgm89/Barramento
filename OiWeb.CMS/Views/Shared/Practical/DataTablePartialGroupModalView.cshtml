@@ -1,0 +1,40 @@
+﻿@model List<OiWeb.Entity.GroupModal>
+
+@{
+    Layout = null;
+}
+
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th class="sortable">ID</th>
+            <th class="sortable">Nome</th>
+            <th class="sortable">Descrição</th>
+            <th class="sortable">Opções</th>
+
+        </tr>
+    </thead>
+    @{
+        foreach (var group in Model)
+        {
+            <tr>
+                <td class="text-truncate">@Html.Raw(group.idGroupModal)</td>
+                <td class="text-truncate"><a href="#">@Html.Raw(group.name)</a></td>
+                <td class="text-truncate">@Html.Raw(group.description)</td>
+                <td class="text-truncate">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Grupos/Modal/@(Html.Raw(group.idGroupModal))/excluir">Excluir</a></li>
+                            <li><a href="/Grupos/Modal/@(Html.Raw(group.idGroupModal))/alterar">Alterar</a></li>
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    }
+</table>

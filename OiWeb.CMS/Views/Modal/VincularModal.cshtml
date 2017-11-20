@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "VincularModal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="POST" enctype="multipart/form-data" action="/Modal/vincular/grupos/salvar">
+<div class="content-wrapper">
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Vincular Modal</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label class="control-label">Grupos de Modais</label>
+                                @Html.DropDownList("idGroupModal", new SelectList(ViewBag.GroupModals, "idGroupModal", "name"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label class="control-label">Pagina</label>
+                                @Html.DropDownList("idPage", new SelectList(ViewBag.Pages, "idPage", "name"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label class="control-label">Modal</label>
+                                @Html.DropDownList("idModal", new SelectList(ViewBag.Modals, "idModal", "name"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <input type="submit" value="Salvar" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</form>

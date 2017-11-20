@@ -1,4 +1,5 @@
-﻿using OiWeb.Entity;
+﻿using System;
+using OiWeb.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
@@ -26,5 +27,141 @@ namespace OiWeb.Business
                 return query.ToList();
             }
         }
+
+        public static List<Entity.Modal> GetAll()
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.Modals.ToList();
+            }
+        }
+
+        public static List<Entity.GroupModal> GetAllGroupModal()
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.GroupModals.ToList();
+            }
+        }
+
+        public static void Insert(Entity.Modal entity)
+        {
+            entity.dtCreate = DateTime.Now;
+
+            using (var context = new Entity.OiWeb())
+            {
+                context.Modals.Add(entity);
+                context.SaveChanges();
+            }
+        }
+
+        public static void InsertGroupModal(Entity.GroupModal entity)
+        {
+            entity.dtCreate = DateTime.Now;
+
+            using (var context = new Entity.OiWeb())
+            {
+                context.GroupModals.Add(entity);
+                context.SaveChanges();
+            }
+        }
+
+        public static Entity.Modal GetById(int id)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.Modals.Find(id);
+            }
+        }
+
+        public static Entity.GroupModal GetByIdGroupModal(int id)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.GroupModals.Find(id);
+            }
+        }
+
+        public static void UpdateModal(Entity.Modal data)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+
+                var modal = context.Modals.Find(data.idModal);
+
+                if (modal != null)
+                {
+
+                    modal.name = data.name;
+                    modal.description = data.description;
+
+                    context.Modals.Attach(modal);
+                    var entry = context.Entry(modal);
+                    entry.Property(e => e.name).IsModified = true;
+                    entry.Property(e => e.description).IsModified = true;
+
+                    context.SaveChanges();
+                }
+
+
+            }
+        }
+        public static void UpdateGroupModal(Entity.GroupModal data)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+
+                var groupModal = context.GroupModals.Find(data.idGroupModal);
+
+                if (groupModal != null)
+                {
+
+                    groupModal.name = data.name;
+                    groupModal.description = data.description;
+
+                    context.GroupModals.Attach(groupModal);
+                    var entry = context.Entry(groupModal);
+                    entry.Property(e => e.name).IsModified = true;
+                    entry.Property(e => e.description).IsModified = true;
+
+                    context.SaveChanges();
+                }
+
+
+            }
+        }
+
+        public static void ExcludeModal(int idModal)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+
+                var data = context.Modals.Find(idModal);
+                if (data != null)
+                {
+                    context.Modals.Remove(data);
+                    context.SaveChanges();
+                }
+
+
+            }
+        }
+
+        public static void ExcludeGroupModal(int idGroupModal)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var data = context.GroupModals.Find(idGroupModal);
+                if (data != null)
+                {
+                    context.GroupModals.Remove(data);
+                    context.SaveChanges();
+                }
+
+
+            }
+        }
+
+
     }
 }

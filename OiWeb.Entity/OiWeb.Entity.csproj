@@ -157,6 +157,7 @@
     <Compile Include="GroupModalPage.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="GroupModalPartial.cs" />
     <Compile Include="Modal.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>

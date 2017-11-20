@@ -1,0 +1,31 @@
+﻿@model List<OiWeb.Entity.Modal>
+@{
+    ViewBag.Title = "ModalDetailsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>
+                        Modais
+                        <a href="/Modal/Criar" class="btn btn-success btn-rounded">Criar novo Modal</a>
+                    </h4>
+                    <hr />
+                    @RenderPage("~/Views/Shared/Practical/DataTablePartialModalView.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        $("table").tablesort();
+    };
+</script>

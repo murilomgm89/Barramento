@@ -215,6 +215,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\ModalController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\GroupCustomDataController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
@@ -444,9 +445,20 @@
     <Content Include="Views\Page\PageCreateView.cshtml" />
     <Content Include="Views\Page\PageEditView.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialGroupCustomDataPagesView.cshtml" />
+    <Content Include="Views\Modal\ModalDetailsView.cshtml" />
+    <Content Include="Views\GroupModal\GroupModalDetailsView.cshtml" />
+    <Content Include="Views\Shared\Practical\DataTablePartialGroupModalView.cshtml" />
+    <Content Include="Views\Shared\Practical\DataTablePartialModalView.cshtml" />
+    <Content Include="Views\Modal\ModalCreateView.cshtml" />
+    <Content Include="Views\Group\GroupView.cshtml" />
+    <Content Include="Views\GroupModal\GroupModalCreateView.cshtml" />
+    <Content Include="Views\Modal\VincularModal.cshtml" />
+    <Content Include="Views\Modal\Alterar.cshtml" />
+    <Content Include="Views\GroupModal\Alterar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Upload\Excel\GroupModal\" />
     <Folder Include="Content\Upload\Excel\PriceCity\" />
     <Folder Include="Content\Upload\Regulation\" />
     <Folder Include="Views\Import\" />
