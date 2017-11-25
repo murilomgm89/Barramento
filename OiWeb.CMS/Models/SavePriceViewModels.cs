@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace OiWeb.CMS.Models
+﻿namespace OiWeb.CMS.Models
 {
     public class SavePriceViewModels
     {

@@ -1,0 +1,32 @@
+﻿@model OiWeb.Entity.GroupModal
+@{
+    ViewBag.Title = "DetalhesGroup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>@Model.name</strong></h4>
+                    <p>Detalhes</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.dtCreate)</strong></li>
+                        <li class="list-group-item">Cidades vinculadas ao Grupo: @Model.GroupModalCities.Count()</li>
+                        @*<li class="list-group-item">Paginas vinculadas ao Modal: <strong>@Html.Raw(Model.GroupModalPages.Count)</strong></li>*@
+                    </ul>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    (function($) {
+        "use strict";
+        $(".table").tablesort();
+    })(jQuery);
+</script>

@@ -13,12 +13,8 @@ namespace OiWeb.CMS.Controllers
     {
         [GET("/Paginas")]
         public ActionResult GetPages()
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Páginas";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Páginas";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Páginas", "fa-table", "Páginas"); 
 
             var pages = Business.Page.GetPages();
 
@@ -28,23 +24,23 @@ namespace OiWeb.CMS.Controllers
         [GET("/Paginas/Cadastro/Novo")]
         public ActionResult GetCreatePage()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Criar Página";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Criar Página";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Criar Página", "fa-table", "Criar Página");
             return View("/Views/Page/PageCreateView.cshtml");
         }
 
         [POST("/Paginas/Cadastro/Novo")]
         public ActionResult CreatePage(PageViewModel page)
         {
-            Entity.Page pageEntity = new Entity.Page();
-            pageEntity.name = page.name;
-            pageEntity.description = page.description;
-            pageEntity.isCommon = page.isCommon;
-            pageEntity.isActive = true;
-            pageEntity.dtCreate = DateTime.Now;
+            Entity.Page pageEntity = new Entity.Page
+            {
+                name = page.name,
+                description = page.description,
+                isCommon = page.isCommon,
+                isActive = true,
+                dtCreate = DateTime.Now
+            };
+
             Business.Page.Create(pageEntity);
             return Redirect("/Paginas");
         }
@@ -52,12 +48,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Paginas/Editar/{idPage}")]
         public ActionResult GetEditPage(int idPage)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Editar Página";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Editar Página";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
-
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Editar Página", "fa-table", "Editar Página");
+            
             var page = Business.Page.GetPage(idPage);
             return View("/Views/Page/PageEditView.cshtml", page);
         }

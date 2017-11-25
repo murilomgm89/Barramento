@@ -60,12 +60,8 @@ namespace OiWeb.CMS.Controllers
         [AllowAnonymous]
         [GET("/Usuarios")]
         public ActionResult GetAccounts()
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Usuários";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Usuários";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Usuários", "fa-table", "Usuários"); 
 
             var users = Business.CMS_Account.GetUsers();
 
@@ -77,12 +73,8 @@ namespace OiWeb.CMS.Controllers
         [AllowAnonymous]
         [GET("/Usuarios/{idAccount}")]
         public ActionResult GetDetailsAccounts(int idAccount)
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Usuário";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Usuário";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {  
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Usuário", "fa-table", "Usuário");
 
             var users = Business.CMS_Account.GetUser(idAccount);
 
@@ -101,12 +93,8 @@ namespace OiWeb.CMS.Controllers
         [AllowAnonymous]
         [GET("/Usuarios/Novo/Cadastro")]
         public ActionResult GetNewAccounts()
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Novo Usuário";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Novo Usuário";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;          
+        {  
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Usuário", "fa-table", "Novo Usuário");
             return View("/Views/Account/UserCreateView.cshtml");
         }
 

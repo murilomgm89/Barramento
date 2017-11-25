@@ -455,6 +455,8 @@
     <Content Include="Views\Modal\VincularModal.cshtml" />
     <Content Include="Views\Modal\Alterar.cshtml" />
     <Content Include="Views\GroupModal\Alterar.cshtml" />
+    <Content Include="Views\Modal\Detalhes.cshtml" />
+    <Content Include="Views\GroupModal\DetalhesGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

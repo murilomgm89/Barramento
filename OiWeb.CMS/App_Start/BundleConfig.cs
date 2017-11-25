@@ -10,9 +10,13 @@ namespace OiWeb.CMS
         {
             bundles.Add(new ScriptBundle("~/Content/bootstrapJS").Include(
                       "~/Content/bootstrap/js/bootstrap.js",
-                      "~/Content/bootstrap/js/bootstrap.min.js"));
+                      "~/Content/bootstrap/js/bootstrap.min.js",
+                      "~/Content/plugins/tables/jquery.tablesort.js"));
 
-            bundles.Add(new ScriptBundle("~/Content/bootstrapCSS").Include(
+
+
+
+             bundles.Add(new ScriptBundle("~/Content/bootstrapCSS").Include(
                 "~/Content/bootstrap/css/bootstrap.min.css.map",
                 "~/Content/bootstrap/css/bootstrap-theme.css",
                 "~/Content/bootstrap/css/bootstrap-theme.min.css",

@@ -70,7 +70,13 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
-                return context.Modals.Find(id);
+                context.Configuration.ProxyCreationEnabled = false;
+                return context
+                    .Modals
+                    .Include(t=> t.GroupModalPages)
+                    .Include(t => t.GroupModalPages.Select(s=> s.Page))
+                    .Include(t => t.GroupModalPages.Select(s => s.GroupModal))
+                    .FirstOrDefault(w =>w.idModal == id);
             }
         }
 
@@ -78,7 +84,14 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
-                return context.GroupModals.Find(id);
+
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.GroupModals
+                    .Include(t => t.GroupModalPages)
+                    .Include(t => t.GroupModalCities)
+                    .Include(t => t.GroupModalPages.Select(s => s.Page))
+                    .Include(t => t.GroupModalPages.Select(s => s.GroupModal))
+                    .FirstOrDefault(w => w.idGroupModal == id);
             }
         }
 

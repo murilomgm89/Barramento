@@ -49,12 +49,8 @@ namespace OiWeb.CMS.Controllers
 
         [POST("/Grupos/CustomData/Cadastro/Novo")]
         public ActionResult CreateGroup()
-        {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Novo Grupo";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Novo Grupo";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+        {   
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Grupo", "fa-table", "Novo Grupo");
 
             return View("/Views/Group/GroupCreateView.cshtml");
         }

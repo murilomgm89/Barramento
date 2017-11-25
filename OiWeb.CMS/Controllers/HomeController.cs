@@ -13,9 +13,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Home")]
         public ActionResult Index()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Home";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;            
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Home", "", "");
             return View();
         }
     }

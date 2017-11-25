@@ -13,11 +13,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Produto/{idProduct}")]
         public ActionResult GetProducts(int idProduct)
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Produto";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Produto";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Produto", "fa-table", "Produto");
 
             var product = Business.Product.GetProduct(idProduct);    
             return View("/Views/Product/ProductView.cshtml", product);           

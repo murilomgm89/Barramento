@@ -1,0 +1,72 @@
+﻿@model OiWeb.Entity.Modal
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")  
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>@Model.name</strong></h4>
+                    <p>Detalhes</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.dtCreate)</strong></li>
+                        <li class="list-group-item">Grupos vinculados ao Modal: @Model.GroupModalPages.Select(s=> s.GroupModal).AsEnumerable().Count()</li>
+                        <li class="list-group-item">Paginas vinculadas ao Modal: <strong>@Html.Raw(Model.GroupModalPages.Count)</strong></li>                        
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>
+                        Lista de Grupos vinculados:
+                    </h4>
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th class="sortable">ID</th>
+                            <th class="sortable">Nome</th>
+                            <th class="sortable">Descrição</th>
+                            <th class="sortable">Opções</th>
+
+                        </tr>
+                        </thead>
+                        @{
+                            foreach (var group in Model.GroupModalPages.Select(s=> s.GroupModal))
+                            {
+                                <tr>
+                                    <td class="text-truncate">@Html.Raw(group.idGroupModal)</td>
+                                    <td class="text-truncate">@Html.Raw(group.name)</td>
+                                    <td class="text-truncate">@Html.Raw(group.description)</td>
+                                    <td class="text-truncate">
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/Grupos/Modal/@(Html.Raw(group.idGroupModal))/excluir">Excluir</a></li>
+                                                <li><a href="/Grupos/Modal/@(Html.Raw(group.idGroupModal))/alterar">Alterar</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function($) {
+        "use strict";
+        $(".table").tablesort();
+    })(jQuery);
+</script>
+

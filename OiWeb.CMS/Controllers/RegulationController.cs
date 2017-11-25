@@ -14,11 +14,8 @@ namespace OiWeb.CMS.Controllers
         [GET("regulamentos")]
         public ActionResult Index()
         {
-            BreadcrumbViewModel breadcrumbViewModel = new BreadcrumbViewModel();
-            breadcrumbViewModel.H1 = "Regulamentos";
-            breadcrumbViewModel.Icon = "fa-table";
-            breadcrumbViewModel.Session = "Regulamentos";
-            ViewBag.breadcrumbViewModel = breadcrumbViewModel;
+            
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Regulamentos", "fa-table", "Regulamentos"); 
 
             var regulations = Business.PlanRegulation.GetPlanRegulations();
 
@@ -28,7 +25,6 @@ namespace OiWeb.CMS.Controllers
         [GET("regulamentos/criar")]
         public ActionResult Create()
         {
-
             var groups = Business.Groups.GetPriceGroups();
             ViewBag.Groups = groups;
 

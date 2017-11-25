@@ -44,6 +44,28 @@ namespace OiWeb.CMS.Controllers
             return View(data);
         }
 
+        [GET("/Modal/{idModal}")]
+        public ActionResult Detalhes(int idModal)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Detalhes do Modal", "fa-table", "Detalhes do Modal");
+
+            var data = Business.GroupModal.GetById(idModal);
+
+          
+            return View(data);
+        }
+
+        [GET("/Grupos/Modal/{idGroupModal}")]
+        public ActionResult DetalhesGroup(int idGroupModal)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Detalhes do Grupo Modal", "fa-table", "Detalhes do Grupo Modal");
+
+            var data = Business.GroupModal.GetByIdGroupModal(idGroupModal);
+
+
+            return View("~/Views/GroupModal/DetalhesGroup.cshtml", data);
+        }
+
         [GET("/Modal/{idModal}/Excluir")]
         public ActionResult Excluir(int idModal)
         {
@@ -51,6 +73,7 @@ namespace OiWeb.CMS.Controllers
 
             return Redirect("~/Modal");
         }
+
 
         [POST("/Modal/Alterar")]
         public RedirectResult PostAlterar(Entity.Modal data)

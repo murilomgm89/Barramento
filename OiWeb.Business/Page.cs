@@ -21,10 +21,8 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
-                var query = from c in context.Pages
-                            where c.idPage == idPage                          
-                            select c;
-                return query.FirstOrDefault();
+                var query = context.Pages.Find(idPage);
+                return query;
             }
         }
         public static IEnumerable<Entity.Page> GetPagesInGroupCustomData(int idGroup)
