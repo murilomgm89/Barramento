@@ -41,6 +41,7 @@ namespace OiWeb.CMS.Controllers
                 isVisible = plan.isVisible,
                 defaultSKU = plan.defaultSKU,
                 name = plan.name,
+                linkEcommerce = plan.linkEcommerce,
                 dtCreate = DateTime.Now
             };
             Business.PlanProduct.Create(planEntity);
@@ -57,6 +58,7 @@ namespace OiWeb.CMS.Controllers
                 description = plan.description,
                 isVisible = plan.isVisible,
                 defaultSKU = plan.defaultSKU,
+                linkEcommerce = plan.linkEcommerce,
                 name = plan.name
             };
             Business.PlanProduct.Update(planEntity);
