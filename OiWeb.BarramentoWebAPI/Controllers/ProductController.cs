@@ -14,18 +14,23 @@ namespace OiWeb.BarramentoWebAPI.Controllers
         [GET("/Product/Catalog/{idPriceGroup}")]
         public string Catalog(int idPriceGroup)
         {
-            var product = Business.Product.GetCatalogProduct(idPriceGroup);
+            var product = Business.Product.GetCatalogProduct(idPriceGroup);            
             var EntityRegulations = Business.PlanRegulation.GetPlanRegulations(idPriceGroup);
             //{"catalog":{"NameProduct":{"category":"CategoryProduct ","plans":[{ "SKU":{"name":"NamePlan","price":"PricePlan"} }]}}} 
 
-            List<dynamic> plans = new List<dynamic>();            
-            
+            List<dynamic> plans = new List<dynamic>();
+
+            var sufix = "MES";
+            var IsBuyLink = true;
+            if(product.idProduct == 7){
+                sufix = "";
+                IsBuyLink = false;
+            }
             //Populando list de planos com dynamic para vincular o SKU ao Slug -- List de dynamic
-            foreach (var plan in product.PlanProducts)
+            foreach (var plan in product.PlanProducts.Where(p => p.isVisible == true))
             {
                 if (plan.Prices.Where(p => p.idPriceGroup == idPriceGroup).Count() > 0)
-                {
-
+                {                  
 
                     var priceFid =
                         new
@@ -66,14 +71,13 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                             {
                                 plan.idPlan,
                                 new
-                                {
-                                    defaultSKU = plan.defaultSKU,
+                                {                                   
                                     name = plan.name,                                    
                                     priceFid,
                                     priceNoFid,
                                     priceComboFid,
                                     priceComboNoFid,
-                                    idEcommerce = plan.linkEcommerce
+                                    buyLink = plan.linkEcommerce
                                 }
                             }
                         }
@@ -81,11 +85,13 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                 }
 
             };
-
-            List<Dictionary<string, dynamic>> contract = new List<Dictionary<string, dynamic>>();
+              
+            List<dynamic> lines = new List<dynamic>();   
             List<dynamic> regulation = new List<dynamic>();
             List<dynamic> summary = new List<dynamic>();
-            List<dynamic> others = new List<dynamic>();   
+            List<dynamic> others = new List<dynamic>();
+            List<dynamic> accession = new List<dynamic>();
+            
             //Populando list de planos com dynamic para vincular o SKU ao Slug -- List de dynamic
             foreach (var regulationItem in EntityRegulations)
             {
@@ -112,30 +118,65 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                         name = regulationItem.name,
                         link = regulationItem.link
                     });
-                } 
+                }
+                if (regulationItem.type == "accession")
+                {
+                    accession.Add(new
+                    {
+                        name = regulationItem.name,
+                        link = regulationItem.link
+                    });
+                }
             };
+
+            if (accession.Count() > 0)
+            {
+                lines.Add(new
+                {
+                    title = "Contrato de adesão",
+                    links = accession
+                });
+            }            
+
+            lines.Add(new
+            {
+                title = "Regulamentos das ofertas",
+                links = regulation
+            });
             
-            contract.Add(new Dictionary<string, dynamic>() 
-            {                
-                { 
-                    "regulation", 
-                    regulation
-                }                
+            lines.Add(new
+            {
+                title = "Sumário das ofertas",
+                links = summary
             });
-            contract.Add(new Dictionary<string, dynamic>() 
-            {                
-                { 
-                    "summary", 
-                    summary
-                }                
+            
+            lines.Add(new
+            {
+                title = "Outros",
+                links = others
             });
-            contract.Add(new Dictionary<string, dynamic>() 
-            {                
-                { 
-                    "others", 
-                    others
-                }                
-            });
+
+            //lines.Add(new Dictionary<string, dynamic>() 
+            //{                
+            //    { 
+            //        "summary", 
+            //        summary
+            //    }                
+            //});
+            //lines.Add(new Dictionary<string, dynamic>() 
+            //{                
+            //    { 
+            //        "others", 
+            //        others
+            //    }                
+            //});
+
+            var contract = new
+            {
+                lines = lines
+            };
+
+            var defaultSKU = product.PlanProducts.Where(a => a.defaultSKU == true).FirstOrDefault().idPlan;
 
             //Populando dynamic raiz
             var catalog = new Dictionary<string, dynamic>() 
@@ -146,6 +187,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                         { 
                             product.name, 
                             new { 
+                                defaultSKU = defaultSKU,
                                 category = product.ProductFamily.name,
                                 plans = plans,
                                 contract
