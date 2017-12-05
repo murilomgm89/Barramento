@@ -22,9 +22,15 @@
         </div>
     </section>
 </div>
+<script src="/Content/plugins/tables/dataTables.min.js"></script>
 <script type="text/javascript">
     window.onload = function () {
-        $("table").tablesort();
+         $('table').DataTable({
+            "info": false,
+            "pagingType": "simple"
+         });
+
+         $(".dataTables_paginate span").hide();
     };
 </script>
 
