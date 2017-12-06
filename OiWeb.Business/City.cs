@@ -35,6 +35,14 @@ namespace OiWeb.Business
                 return query.FirstOrDefault();
             }
         }
+
+        public static Entity.City GetCityById(int idCity)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                return context.Cities.Find(idCity);
+            }
+        }
         public static IEnumerable<Entity.City> GetCities(int idPriceGroup)
         {
             using (var context = new Entity.OiWeb())

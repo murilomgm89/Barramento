@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "VincularCustom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="POST" enctype="multipart/form-data" action="/Custom/vincular/cidades/salvar">
+    <div class="content-wrapper">
+        @RenderPage("~/Views/Shared/Breadcrumb.cshtml")  
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart-box">
+                        <h4>Vincular Cidades</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Grupos de Modais</label>
+                                    @Html.DropDownList("idGroup", new SelectList(ViewBag.GroupCustomDatas, "idGroup", "name"), new {@class = "form-control"})
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Pagina</label>
+                                    @Html.DropDownList("idPage", new SelectList(ViewBag.Pages, "idPage", "name"), new {@class = "form-control"})
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="file">Importar planilha</label>
+                                    <input type="file" id="file" name="file" required>
+                                    <div class="col-md-6">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="isByCity" id="isDdd" value="false">
+                                                Importação por DDD
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="isByCity" id="isByCity" value="true" checked>
+                                                Importação por codigo da cidade
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <input type="submit" value="Salvar" class="btn btn-default"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

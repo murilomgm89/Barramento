@@ -48,8 +48,11 @@ namespace OiWeb.CMS.Extensions
 
                         if(ddd.Equals(0))
                             continue;
-
+                        
                         var cities = Business.City.GetCititesByDdd(ddd);
+                        if (!cities.Any())
+                            continue;
+
                         var listInt = cities.Select(x => x.idCity).ToList();
 
                         foreach (var item in listInt)
@@ -110,6 +113,12 @@ namespace OiWeb.CMS.Extensions
                     PriceGroupCity data;
                     try
                     {
+                        var id = Convert.ToInt32(s[names[0].Trim()].ToString());
+                        var cidade = Business.City.GetCityById(id);
+
+                        if (cidade == null)
+                            continue;
+
                         data = new Entity.PriceGroupCity
                         {
                             idCity = Convert.ToInt32(s[names[0].Trim()].ToString()),
@@ -126,7 +135,6 @@ namespace OiWeb.CMS.Extensions
                 }
 
                 //Atualiza as ordens
-
                 Business.PriceGroupCities.Insert(lista);
 
 
@@ -157,12 +165,15 @@ namespace OiWeb.CMS.Extensions
                         dt.Load(reader);
 
                 var lista = new List<int>();
+                var cidades = Business.City.GetCities().ToList();
                 foreach (var s in dt.AsEnumerable())
                 {
                     int data;
                     try
                     {
                         data = Convert.ToInt32(s[names[0].Trim()].ToString());
+                        if (!cidades.Any(w => w.idCity == data))
+                            continue;
                     }
                     catch
                     {
@@ -173,7 +184,6 @@ namespace OiWeb.CMS.Extensions
                 }
 
                 //Atualiza as ordens
-
                return lista;
 
 

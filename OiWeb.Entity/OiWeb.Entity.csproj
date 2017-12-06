@@ -148,6 +148,7 @@
     <Compile Include="GroupCustomDataPage.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="GroupCustomDataPagePartial.cs" />
     <Compile Include="GroupModal.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>

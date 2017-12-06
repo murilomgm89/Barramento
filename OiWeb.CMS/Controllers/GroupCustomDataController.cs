@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using OiWeb.CMS.Models;
 using AttributeRouting.Web.Mvc;
+using OiWeb.CMS.Extensions;
 
 namespace OiWeb.CMS.Controllers
 {
@@ -79,5 +80,54 @@ namespace OiWeb.CMS.Controllers
             Business.Groups.Save(group);
             return Redirect("/Grupos");
         }
+
+
+        [GET("/Custom/vincular/cidades")]
+        public ActionResult VincularCustom()
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Vincular Cidade", "fa-table", "Vincular Cidade");
+
+            var entities = Business.Page.GetPages().ToList();
+            ViewBag.Pages = entities;
+
+            var groups = Business.GroupCustomData.GetGroupCustomDatas().ToList();
+            ViewBag.GroupCustomDatas = groups;
+
+            return View();
+        }
+
+        [POST("/Custom/vincular/cidades/salvar")]
+        public RedirectResult PostVincularCustom(GroupCustomDataPageViewModel entity)
+        {
+            //Quer dizer que tem excel para realizer a inserção
+            if (entity.file != null)
+            {
+                //Deleta os pricesgroups existentes
+                Business.GroupCustomDataPage.RemoveByIdGroupAndPage(entity.idGroup, entity.idPage);
+
+                //verifica se é por dd ou por idcity
+                //se for por idcity insere o range
+                var datas = new List<int>();
+                string fileLocation = string.Format("{0}/{1}", Server.MapPath("~/Content/Upload/Excel/CustomDataPage"), "customDataPages" + "id_" + entity.idGroup + DateTime.Now.Day + ".csv");
+                datas = entity.isByCity ? entity.file.GetIdCityByExcel(fileLocation) : entity.file.GetIdCityByDddInExcel(fileLocation);
+
+
+                if (datas.Any())
+                {
+                    var entities = datas.Select(s => new Entity.GroupCustomDataPage()
+                    {
+                        idCity = s,
+                        idPage = entity.idPage,
+                        idGroup = entity.idGroup
+
+                    }).ToList();
+
+                    Business.GroupCustomDataPage.Insert(entities);
+                }
+            }
+            
+            return Redirect("~/Grupos/CustomData");
+        }
+
     }
 }
