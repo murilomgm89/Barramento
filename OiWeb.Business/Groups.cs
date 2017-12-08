@@ -14,6 +14,7 @@ namespace OiWeb.Business
             {
                 context.Configuration.LazyLoadingEnabled = false;
                 var query = from _PG in context.PriceGroups
+                            where _PG.isActive == true
                             select _PG;
                 //query = query.Include(p => p.Product);   
                 query = query.Include(a => a.Product);

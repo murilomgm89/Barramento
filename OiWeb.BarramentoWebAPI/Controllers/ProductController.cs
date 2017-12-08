@@ -185,7 +185,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     "catalog",  new Dictionary<string, dynamic>() 
                     {                
                         { 
-                            product.name, 
+                            product.name.Trim(), 
                             new { 
                                 defaultSKU = defaultSKU,
                                 category = product.ProductFamily.name,

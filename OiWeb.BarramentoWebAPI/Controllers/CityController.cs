@@ -98,24 +98,24 @@ namespace OiWeb.BarramentoWebAPI.Controllers
         }
 
 
-        [GET("/CityMap")]
-        public string GetCityMap()
-        {
-            var cities = Business.City.GetCities();
-            if (cities == null)
-                return "City null";
+        //[GET("/CityMap")]
+        //public string GetCityMap()
+        //{
+        //    var cities = Business.City.GetCities();
+        //    if (cities == null)
+        //        return "City null";
 
-            List<Array> data = new List<Array>();
+        //    List<Array> data = new List<Array>();
 
-            foreach (Entity.City city in cities)
-            {
-                string[] data;   
+        //    foreach (Entity.City city in cities)
+        //    {
+        //        string[] data;   
 
 
-            }
+        //    }
             
-            //Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            return Newtonsoft.Json.JsonConvert.SerializeObject(cityRaiz);
-        }
+        //    //Response.AppendHeader("Access-Control-Allow-Origin", "*");
+        //    return Newtonsoft.Json.JsonConvert.SerializeObject(cityRaiz);
+        //}
     }
 }

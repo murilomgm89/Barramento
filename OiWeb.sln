@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OiWeb.CMS", "OiWeb.CMS\OiWe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OiWeb.JsonGeneration", "OiWeb.JsonGeneration\OiWeb.JsonGeneration.csproj", "{99B3CE16-B70E-4B3F-83DD-65EB5B48B8C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotJsonGeneration", "BotJsonGeneration\BotJsonGeneration.csproj", "{ECE7668C-5BA3-459A-988D-38B6F2938437}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{99B3CE16-B70E-4B3F-83DD-65EB5B48B8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99B3CE16-B70E-4B3F-83DD-65EB5B48B8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99B3CE16-B70E-4B3F-83DD-65EB5B48B8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE7668C-5BA3-459A-988D-38B6F2938437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE7668C-5BA3-459A-988D-38B6F2938437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE7668C-5BA3-459A-988D-38B6F2938437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE7668C-5BA3-459A-988D-38B6F2938437}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
