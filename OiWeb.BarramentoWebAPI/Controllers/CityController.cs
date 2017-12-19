@@ -74,7 +74,13 @@ namespace OiWeb.BarramentoWebAPI.Controllers
             //Catalog.Add("idPriceGroupCelularPos", Convert.ToInt32(city.idPriceGroupCelularPos));
             //Catalog.Add("idPriceGroupCelularPre", Convert.ToInt32(city.idPriceGroupCelularPre));
             //Catalog.Add("idPriceGroupCelularControle", Convert.ToInt32(city.idPriceGroupCelularControle));
-            
+
+            var OldRegion =
+                        new
+                        {
+                            value = city.oldRegion
+                        };
+
             //Populando dynamic raiz
             var cityRaiz = new Dictionary<string, dynamic>() 
             {                
@@ -87,7 +93,8 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                                 Pages,
                                 Common,
                                 Modal,
-                                Catalog
+                                Catalog,
+                                OldRegion
                             } 
                         }                
                     }

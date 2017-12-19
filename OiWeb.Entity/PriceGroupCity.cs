@@ -19,8 +19,8 @@ namespace OiWeb.Entity
         public int idProduct { get; set; }
         public int idPriceGroup { get; set; }
     
-        public virtual City City { get; set; }
         public virtual Product Product { get; set; }
         public virtual PriceGroup PriceGroup { get; set; }
+        public virtual City City { get; set; }
     }
 }

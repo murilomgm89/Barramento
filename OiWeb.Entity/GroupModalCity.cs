@@ -18,7 +18,7 @@ namespace OiWeb.Entity
         public int idGroupModal { get; set; }
         public int idCity { get; set; }
     
-        public virtual City City { get; set; }
         public virtual GroupModal GroupModal { get; set; }
+        public virtual City City { get; set; }
     }
 }

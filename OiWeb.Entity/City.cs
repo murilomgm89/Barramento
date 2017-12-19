@@ -16,9 +16,9 @@ namespace OiWeb.Entity
     {
         public City()
         {
-            this.PriceGroupCities = new HashSet<PriceGroupCity>();
-            this.GroupModalCities = new HashSet<GroupModalCity>();
             this.GroupCustomDataPages = new HashSet<GroupCustomDataPage>();
+            this.GroupModalCities = new HashSet<GroupModalCity>();
+            this.PriceGroupCities = new HashSet<PriceGroupCity>();
         }
     
         public int idCity { get; set; }
@@ -36,9 +36,10 @@ namespace OiWeb.Entity
         public int idGroupMenu { get; set; }
         public int idGroupControlePage { get; set; }
         public int idGroupPosPago { get; set; }
+        public Nullable<int> oldRegion { get; set; }
     
-        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
-        public virtual ICollection<GroupModalCity> GroupModalCities { get; set; }
         public virtual ICollection<GroupCustomDataPage> GroupCustomDataPages { get; set; }
+        public virtual ICollection<GroupModalCity> GroupModalCities { get; set; }
+        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
     }
 }

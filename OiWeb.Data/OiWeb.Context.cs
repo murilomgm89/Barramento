@@ -25,7 +25,6 @@ namespace OiWeb.Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<ComponentPage> ComponentPages { get; set; }
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<CustomData> CustomDatas { get; set; }
@@ -51,5 +50,6 @@ namespace OiWeb.Entity
         public virtual DbSet<PriceGroup> PriceGroups { get; set; }
         public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
     }
 }
