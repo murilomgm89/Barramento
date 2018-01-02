@@ -27,17 +27,14 @@ namespace OiWeb.CMS.Controllers
         {
             
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Editar Grupo", "fa-table", "Editar Grupo"); 
+            
+            var entities = Business.Page.GetPages().ToList();
+            ViewBag.Pages = entities;
 
-            var group = Business.GroupCustomData.GetGroupCustomData(idGroup);
-            var cities = Business.City.GetCitiesCustomData(idGroup);
-            var pages = Business.Page.GetPagesInGroupCustomData(idGroup);
-
-            CitiesViewModel citiesViewModel = new CitiesViewModel();
-            citiesViewModel.groupCustomData = group;
-            citiesViewModel.cities = cities;
-            citiesViewModel.pages = pages;
+            var groups = Business.GroupCustomData.GetGroupCustomDatas().ToList();
+            ViewBag.GroupCustomDatas = groups;
        
-            return View("/Views/GroupCustomData/GroupCustomDataDetailsView.cshtml", citiesViewModel);
+            return View("~/Views/GroupCustomData/VincularCustom.cshtml");
         }
 
         [GET("/Grupos/CustomData/Cadastro/Novo")]
@@ -49,11 +46,12 @@ namespace OiWeb.CMS.Controllers
         }
 
         [POST("/Grupos/CustomData/Cadastro/Novo")]
-        public ActionResult CreateGroup()
-        {   
+        public RedirectResult CreateGroup(Entity.GroupCustomData entity)
+        {
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Grupo", "fa-table", "Novo Grupo");
+            Business.GroupCustomData.Create(entity);
 
-            return View("/Views/Group/GroupCreateView.cshtml");
+            return Redirect("/Grupos/CustomData.cshtml");
         }
 
         [GET("/Grupos/CustomData/Paginas/isActive/{isActive}/{idGroup}")]

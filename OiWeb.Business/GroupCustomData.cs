@@ -1,4 +1,5 @@
-﻿using OiWeb.Entity;
+﻿using System;
+using OiWeb.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
@@ -30,6 +31,8 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
+                groupCustomData.isActive = true;
+                groupCustomData.dtCreate = DateTime.Now;
                 context.GroupCustomDatas.Add(groupCustomData);
                 context.SaveChanges();
             }
