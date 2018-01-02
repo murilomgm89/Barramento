@@ -15,16 +15,13 @@ namespace OiWeb.CMS.Controllers
         public ActionResult GetPages()
         {   
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Páginas", "fa-table", "Páginas"); 
-
             var pages = Business.Page.GetPages();
-
             return View("/Views/Page/PagesView.cshtml", pages);           
         }
 
         [GET("/Paginas/Cadastro/Novo")]
         public ActionResult GetCreatePage()
         {
-
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Criar Página", "fa-table", "Criar Página");
             return View("/Views/Page/PageCreateView.cshtml");
         }

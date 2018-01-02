@@ -11,7 +11,8 @@ namespace OiWeb.CMS
             bundles.Add(new ScriptBundle("~/Content/bootstrapJS").Include(
                       "~/Content/bootstrap/js/bootstrap.js",
                       "~/Content/bootstrap/js/bootstrap.min.js",
-                      "~/Content/plugins/tables/jquery.tablesort.js"));
+                      "~/Content/plugins/tables/jquery.tablesort.js",
+                     "~/Content/dist/js/ovio.js"));
 
 
 
@@ -24,9 +25,7 @@ namespace OiWeb.CMS
                 "~/Content/bootstrap/css/bootstrap.css",
                 "~/Content/bootstrap/css/bootstrap.css.map",
                 "~/Content/bootstrap/css/bootstrap.min.css",
-                "~/Content/bootstrap/css/ bootstrap.min.css.map",
-                "~/Content/bootstrap/css/bootstrap.js",
-                "~/Content/bootstrap/css/bootstrap.min.js"));           
+                "~/Content/bootstrap/css/bootstrap.min.css.map"));           
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
