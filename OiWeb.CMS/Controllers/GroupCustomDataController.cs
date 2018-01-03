@@ -73,6 +73,7 @@ namespace OiWeb.CMS.Controllers
 
 
         [POST("/Grupos/SaveGroup")]
+        [Obsolete]
         public RedirectResult SaveNewGroup(Entity.PriceGroup group)
         {
             Business.Groups.Save(group);
