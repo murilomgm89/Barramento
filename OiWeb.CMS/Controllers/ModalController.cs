@@ -108,7 +108,7 @@ namespace OiWeb.CMS.Controllers
             return View("~/Views/GroupModal/GroupModalDetailsView.cshtml", datas);
         }
 
-        [GET("/Grupos/Modal/criar")]
+        [GET("/Grupos/Modal/Cadastro/Novo")]
         public ActionResult PostGroupCreate()
         {
 
