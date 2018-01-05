@@ -77,7 +77,6 @@ namespace OiWeb.CMS.Controllers
             Business.GroupCustomData.Update(customData);
             return Redirect("/Grupos/CustomData");
         }
-
         
         //[POST("/Grupos/SaveGroup")]
         //public RedirectResult SaveNewGroup(Entity.PriceGroup group)
@@ -85,7 +84,6 @@ namespace OiWeb.CMS.Controllers
         //    Business.Groups.Save(group);
         //    return Redirect("/Grupos");
         //}
-
 
         [GET("/Custom/vincular/cidades")]
         public ActionResult VincularCustom()
