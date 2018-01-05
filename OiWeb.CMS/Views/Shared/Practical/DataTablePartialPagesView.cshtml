@@ -26,9 +26,10 @@
                     <div class="col-md-2">
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/Paginas/isActive/@Html.Raw(page.isActive == true ? "false" : "true")/@(Html.Raw(page.idPage))">@Html.Raw(page.isActive == true ? "Desativar" : "Ativar")</a></li>
+                            <ul class="dropdown-menu">                                
                                 <li><a href="/Paginas/Editar/@(Html.Raw(page.idPage))">Alterar</a></li>
+                                <li><a href="/Paginas/isActive/@Html.Raw(page.isActive == true ? "false" : "true")/@(Html.Raw(page.idPage))">@Html.Raw(page.isActive == true ? "Desativar" : "Ativar")</a></li>
+                                <li><a href="/Paginas/Deletar/@(Html.Raw(page.idPage))">Excluir</a></li>
                             </ul>
                         </div>
                     </div>

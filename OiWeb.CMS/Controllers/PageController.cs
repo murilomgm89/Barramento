@@ -50,6 +50,13 @@ namespace OiWeb.CMS.Controllers
             var page = Business.Page.GetPage(idPage);
             return View("/Views/Page/PageEditView.cshtml", page);
         }
+
+        [GET("/Paginas/Deletar/{idPage}")]
+        public ActionResult DeletePage(int idPage)
+        {
+            Business.Page.Delete(idPage);
+            return Redirect("/Paginas");
+        }
         
         [POST("/Paginas/Editar")]
         public ActionResult EditPage(PageViewModel page)

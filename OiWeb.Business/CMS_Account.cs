@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace OiWeb.Business
 {
@@ -61,8 +62,11 @@ namespace OiWeb.Business
 
         public static void UpdateUser(Entity.CMS_Account account)
         {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(account.password);
-            account.password = System.Convert.ToBase64String(plainTextBytes);
+            if (account.password != null)
+            {
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(account.password);
+                account.password = System.Convert.ToBase64String(plainTextBytes);
+            }           
             using (var context = new Entity.OiWeb())
             {
                 var query = (from c in context.CMS_Account
@@ -87,6 +91,9 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
+                account.dtCreate = DateTime.Now;
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(account.password);
+                account.password = System.Convert.ToBase64String(plainTextBytes);
                 context.CMS_Account.Add(account);
                 context.SaveChanges();
             }

@@ -85,7 +85,7 @@ namespace OiWeb.CMS.Controllers
         public RedirectResult SaveUpdateUser(Entity.CMS_Account user)
         {
             Business.CMS_Account.UpdateUser(user);
-            return Redirect("/Usuarios/" + user.idAccount);
+            return Redirect("/Usuarios/");
         }
 
         //
@@ -97,12 +97,13 @@ namespace OiWeb.CMS.Controllers
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Usuário", "fa-table", "Novo Usuário");
             return View("/Views/Account/UserCreateView.cshtml");
         }
-
+        
+        [AllowAnonymous]
         [POST("/Account/CreateUser")]
         public RedirectResult SaveCreateUser(Entity.CMS_Account user)
         {
             Business.CMS_Account.SaveUser(user);
-            return Redirect("/Usuarios/" + user.idAccount);
+            return Redirect("/Usuarios");
         }
 
         //

@@ -37,6 +37,13 @@ namespace OiWeb.CMS.Controllers
             return View("~/Views/GroupCustomData/VincularCustom.cshtml");
         }
 
+        [GET("/Grupos/CustomData/Excluir/{idGroupCustomData}")]
+        public ActionResult DeleteGroupCustomData(int idGroupCustomData)
+        {
+            Business.GroupCustomData.ExcludeCustomData(idGroupCustomData);
+            return Redirect("/Grupos/CustomData");
+        }
+
         [GET("/Grupos/CustomData/Cadastro/Novo")]
         public ActionResult GetCreateGroup()
         {
@@ -51,7 +58,7 @@ namespace OiWeb.CMS.Controllers
             ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Novo Grupo", "fa-table", "Novo Grupo");
             Business.GroupCustomData.Create(entity);
 
-            return Redirect("/Grupos/CustomData.cshtml");
+            return Redirect("/Grupos/CustomData");
         }
 
         [GET("/Grupos/CustomData/Paginas/isActive/{isActive}/{idGroup}")]
@@ -71,13 +78,13 @@ namespace OiWeb.CMS.Controllers
             return Redirect("/Grupos/CustomData");
         }
 
-
-        [POST("/Grupos/SaveGroup")]
-        public RedirectResult SaveNewGroup(Entity.PriceGroup group)
-        {
-            Business.Groups.Save(group);
-            return Redirect("/Grupos");
-        }
+        
+        //[POST("/Grupos/SaveGroup")]
+        //public RedirectResult SaveNewGroup(Entity.PriceGroup group)
+        //{
+        //    Business.Groups.Save(group);
+        //    return Redirect("/Grupos");
+        //}
 
 
         [GET("/Custom/vincular/cidades")]

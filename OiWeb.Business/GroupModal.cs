@@ -144,19 +144,52 @@ namespace OiWeb.Business
             }
         }
 
+        public static void DesvincularPage(int idModal, int idPage)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+
+                var dataGroupModalPages = context.GroupModalPages.Where(p => p.idModal == idModal && p.idPage == idPage).ToList();
+                if (dataGroupModalPages != null)
+                {
+                    context.GroupModalPages.RemoveRange(dataGroupModalPages);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public static void DesvincularGroup(int idModal, int idGroupModal)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+
+                var dataGroupModalPages = context.GroupModalPages.Where(p => p.idModal == idModal && p.idGroupModal == idGroupModal).ToList();
+                if (dataGroupModalPages != null)
+                {
+                    context.GroupModalPages.RemoveRange(dataGroupModalPages);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public static void ExcludeModal(int idModal)
         {
             using (var context = new Entity.OiWeb())
             {
 
-                var data = context.Modals.Find(idModal);
-                if (data != null)
+                var dataGroupModalPages = context.GroupModalPages.Where(p => p.idModal == idModal).ToList();
+                if (dataGroupModalPages != null)
                 {
-                    context.Modals.Remove(data);
+                    context.GroupModalPages.RemoveRange(dataGroupModalPages);
                     context.SaveChanges();
                 }
 
-
+                var dataModal = context.Modals.Find(idModal);
+                if (dataModal != null)
+                {
+                    context.Modals.Remove(dataModal);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -164,17 +197,27 @@ namespace OiWeb.Business
         {
             using (var context = new Entity.OiWeb())
             {
+                var dataGroupModalPages = context.GroupModalPages.Where(p => p.idGroupModal == idGroupModal).ToList();
+                if (dataGroupModalPages != null)
+                {
+                    context.GroupModalPages.RemoveRange(dataGroupModalPages);
+                    context.SaveChanges();                    
+                }
+
+                var dataGroupModalCities = context.GroupModalCities.Where(p => p.idGroupModal == idGroupModal).ToList();
+                if (dataGroupModalCities != null)
+                {
+                    context.GroupModalCities.RemoveRange(dataGroupModalCities);
+                    context.SaveChanges();                    
+                }
+                
                 var data = context.GroupModals.Find(idGroupModal);
                 if (data != null)
                 {
                     context.GroupModals.Remove(data);
                     context.SaveChanges();
                 }
-
-
             }
         }
-
-
     }
 }

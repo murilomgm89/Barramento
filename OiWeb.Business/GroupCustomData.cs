@@ -49,6 +49,25 @@ namespace OiWeb.Business
                 query.description = groupCustomData.description;
                 context.SaveChanges();
             }
-        }        
+        }
+        public static void ExcludeCustomData(int idGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var dataGroupCustomDataPages = context.GroupCustomDataPages.Where(p => p.idGroup == idGroup).ToList();
+                if (dataGroupCustomDataPages != null)
+                {
+                    context.GroupCustomDataPages.RemoveRange(dataGroupCustomDataPages);
+                    context.SaveChanges();
+                }
+
+                var dataGroupCustomData = context.GroupCustomDatas.Find(idGroup);
+                if (dataGroupCustomData != null)
+                {
+                    context.GroupCustomDatas.Remove(dataGroupCustomData);
+                    context.SaveChanges();
+                }
+            }
+        }    
     }
 }

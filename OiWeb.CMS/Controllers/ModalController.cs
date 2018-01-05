@@ -70,7 +70,6 @@ namespace OiWeb.CMS.Controllers
         public ActionResult Excluir(int idModal)
         {
             Business.GroupModal.ExcludeModal(idModal);
-
             return Redirect("~/Modal");
         }
 
@@ -184,14 +183,20 @@ namespace OiWeb.CMS.Controllers
         [GET("/Modal/vincular/grupos")]
         public ActionResult VincularModal()
         {
-            var data = Business.GroupModal.GetAllGroupModal();
-            ViewBag.GroupModals = data;
+            var GroupModal = Business.GroupModal.GetAllGroupModal();
+            Entity.GroupModal groupModal = new Entity.GroupModal{ idGroupModal = 0 , name = "Selecione" };
+            GroupModal.Add(groupModal);
+            ViewBag.GroupModals = GroupModal.OrderBy(e => e.idGroupModal);
 
-            var entities = Business.Page.GetPages().ToList();
-            ViewBag.Pages = entities;
+            var Pages = Business.Page.GetPages().ToList();
+            Entity.Page page = new Entity.Page { idPage = 0, name = "Selecione" };
+            Pages.Add(page);
+            ViewBag.Pages = Pages.OrderBy(e => e.idPage); ;
 
-            var modals = Business.GroupModal.GetAll();
-            ViewBag.Modals = modals;
+            var Modals = Business.GroupModal.GetAll();
+            Entity.Modal modal = new Entity.Modal { idModal = 0, name = "Selecione" };
+            Modals.Add(modal);
+            ViewBag.Modals = Modals.OrderBy(e => e.idModal); ;
 
             return View();
         }
@@ -201,6 +206,20 @@ namespace OiWeb.CMS.Controllers
         {
             Business.GroupModalPage.Insert(entity);
             return Redirect("~/Modal");
+        }
+
+        [GET("/Modal/Desvincular/Page/{idModal}/{idPage}")]
+        public ActionResult DesvincularPage(int idModal, int idPage)
+        {
+            Business.GroupModal.DesvincularPage(idModal, idPage);
+            return Redirect("~/Modal/" + idModal);
+        }
+
+        [GET("/Modal/Desvincular/Group/{idModal}/{idGroupModal}")]
+        public ActionResult DesvincularGroup(int idModal, int idGroupModal)
+        {
+            Business.GroupModal.DesvincularGroup(idModal, idGroupModal);
+            return Redirect("~/Modal/" + idModal);
         }
     }
 }

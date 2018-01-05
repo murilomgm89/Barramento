@@ -5,7 +5,7 @@
 }
 
 
-<form method="POST" enctype="multipart/form-data" action="/Modal/vincular/grupos/salvar">
+<form method="POST" id="PostVincular" enctype="multipart/form-data" action="/Modal/vincular/grupos/salvar">
 <div class="content-wrapper">
     <section class="content container-fluid">
         <div class="row">
@@ -15,26 +15,26 @@
                     <hr />
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group has-feedback">
+                            <div class="form-group has-feedback" id="divIdGroupModal">
                                 <label class="control-label">Grupos de Modais</label>
                                 @Html.DropDownList("idGroupModal", new SelectList(ViewBag.GroupModals, "idGroupModal", "name"), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group has-feedback">
+                            <div class="form-group has-feedback" id="divIdPage">
                                 <label class="control-label">Pagina</label>
                                 @Html.DropDownList("idPage", new SelectList(ViewBag.Pages, "idPage", "name"), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group has-feedback">
+                            <div class="form-group has-feedback" id="divIdModal">
                                 <label class="control-label">Modal</label>
                                 @Html.DropDownList("idModal", new SelectList(ViewBag.Modals, "idModal", "name"), new { @class = "form-control" })
                             </div>
                         </div>
                         
                         <div class="col-md-12">
-                            <input type="submit" value="Salvar" class="btn btn-default" />
+                            <input type="button" value="Salvar" id="BtPostVincular" "btn btn-success" />
                         </div>
                     </div>
                 </div>
@@ -43,3 +43,33 @@
     </section>
 </div>
 </form>
+<script>
+    $("#BtPostVincular").click(function () {
+        var isValid = true;
+        if ($("#idGroupModal").val() == 0) {
+            isValid = false;
+            $("#divIdGroupModal").addClass('has-error');
+        }
+        if ($("#idPage").val() == 0) {
+            isValid = false;
+            $("#divIdPage").addClass('has-error');
+        }
+        if ($("#idModal").val() == 0) {
+            isValid = false;
+            $("#divIdModal").addClass('has-error');
+        }
+        if (isValid) {
+            $("#PostVincular").submit();
+        }        
+    });
+
+    $("#idGroupModal").change(function () {
+        $("#divIdGroupModal").removeClass('has-error');
+    });
+    $("#idPage").change(function () {
+        $("#divIdPage").removeClass('has-error');
+    });
+    $("#idModal").change(function () {
+        $("#divIdModal").removeClass('has-error');
+    });
+</script>
