@@ -20,7 +20,7 @@
                     <h4><strong>Grupos de Preços</strong></h4>
                     <ul class="list-group">
                         @{
-                            foreach (var priceGroup in Model.PriceGroupCities.Select(pg => pg.PriceGroup))
+                            foreach (var priceGroup in Model.PriceGroupCities.Select(pg => pg.PriceGroup).Distinct())
                             {
                                 <li class="list-group-item"><a href="/Grupos/@Html.Raw(priceGroup.idPriceGroup)">@Html.Raw(priceGroup.name)</a> - <strong>ID: @Html.Raw(priceGroup.idPriceGroup)</strong> </li>
                             }
@@ -33,23 +33,14 @@
                     <h4><strong>Grupos de CustomData</strong></h4>
                     <ul class="list-group">
                         @{
-                            foreach (var groupCustom in Model.GroupCustomDataPages)
-                            {
-                                <li class="list-group-item"><a href="/Grupos/@Html.Raw(groupCustom.GroupCustomData.idGroup)">@Html.Raw(groupCustom.GroupCustomData.name)</a> - <strong>ID: @Html.Raw(groupCustom.GroupCustomData.idGroup)</strong> </li>
+                            foreach (var groupCustom in Model.GroupCustomDataPages.Select(s => s.GroupCustomData).Distinct())
+                            {                                                               
+                                <li class="list-group-item"><a href="/Grupos/CustomData/Editar/@Html.Raw(groupCustom.idGroup)">@Html.Raw(groupCustom.name)</a> - <strong>ID: @Html.Raw(groupCustom.idGroup)</strong> </li>
                             }
                         }
                     </ul>
                 </div>
-            </div>
-            @*<div class="col-md-12">
-                <div class="chart-box">
-                    <h4>
-                        Planos de @Html.Raw(Model.name)
-                        <button type="button" class="btn btn-success btn-rounded">Criar novo Plano</button>
-                    </h4>
-                    @RenderPage("~/Views/Shared/Practical/DataTablePartialView.cshtml", Model)
-                </div>
-            </div>*@
+            </div>           
         </div>
     </section>
 </div>

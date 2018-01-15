@@ -233,6 +233,7 @@
     <Compile Include="Handle\Util\ExcelUtil.cs" />
     <Compile Include="Handle\Util\SafeConverter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GroupCustomDataViewModel.cs" />
     <Compile Include="Models\GroupCustomDataPageViewModel.cs" />
     <Compile Include="Models\PageViewModels.cs" />
     <Compile Include="Models\SavePriceViewModels.cs" />
@@ -459,6 +460,7 @@
     <Content Include="Views\Modal\Detalhes.cshtml" />
     <Content Include="Views\GroupModal\DetalhesGroup.cshtml" />
     <Content Include="Views\GroupCustomData\VincularCustom.cshtml" />
+    <Content Include="Views\GroupCustomData\GroupCustomDataEditView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Detalhes";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <div class="content-wrapper">
@@ -16,7 +17,13 @@
                     <ul class="list-group">
                         <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.dtCreate)</strong></li>
                         <li class="list-group-item">Paginas vinculadas ao Modal: <strong>@Html.Raw(Model.GroupModalPages.Count)</strong></li>
-                        <li class="list-group-item">Grupos vinculados ao Modal: @Model.GroupModalPages.Select(s=> s.GroupModal).AsEnumerable().Count()</li>                                                
+                        <li class="list-group-item">Grupos vinculados ao Modal: <strong>@Html.Raw(Model.GroupModalPages.Select(s => s.GroupModal).AsEnumerable().Count())</strong></li>
+                        @*@{
+                            if (Model.GroupModalPages.Count > 0)
+                            {
+                                <li class="list-group-item">Cidade Teste: <strong>@Html.Raw(Model.GroupModalPages.Select(s => s.GroupModal).Select(g => g.GroupModalCities.FirstOrDefault().City).FirstOrDefault().name)</strong> - <strong>@Html.Raw(Model.GroupModalPages.Select(s => s.GroupModal).Select(g => g.GroupModalCities.FirstOrDefault().City).FirstOrDefault().state)</strong></li>
+                            }
+                        }*@                        
                     </ul>
                 </div>
             </div>

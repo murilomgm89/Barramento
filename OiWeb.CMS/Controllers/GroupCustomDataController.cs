@@ -44,6 +44,25 @@ namespace OiWeb.CMS.Controllers
             return Redirect("/Grupos/CustomData");
         }
 
+        [GET("/Grupos/CustomData/Cadastro/Editar/{idGroup}")]
+        public ActionResult UpdateDetailsGroup(int idGroup)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Editar Grupo", "fa-table", "Editar Grupo");
+
+            return View("/Views/GroupCustomData/GroupCustomDataEditView.cshtml", Business.GroupCustomData.GetGroupCustomData(idGroup));
+        }
+
+        [POST("/Grupos/CustomData/Cadastro/Editar")]
+        public ActionResult UpdateDetailsGroup(GroupCustomDataViewModel group)
+        {
+            Entity.GroupCustomData entity = new Entity.GroupCustomData();
+            entity.description = group.description;
+            entity.name = group.name;
+            entity.idGroup = group.idGroup;
+            Business.GroupCustomData.Update(entity);
+            return Redirect("/Grupos/CustomData");
+        }
+
         [GET("/Grupos/CustomData/Cadastro/Novo")]
         public ActionResult GetCreateGroup()
         {

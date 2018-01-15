@@ -21,9 +21,10 @@
                 <td class="text-truncate">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            @*<li><a href="/Grupos/CustomData/Paginas/isActive/@Html.Raw(group.isActive == true ? "false" : "true")/@(Html.Raw(group.idGroup))">@Html.Raw(group.isActive == true ? "Desativar" : "Ativar")</a></li>*@
-                            <li><a href="/Grupos/CustomData/Editar/@(Html.Raw(group.idGroup))">Alterar</a></li>
+                        <ul class="dropdown-menu">                            
+                            <li><a href="/Grupos/CustomData/Cadastro/Editar/@(Html.Raw(group.idGroup))">Alterar Detalhes</a></li>
+                            <li><a href="/Grupos/CustomData/Paginas/isActive/@Html.Raw(group.isActive == true ? "false" : "true")/@(Html.Raw(group.idGroup))">@Html.Raw(group.isActive == true ? "Desativar" : "Ativar")</a></li>
+                            <li><a href="/Grupos/CustomData/Editar/@(Html.Raw(group.idGroup))">Vincular Página</a></li>
                             <li><a href="/Grupos/CustomData/Excluir/@(Html.Raw(group.idGroup))">Excluir</a></li>
                         </ul>
                     </div>

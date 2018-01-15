@@ -47,9 +47,10 @@ namespace OiWeb.Business
 
                 query.name = groupCustomData.name;
                 query.description = groupCustomData.description;
+                     
                 context.SaveChanges();
             }
-        }
+        }      
         public static void ExcludeCustomData(int idGroup)
         {
             using (var context = new Entity.OiWeb())

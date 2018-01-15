@@ -11,7 +11,8 @@
                     <ul class="list-group">
                         <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.group.dtCreate)</strong></li>
                         <li class="list-group-item">Produto Vinculado: <a href="/Produto/@Html.Raw(Model.group.Product.idProduct)"><strong>@Html.Raw(Model.group.Product.name) - (SKU @Html.Raw(Model.group.Product.idProduct))</strong></a></li>
-                        <li class="list-group-item">Cidades com Vinculo: <strong>@Html.Raw(Model.cities.Count())</strong></li>                        
+                        <li class="list-group-item">Cidades com Vinculo: <strong>@Html.Raw(Model.cities.Count())</strong></li>  
+                        <li class="list-group-item">Cidade Teste: <strong>@Html.Raw(Model.cities.FirstOrDefault().name)</strong> - <strong>@Html.Raw(Model.cities.FirstOrDefault().state)</strong></li>                        
                     </ul>
                 </div>
             </div>

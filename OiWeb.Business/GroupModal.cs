@@ -76,6 +76,8 @@ namespace OiWeb.Business
                     .Include(t=> t.GroupModalPages)
                     .Include(t => t.GroupModalPages.Select(s=> s.Page))
                     .Include(t => t.GroupModalPages.Select(s => s.GroupModal))
+                    .Include(t => t.GroupModalPages.Select(s => s.GroupModal.GroupModalCities))
+                    .Include(t => t.GroupModalPages.Select(s => s.GroupModal.GroupModalCities.Select(c => c.City)))
                     .FirstOrDefault(w =>w.idModal == id);
             }
         }
