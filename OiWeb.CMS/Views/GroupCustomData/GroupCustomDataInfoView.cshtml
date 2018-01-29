@@ -1,0 +1,43 @@
+﻿@model OiWeb.Entity.GroupCustomData
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";       
+}
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")  
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>@Html.Raw(Model.name) - ID @Html.Raw(Model.idGroup)</strong></h4>
+                    <p>Detalhes</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.dtCreate)</strong></li>
+                        <li class="list-group-item">Página vinculada: <strong><a href="/Paginas/Editar/@Html.Raw(Model.GroupCustomDataPages.First().Page.idPage)">@Html.Raw(Model.GroupCustomDataPages.First().Page.name)</a></strong></li>
+                        <li class="list-group-item">Cidades vinculados: <strong>@Html.Raw(Model.GroupCustomDataPages.Select(a => a.City).AsEnumerable().Count())</strong></li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </section>
+</div>
+<script src="/Content/plugins/tables/dataTables.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        $('.table').DataTable({
+            "info": false
+        });
+        $('#DataTables_Table_0_length').hide();
+        $('#DataTables_Table_0_paginate').hide();
+        $('#DataTables_Table_0').hide();
+        $('#tableCity').show();
+        $("#DataTables_Table_0_filter input").keyup(function () {
+            if ($("#DataTables_Table_0_filter input").length > 0) {
+                $('#DataTables_Table_0').show();
+            }
+        });
+    };
+</script>
+

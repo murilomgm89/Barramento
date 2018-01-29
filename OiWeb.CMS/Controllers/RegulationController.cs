@@ -55,7 +55,7 @@ namespace OiWeb.CMS.Controllers
                 Business.PlanRegulation.Remove(idPlanRegulation);
             }
 
-            return Redirect("~/Grupos/" + idPlanRegulation + "/regulamentos");
+            return Redirect("/regulamentos");
         }
 
         [GET("regulamentos/{idPlanRegulation}/alterar")]

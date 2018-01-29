@@ -3457,6 +3457,16 @@ fieldset[disabled] .btn-link:focus {
   display: block;
   width: 100%;
 }
+
+.paginate_button next {
+    margin: 24px;
+}
+.dataTables_paginate paging_simple paginate_button {
+    padding-left: 0;
+    margin: 20px 0;
+    list-style: none;
+    text-align: center;
+}
 .btn-block + .btn-block {
   margin-top: 5px;
 }

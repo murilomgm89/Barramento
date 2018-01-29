@@ -25,8 +25,19 @@
                 <ul class="treeview-menu">
                     <li><a href="/Produto/1"><i class="fa fa-angle-right"></i> TV</a></li>
                     <li><a href="/Produto/2"><i class="fa fa-angle-right"></i> Fixo</a></li>
-                    <li><a href="/Produto/3"><i class="fa fa-angle-right"></i> Banda Larga</a></li>
-                    <li><a href="/Produto/5"><i class="fa fa-angle-right"></i> Combo</a></li>
+                    <li><a href="/Produto/3"><i class="fa fa-angle-right"></i> Banda Larga</a></li>                    
+                    
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-angle-right"></i> Combos <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li><a href="/Produto/10"><i class="fa fa-angle-right"></i> Residencial</a></li>
+                            <li><a href="/Produto/11"><i class="fa fa-angle-right"></i> Conectado</a></li>
+                            <li><a href="/Produto/12"><i class="fa fa-angle-right"></i> Solução Completa</a></li>
+                            <li><a href="/Produto/13"><i class="fa fa-angle-right"></i> TvFixo</a></li>
+                            <li><a href="/Produto/14"><i class="fa fa-angle-right"></i> PLAY</a></li>                   
+                        </ul>
+                    </li>
+
                     <li><a href="/Produto/6"><i class="fa fa-angle-right"></i> Pos-Pago</a></li>
                     <li><a href="/Produto/7"><i class="fa fa-angle-right"></i> Pre-Pago</a></li>
                     <li><a href="/Produto/8"><i class="fa fa-angle-right"></i> Controle</a></li>                   
@@ -90,7 +101,7 @@
             <li class="treeview">
                 <a href="#"><i class="fa fa-bullseye"></i> <span>Perfil</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-angle-right"></i> Editar Perfil</a></li> 
+                    <li><a href="/Usuarios/Perfil/@Html.Raw(userSession.idAccount)"><i class="fa fa-angle-right"></i> Editar Perfil</a></li> 
                 </ul>
             </li>
             <li class="treeview">

@@ -1,0 +1,119 @@
+﻿@model OiWeb.Entity.CMS_Account
+
+@{
+    var userSession = (OiWeb.Entity.CMS_Account)Session.Contents["User"];
+    if (userSession.idAccount != Model.idAccount)
+    {
+        Response.Redirect("/Login");
+        return;
+    }
+}
+    <div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Editar Usuário : "@Html.Raw(Model.name)"</h4>
+                    <div class="row">
+                        <form method="POST" action="/Account/UpdateUser" id="FormUpdateUser">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divName">
+                                    <label class="control-label">Nome</label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nome" value="@Html.Raw(Model.name)">
+                                    <span class="fa fa-briefcase form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divEmail">
+                                    <label class="control-label">E-mail</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="@Html.Raw(Model.email)">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divNewPassword">
+                                    <label class="control-label">Senha:</label>
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Senha" value="">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback" id="divNewPasswordConfirmation">
+                                    <label class="control-label">Confirme a senha:</label>
+                                    <input type="text" class="form-control" name="NewPasswordConfirmation" id="NewPasswordConfirmation" placeholder="Confirme a senha" value="">
+                                    <span class="fa form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display:none">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Perfil de Acesso</label>
+                                    <select class="form-control" name="idPermission">
+                                        <option value="1" @Html.Raw(Model.idPermission == 1 ? "selected" : "")>Gestão</option>
+                                        <option value="2" @Html.Raw(Model.idPermission == 2 ? "selected" : "")>Edição - Inserção</option>
+                                        <option value="3" @Html.Raw(Model.idPermission == 3 ? "selected" : "")>Consultas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display:none">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label">Status</label>
+                                    <select class="form-control" name="isActive">
+                                        <option value=true @Html.Raw(Model.isActive == true ? "selected" : "")>Ativo</option>
+                                        <option value=false @Html.Raw(Model.isActive == false ? "selected" : "")>Desativado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="idAccount" value="@Html.Raw(Model.idAccount)" />
+                            <div class="col-md-12">
+                                <a id="SubmitUpdateUser" class="btn btn-default">Salvar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $("#SubmitUpdateUser").click(function () {
+        var isValidate = true;
+        if ($("#password").val().length != 0) {
+            if ($("#password").val() != $("#NewPasswordConfirmation").val()) {
+                isValidate = false;
+                $("#divNewPassword").addClass("has-error");
+                $("#divNewPasswordConfirmation").addClass("has-error");
+            }else{
+                $("#divNewPassword").removeClass("has-error");
+                $("#divNewPasswordConfirmation").removeClass("has-error");
+            }
+        } 
+        if ($("#email").val().length != 0) {            
+            var sEmail = $("#email").val();           
+            var emailFilter = /^.+@Html.Raw("@").+\..{2,}$/;
+            var illegalChars = /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+            
+            if (!(emailFilter.test(sEmail)) || sEmail.match(illegalChars)){
+                $("#divEmail").addClass("has-error");
+                isValidate = false;
+            }else{
+                $("#divEmail").removeClass("has-error");                
+            }                        
+        } else {
+            $("#divEmail").addClass("has-error");
+            isValidate = false;
+        }
+
+        if($("#name").val().length == 0){
+            $("#divName").addClass("has-error");
+            isValidate = false;
+        }else{
+            $("#divName").removeClass("has-error");                
+        }            
+
+        if (isValidate) {
+            $("#FormUpdateUser").submit();
+        }       
+    });
+</script>
+        

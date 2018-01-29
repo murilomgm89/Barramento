@@ -86,6 +86,12 @@ namespace OiWeb.CMS.Controllers
             priceEntity.value = price.valueNoFid;
             priceEntity.valueCombo = price.valueNoFidCombo;
             Business.Price.Update(priceEntity);
+
+            Entity.PlanGroup planGroup = new Entity.PlanGroup();
+            planGroup.idPlan = priceEntity.idPlan;
+            planGroup.idPriceGroup = priceEntity.idPriceGroup;
+            
+            Business.PlanProduct.CreatePlanGroup(planGroup);
             
             return Redirect("/Grupos/" + price.idPriceGroup);
         }

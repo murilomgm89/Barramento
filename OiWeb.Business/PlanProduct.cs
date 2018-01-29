@@ -42,6 +42,15 @@ namespace OiWeb.Business
                 context.SaveChanges();
             }
         }
+
+        public static void CreatePlanGroup(Entity.PlanGroup planGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                context.PlanGroups.Add(planGroup);
+                context.SaveChanges();                
+            }
+        }
          
     }
 }

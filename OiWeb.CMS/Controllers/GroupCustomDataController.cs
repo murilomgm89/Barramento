@@ -22,6 +22,14 @@ namespace OiWeb.CMS.Controllers
             return View("/Views/GroupCustomData/GroupCustomDataView.cshtml", groups);           
         }
 
+        [GET("/Grupos/CustomData/Detalhes/{idGroupCustomData}")]
+        public ActionResult GetGroupsCustomDataInfo(int idGroupCustomData)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Detalhes Grupo Custom Data", "fa-table", "Detalhes Grupo Custom Data");
+            var group = Business.GroupCustomData.GetGroupCustomData(idGroupCustomData);
+            return View("/Views/GroupCustomData/GroupCustomDataInfoView.cshtml", group);
+        }
+
         [GET("/Grupos/CustomData/Editar/{idGroup}")]
         public ActionResult GetGroup(int idGroup)
         {

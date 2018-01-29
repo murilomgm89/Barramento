@@ -80,6 +80,18 @@ namespace OiWeb.CMS.Controllers
 
             return View("/Views/Account/UserDetailsView.cshtml", users);
         }
+
+        [AllowAnonymous]
+        [GET("/Usuarios/Perfil/{idAccount}")]
+        public ActionResult GetPerfilAccounts(int idAccount)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Perfil", "fa-table", "Perfil");
+
+            var users = Business.CMS_Account.GetUser(idAccount);
+
+            return View("/Views/Account/UserPerfilView.cshtml", users);
+        }
+
         [AllowAnonymous]
         [POST("/Account/UpdateUser")]
         public RedirectResult SaveUpdateUser(Entity.CMS_Account user)

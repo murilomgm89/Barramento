@@ -440,7 +440,6 @@
     <Content Include="Views\Regulation\Index.cshtml" />
     <Content Include="Views\Regulation\Create.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialRegulationView.cshtml" />
-    <Content Include="Views\Regulation\RegulationDetailsView.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialRegulationsView.cshtml" />
     <Content Include="Views\Regulation\Alterar.cshtml" />
     <Content Include="Views\Shared\Practical\DataTablePartialPagesView.cshtml" />
@@ -457,10 +456,12 @@
     <Content Include="Views\Modal\VincularModal.cshtml" />
     <Content Include="Views\Modal\Alterar.cshtml" />
     <Content Include="Views\GroupModal\Alterar.cshtml" />
-    <Content Include="Views\Modal\Detalhes.cshtml" />
+    <Content Include="Views\GroupCustomData\GroupCustomDataInfoView.cshtml" />
     <Content Include="Views\GroupModal\DetalhesGroup.cshtml" />
     <Content Include="Views\GroupCustomData\VincularCustom.cshtml" />
     <Content Include="Views\GroupCustomData\GroupCustomDataEditView.cshtml" />
+    <Content Include="Views\Regulation\RegulationDetailsView.cshtml" />
+    <Content Include="Views\Account\UserPerfilView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

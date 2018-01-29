@@ -23,7 +23,10 @@ namespace OiWeb.Business
             {
                 var query = from c in context.GroupCustomDatas
                             where c.idGroup == idGroup
-                            select c;
+                            select c;                
+                query = query.Include(a => a.GroupCustomDataPages);
+                query = query.Include(a => a.GroupCustomDataPages.Select(b => b.City));
+                query = query.Include(a => a.GroupCustomDataPages.Select(b => b.Page));
                 return query.FirstOrDefault();
             }
         }
