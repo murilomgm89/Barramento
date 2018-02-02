@@ -145,7 +145,7 @@ namespace OiWeb.CMS.Controllers
                     Business.CMS_AccountLoginLog.Create(accountLoginLog);
                     #endregion
                     Session.Add("User", user);
-                    Response.Redirect("/Home");
+                    Response.Redirect("/Grupos");
                 }
                 else
                 {

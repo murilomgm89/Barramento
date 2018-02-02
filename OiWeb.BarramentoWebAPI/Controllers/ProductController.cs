@@ -100,7 +100,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     regulation.Add(new
                     {
                         name = regulationItem.name,
-                        link = regulationItem.link
+                        href = regulationItem.link
                     });
                 }
                 if (regulationItem.type == "summary")
@@ -108,7 +108,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     summary.Add(new
                     {
                         name = regulationItem.name,
-                        link = regulationItem.link
+                        href = regulationItem.link
                     });
                 }
                 if (regulationItem.type == "others")
@@ -116,7 +116,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     others.Add(new
                     {
                         name = regulationItem.name,
-                        link = regulationItem.link
+                        href = regulationItem.link
                     });
                 }
                 if (regulationItem.type == "accession")
@@ -124,7 +124,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     accession.Add(new
                     {
                         name = regulationItem.name,
-                        link = regulationItem.link
+                        href = regulationItem.link
                     });
                 }
             };
