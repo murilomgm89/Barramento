@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OiWeb.CMS.Models
 {
@@ -10,5 +11,7 @@ namespace OiWeb.CMS.Models
         public bool isCommon { get; set; }
         public bool isActive { get; set; }
         public DateTime dtCreate { get; set; }
+        public Entity.Page page { get; set; }
+        public IEnumerable<Entity.GroupCustomData> groups { get; set; }
     }
 }

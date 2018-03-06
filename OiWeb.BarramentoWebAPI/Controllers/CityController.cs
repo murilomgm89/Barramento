@@ -51,13 +51,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     modaisPage = new Dictionary<string, int>();
                 }                
             }
-
-            //Pages.Add("HomePage", city.idGroupHomePage);
-            //Pages.Add("Celular", 12);
-            //Pages.Add("Controle", city.idGroupControlePage);
-            //Pages.Add("PosPago", city.idGroupPosPago);
-            //Common.Add("Template", city.idGroupMenu);
-
+           
             var Catalog = new Dictionary<string, int>();
 
 
@@ -65,15 +59,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
             foreach (var catalog in priceGroupCity)
             {
                 Catalog.Add(catalog.Product.valueGroupPrice, catalog.idPriceGroup);
-            }  
-
-            //Catalog.Add("idPriceGroupTV", Convert.ToInt32(city.idPriceGroupTV));
-            //Catalog.Add("idPriceGroupFixo", Convert.ToInt32(city.idPriceGroupFixo));
-            //Catalog.Add("idPriceGroupBandaLarga", Convert.ToInt32(city.idPriceGroupBandaLarga));
-            //Catalog.Add("idPriceGroupCombo", Convert.ToInt32(city.idPriceGroupCombo));
-            //Catalog.Add("idPriceGroupCelularPos", Convert.ToInt32(city.idPriceGroupCelularPos));
-            //Catalog.Add("idPriceGroupCelularPre", Convert.ToInt32(city.idPriceGroupCelularPre));
-            //Catalog.Add("idPriceGroupCelularControle", Convert.ToInt32(city.idPriceGroupCelularControle));
+            } 
 
             var OldRegion =
                         new

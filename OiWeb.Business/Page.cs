@@ -25,6 +25,17 @@ namespace OiWeb.Business
                 return query;
             }
         }
+        public static Entity.Page GetGroupsPage(int idPage)
+        {
+            using (var context = new Entity.OiWeb())
+            {                
+                var query = from _PG in context.Pages
+                            where _PG.idPage == idPage
+                            select _PG;               
+                query = query.Include(a => a.GroupCustomDataPages);                
+                return query.FirstOrDefault();
+            }
+        }
         public static IEnumerable<Entity.Page> GetPagesInGroupCustomData(int idGroup)
         {
             using (var context = new Entity.OiWeb())

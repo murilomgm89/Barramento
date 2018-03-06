@@ -51,6 +51,22 @@ namespace OiWeb.CMS.Controllers
             return View("/Views/Page/PageEditView.cshtml", page);
         }
 
+        [GET("/Paginas/Detalhes/{idPage}")]
+        public ActionResult GetDetailsPage(int idPage)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Detalhes da Página", "fa-table", "Detalhes da Página");
+            var page = Business.Page.GetGroupsPage(idPage);
+            List<Entity.GroupCustomData> groupsList = new List<Entity.GroupCustomData>();
+            foreach( var got in page.GroupCustomDataPages.Select(g => g.idGroup).Distinct()){
+                groupsList.Add(Business.GroupCustomData.GetGroupCustomData(got));
+            }
+
+            PageViewModel pageViewModel = new PageViewModel();
+            pageViewModel.page = page;
+            pageViewModel.groups = groupsList;
+            return View("/Views/Page/PageDetailsView.cshtml", pageViewModel);
+        }
+
         [GET("/Paginas/Deletar/{idPage}")]
         public ActionResult DeletePage(int idPage)
         {

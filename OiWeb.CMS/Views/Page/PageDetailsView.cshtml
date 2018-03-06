@@ -1,0 +1,38 @@
+﻿@model OiWeb.CMS.Models.PageViewModel
+
+<div class="content-wrapper">
+    @RenderPage("~/Views/Shared/Breadcrumb.cshtml")
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>@Html.Raw(Model.page.name)</strong></h4>
+                    <p>Detalhes da Página</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.page.dtCreate)</strong></li>
+                        <li class="list-group-item">Total de Cidades Vinculadas:<strong>@Html.Raw(Model.groups.Count())</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-box">
+                    <h4><strong>Regionalizações</strong></h4>
+                    <p>Lista de Grupos Vinculados</p>
+                    <ul class="list-group">
+                        @{
+                            foreach (var group in Model.groups)
+                            {                               
+                               @Html.Raw("<li class='list-group-item'><a href='/Grupos/CustomData/Editar/" + group.idGroup + "'>" + group.name + "</a><br>Cidade Teste: "+ group.GroupCustomDataPages.FirstOrDefault().City.name +"</li>");
+                            }
+                        } 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        $("table").tablesort();
+    };
+</script>

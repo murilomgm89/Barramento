@@ -17,7 +17,7 @@
         {
             <tr>
                 <td class="text-truncate">@Html.Raw(page.idPage)</td>
-                <td class="text-truncate"><a href="/Paginas/Editar/@(Html.Raw(page.idPage))">@Html.Raw(page.name)</a></td>
+                <td class="text-truncate"><a href="Paginas/detalhes/@(Html.Raw(page.idPage))">@Html.Raw(page.name)</a></td>
                 <td class="text-truncate">@Html.Raw(page.description)</td>
                 <td class="text-truncate"><span class="lable-tag @Html.Raw(page.isCommon == true ? "tag-unpaid" : "tag-success")">@Html.Raw(page.isCommon == true ? "Sim" : "Não")</span></td>                
                 <td class="text-truncate"><span class="lable-tag @Html.Raw(page.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(page.isActive == true ? "Ativo" : "Inativo")</span></td>
