@@ -53,7 +53,19 @@ namespace OiWeb.Business
                      
                 context.SaveChanges();
             }
-        }      
+        }
+        public static void DesvinculaGroupPage(int idGroup, int idPage)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var dataGroupCustomDataPages = context.GroupCustomDataPages.Where(p => p.idGroup == idGroup && p.idPage == idPage).ToList();
+                if (dataGroupCustomDataPages != null)
+                {
+                    context.GroupCustomDataPages.RemoveRange(dataGroupCustomDataPages);
+                    context.SaveChanges();
+                }
+            }
+        }  
         public static void ExcludeCustomData(int idGroup)
         {
             using (var context = new Entity.OiWeb())

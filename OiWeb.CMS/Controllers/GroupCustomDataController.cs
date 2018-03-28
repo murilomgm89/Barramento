@@ -100,9 +100,8 @@ namespace OiWeb.CMS.Controllers
         [GET("/Grupos/CustomData/Paginas/Desvincular/{idPage}/{idGroup}")]
         public ActionResult DesvincularPageGroupCustomData(int idPage, int idGroup)
         {
-            var customData = Business.GroupCustomData.GetGroupCustomData(idGroup);           
-            Business.GroupCustomData.Update(customData);
-            return Redirect("/Grupos/CustomData");
+            Business.GroupCustomData.DesvinculaGroupPage(idGroup, idPage);
+            return Redirect("/Paginas/detalhes/" + idPage);
         }
         
         //[POST("/Grupos/SaveGroup")]
