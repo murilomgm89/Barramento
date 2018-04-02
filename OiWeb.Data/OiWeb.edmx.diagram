@@ -48,16 +48,17 @@
         <AssociationConnector Association="oibarramentoModel.FK_PlanRegulation_PriceGroup" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroup_Product" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_PriceGroup" />
-        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="9.75" PointY="4.875" />
-        <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_Page" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Page" />
         <EntityTypeShape EntityType="oibarramentoModel.GroupCustomDataPage" Width="1.5" PointX="15" PointY="11.5" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_GroupCustomData" />
-        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_Page" />
         <EntityTypeShape EntityType="oibarramentoModel.City" Width="1.5" PointX="8.25" PointY="15.5" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_City" />
         <AssociationConnector Association="oibarramentoModel.FK_GroupModalCities_City" />
         <AssociationConnector Association="oibarramentoModel.FK_PriceGroupCities_City" />
+        <EntityTypeShape EntityType="oibarramentoModel.Page" Width="1.5" PointX="5.25" PointY="18.875" />
+        <AssociationConnector Association="oibarramentoModel.FK_ComponentPage_Page" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupCustomDataPage_Page" />
+        <AssociationConnector Association="oibarramentoModel.FK_GroupModalPage_Page" />
+        <AssociationConnector Association="oibarramentoModel.FK_Page_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

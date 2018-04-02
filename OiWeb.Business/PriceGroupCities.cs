@@ -7,7 +7,7 @@ namespace OiWeb.Business
 {
     public class PriceGroupCities
     {
-        public static List<Entity.PriceGroupCity> GetPriceGroupCity(int idCity)
+        public static List<Entity.PriceGroupCity> GetPriceGroupCity(int idCity, int? idProduct)
         {
             using (var context = new Entity.OiWeb())
             {
@@ -15,6 +15,7 @@ namespace OiWeb.Business
                             where _G.idCity == idCity
                             select _G;
                 query = query.Include(g => g.Product);
+                query = query.Where(g => g.Product.idProduct == idProduct);
                 return query.ToList();
             }
         }

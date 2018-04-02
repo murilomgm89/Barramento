@@ -17,11 +17,12 @@ namespace OiWeb.Entity
         public Page()
         {
             this.ComponentPages = new HashSet<ComponentPage>();
-            this.GroupModalPages = new HashSet<GroupModalPage>();
             this.GroupCustomDataPages = new HashSet<GroupCustomDataPage>();
+            this.GroupModalPages = new HashSet<GroupModalPage>();
         }
     
         public int idPage { get; set; }
+        public Nullable<int> idProduct { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public bool isCommon { get; set; }
@@ -29,7 +30,8 @@ namespace OiWeb.Entity
         public System.DateTime dtCreate { get; set; }
     
         public virtual ICollection<ComponentPage> ComponentPages { get; set; }
-        public virtual ICollection<GroupModalPage> GroupModalPages { get; set; }
         public virtual ICollection<GroupCustomDataPage> GroupCustomDataPages { get; set; }
+        public virtual ICollection<GroupModalPage> GroupModalPages { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

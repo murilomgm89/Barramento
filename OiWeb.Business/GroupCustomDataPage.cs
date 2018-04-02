@@ -6,7 +6,7 @@ namespace OiWeb.Business
 {
     public class GroupCustomDataPage
     {
-        public static List<Entity.GroupCustomDataPage> GetGroupCustomDataPage(int idCity)
+        public static List<Entity.GroupCustomDataPage> GetGroupCustomDataPage(int idCity, int? idProduct)
         {
             using (var context = new Entity.OiWeb())
             {
@@ -14,6 +14,7 @@ namespace OiWeb.Business
                             where _G.idCity == idCity
                             select _G;
                 query = query.Include(g => g.Page);
+                query = query.Where(g => g.Page.idProduct == idProduct || g.Page.isCommon == true);
                 return query.ToList();
             }
         }

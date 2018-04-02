@@ -23,7 +23,7 @@ namespace OiWeb.JsonGeneration
                 case '1':
                     {
                         Console.Clear();
-                        GerarCidades();
+                        EscolherCidades();
                         break;
                     }
                 case '2':
@@ -43,10 +43,110 @@ namespace OiWeb.JsonGeneration
             Console.ReadKey();
         }
 
-        private static void GerarCidades()
+        private static void EscolherCidades()
         {
-            Console.WriteLine("### GERAÇÃO JSON CITIES INICIADA ### \n\n");
-            Console.WriteLine(@"{0} - Os arquivos estarão no diretório C:\JsonGeneration\API\Cities", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+            Console.WriteLine("Gerar Cities: \n\nDigite:\n1. Por Produto\n2. Paginas Genéricas");
+            var option = Console.ReadKey();
+
+            switch (option.KeyChar)
+            {
+                case '1':
+                    {
+                        Console.Clear();
+                        EscolherProduto();
+                        break;
+                    }
+                case '2':
+                    {
+                        Console.Clear();
+                        GerarGenericPages();
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Opção inválida!");
+                        return;
+                    }
+            }
+
+            Console.WriteLine("\nTecle algo para SAIR...");
+            Console.ReadKey();
+        }
+
+        private static void EscolherProduto()
+        {
+            Console.WriteLine("Qual produto deseja gerar os cities?\n\nDigite:\n1. TV\n2. Fixo\n3. BandaLarga\n4. Combo\n5. Controle\n6. PosPago\n7. PrePago\n8. InternetMovel");
+            var option = Console.ReadKey();
+
+            switch (option.KeyChar)
+            {
+                case '1':
+                    {
+                        Console.Clear();
+                        GerarCidades(1,"TV");
+                        break;
+                    }
+                case '2':
+                    {
+                        Console.Clear();
+                        GerarCidades(2, "Fixo");
+                        break;
+                    }
+                case '3':
+                    {
+                        Console.Clear();
+                        GerarCidades(3, "BandaLarga");
+                        break;
+                    }
+                case '4':
+                    {
+                        Console.Clear();
+                        GerarCidades(10, "ComboResidencial");
+                        GerarCidades(11, "ComboConectado");
+                        GerarCidades(12, "ComboSolucaoCompleta");
+                        GerarCidades(13, "ComboTvFixo");
+                        GerarCidades(14, "ComboPlay");
+                        break;
+                    }
+                case '5':
+                    {
+                        Console.Clear();
+                        GerarCidades(8, "Controle");
+                        break;
+                    }
+                case '6':
+                    {
+                        Console.Clear();
+                        GerarCidades(6, "PosPago");
+                        break;
+                    }
+                case '7':
+                    {
+                        Console.Clear();
+                        GerarCidades(7, "PrePago");
+                        break;
+                    }
+                case '8':
+                    {
+                        Console.Clear();
+                        GerarCidades(15, "InternetMovel");
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Opção inválida!");
+                        return;
+                    }
+            }
+
+            Console.WriteLine("\nTecle algo para SAIR...");
+            Console.ReadKey();
+        }
+        
+        private static void GerarGenericPages()
+        {
+            Console.WriteLine("### GERAÇÃO CITIES-GenericPages INICIADA ### \n\n");
+            Console.WriteLine(@"{0} - Os arquivos estarão no diretório C:\JsonGeneration\API\Cities\GenericPages", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
 
             if (!Directory.Exists(@"C:\JsonGeneration"))
             {
@@ -63,6 +163,11 @@ namespace OiWeb.JsonGeneration
                 Directory.CreateDirectory(@"C:\JsonGeneration\API\Cities");
             }
 
+            if (!Directory.Exists(@"C:\JsonGeneration\API\Cities\GenericPages"))
+            {
+                Directory.CreateDirectory(@"C:\JsonGeneration\API\Cities\GenericPages");
+            }            
+
             Console.WriteLine("{0} - Buscando dados...", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
 
             var cities = new List<Entity.City>();
@@ -76,9 +181,59 @@ namespace OiWeb.JsonGeneration
                 VMLtWebClient wc = new VMLtWebClient();
                 wc.Encoding = Encoding.UTF8;
 
-                string json = wc.DownloadString("http://back2.tempsite.ws/API/City/" + city.idCity).Replace(@"\u0027", "'").Replace(@"\u0026", "&");
+                string json = wc.DownloadString("http://back2.tempsite.ws/API/City/GenericPages/" + city.idCity).Replace(@"\u0027", "'").Replace(@"\u0026", "&");
 
-                TextWriter sw = new StreamWriter(@"C:\JsonGeneration\API\Cities\" + city.idCity + ".json");
+                TextWriter sw = new StreamWriter(@"C:\JsonGeneration\API\Cities\GenericPages\" + city.idCity + ".json");
+                sw.Write(json);
+                sw.Close();
+            });
+
+            Console.WriteLine("{0} - Geração de Cities-GenericPages concluída.", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+        }
+
+        private static void GerarCidades(int idProduct, string name)
+        {
+            
+            Console.WriteLine("### GERAÇÃO JSON CITIES-Product INICIADA ### \n\n");
+            Console.WriteLine(@"{0} - Os arquivos estarão no diretório C:\JsonGeneration\API\Cities\" + name, DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+
+            if (!Directory.Exists(@"C:\JsonGeneration"))
+            {
+                Directory.CreateDirectory(@"C:\JsonGeneration");
+            }
+
+            if (!Directory.Exists(@"C:\JsonGeneration\API"))
+            {
+                Directory.CreateDirectory(@"C:\JsonGeneration\API");
+            }
+
+            if (!Directory.Exists(@"C:\JsonGeneration\API\Cities"))
+            {
+                Directory.CreateDirectory(@"C:\JsonGeneration\API\Cities");
+            }
+            
+            if (!Directory.Exists(@"C:\JsonGeneration\API\Cities\" + name))
+            {
+                Directory.CreateDirectory(@"C:\JsonGeneration\API\Cities\" + name);
+            }
+
+            Console.WriteLine("{0} - Buscando dados...", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+
+            var cities = new List<Entity.City>();
+
+            cities.AddRange(Business.City.GetCities());
+
+            Console.WriteLine("{0} - Construindo arquivos...", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
+
+            Parallel.ForEach(cities, (city) =>
+            {
+                VMLtWebClient wc = new VMLtWebClient();
+                wc.Encoding = Encoding.UTF8;
+
+                string json = wc.DownloadString("http://back2.tempsite.ws/API/City/CatalogPages/" + city.idCity + "/" + idProduct).Replace(@"\u0027", "'").Replace(@"\u0026", "&");
+
+                
+                TextWriter sw = new StreamWriter(@"C:\JsonGeneration\API\Cities\" + name + "\"" + city.idCity + ".json");
                 sw.Write(json);
                 sw.Close();
             });

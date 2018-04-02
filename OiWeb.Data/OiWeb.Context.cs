@@ -48,8 +48,8 @@ namespace OiWeb.Entity
         public virtual DbSet<GroupModalPage> GroupModalPages { get; set; }
         public virtual DbSet<Modal> Modals { get; set; }
         public virtual DbSet<PriceGroup> PriceGroups { get; set; }
-        public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace OiWeb.Business
             }
         }
 
-        public static Entity.Product GetProduct(int idProduct)
+        public static Entity.Product GetProduct(int? idProduct)
         {
             using (var context = new Entity.OiWeb())
             {
