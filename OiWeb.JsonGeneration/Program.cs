@@ -231,11 +231,105 @@ namespace OiWeb.JsonGeneration
                 wc.Encoding = Encoding.UTF8;
 
                 string json = wc.DownloadString("http://back2.tempsite.ws/API/City/CatalogPages/" + city.idCity + "/" + idProduct).Replace(@"\u0027", "'").Replace(@"\u0026", "&");
-
                 
-                TextWriter sw = new StreamWriter(@"C:\JsonGeneration\API\Cities\" + name + "\"" + city.idCity + ".json");
-                sw.Write(json);
-                sw.Close();
+                switch (idProduct)
+                {
+                    case 1:
+                        {
+                            TextWriter sw1 = new StreamWriter(@"C:\JsonGeneration\API\Cities\TV\" + city.idCity + ".json");
+                            sw1.Write(json);
+                            sw1.Close();
+                            break;
+                        }
+                    case 2:
+                        {
+                            TextWriter sw2 = new StreamWriter(@"C:\JsonGeneration\API\Cities\Fixo\" + city.idCity + ".json");
+                            sw2.Write(json);
+                            sw2.Close();
+                            break;
+                        }
+                    case 3:
+                        {
+                            TextWriter sw3 = new StreamWriter(@"C:\JsonGeneration\API\Cities\BandaLarga\" + city.idCity + ".json");
+                            sw3.Write(json);
+                            sw3.Close();
+                            break;
+                        }
+                    case 10:
+                        {
+                            TextWriter sw10 = new StreamWriter(@"C:\JsonGeneration\API\Cities\ComboResidencial\" + city.idCity + ".json");
+                            sw10.Write(json);
+                            sw10.Close();
+                            break;
+                        }
+                    case 11:
+                        {
+                            TextWriter sw11 = new StreamWriter(@"C:\JsonGeneration\API\Cities\ComboConectado\" + city.idCity + ".json");
+                            sw11.Write(json);
+                            sw11.Close();
+                            break;
+                        }
+                    case 12:
+                        {
+                            TextWriter sw12 = new StreamWriter(@"C:\JsonGeneration\API\Cities\ComboSolucaoCompleta\" + city.idCity + ".json");
+                            sw12.Write(json);
+                            sw12.Close();
+                            break;
+                        }
+                    case 13:
+                        {
+                            TextWriter sw13 = new StreamWriter(@"C:\JsonGeneration\API\Cities\ComboTvFixo\" + city.idCity + ".json");
+                            sw13.Write(json);
+                            sw13.Close();
+                            break;
+                        }
+                    case 14:
+                        {
+                            TextWriter sw14 = new StreamWriter(@"C:\JsonGeneration\API\Cities\ComboPlay\" + city.idCity + ".json");
+                            sw14.Write(json);
+                            sw14.Close();
+                            break;
+                        }                    
+                    case 8:
+                        {
+                            TextWriter sw8 = new StreamWriter(@"C:\JsonGeneration\API\Cities\Controle\" + city.idCity + ".json");
+                            sw8.Write(json);
+                            sw8.Close();
+                            break;
+                        }
+                    case 6:
+                        {
+                            TextWriter sw6 = new StreamWriter(@"C:\JsonGeneration\API\Cities\PosPago\" + city.idCity + ".json");
+                            sw6.Write(json);
+                            sw6.Close();
+                            break;
+                        }
+                    case 7:
+                        {
+                            TextWriter sw7 = new StreamWriter(@"C:\JsonGeneration\API\Cities\PrePago\" + city.idCity + ".json");
+                            sw7.Write(json);
+                            sw7.Close();
+                            break;
+                        }
+                    case 15:
+                        {
+                            TextWriter sw15 = new StreamWriter(@"C:\JsonGeneration\API\Cities\InternetMovel\" + city.idCity + ".json");
+                            sw15.Write(json);
+                            sw15.Close();
+                            break;
+                        }
+                    default:
+                        {
+                            if (!Directory.Exists(@"C:\JsonGeneration\API\Cities\ProdNaoIndentificado" + name))
+                            {
+                                Directory.CreateDirectory(@"C:\JsonGeneration\API\Cities\ProdNaoIndentificado" + name);
+                            }
+                            TextWriter sw = new StreamWriter(@"C:\JsonGeneration\API\Cities\ProdNaoIndentificado\" + city.idCity + ".json");
+                            sw.Write(json);
+                            sw.Close();
+                            return;
+                        }
+                } 
             });
 
             Console.WriteLine("{0} - Geração de Cities concluída.", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
