@@ -75,7 +75,7 @@ namespace OiWeb.JsonGeneration
 
         private static void EscolherProduto()
         {
-            Console.WriteLine("Qual produto deseja gerar os cities?\n\nDigite:\n1. TV\n2. Fixo\n3. BandaLarga\n4. Combo\n5. Controle\n6. PosPago\n7. PrePago\n8. InternetMovel");
+            Console.WriteLine("Qual produto deseja gerar os cities?\n\nDigite:\n1. TV\n2. Fixo\n3. BandaLarga\n4. Combo\n5. Controle\n6. PosPago\n7. PrePago\n8. InternetMovel\n9. Gerar Todos");
             var option = Console.ReadKey();
 
             switch (option.KeyChar)
@@ -130,6 +130,23 @@ namespace OiWeb.JsonGeneration
                     {
                         Console.Clear();
                         GerarCidades(15, "InternetMovel");
+                        break;
+                    }
+                case '9':
+                    {
+                        Console.Clear();
+                        GerarCidades(15, "InternetMovel");
+                        GerarCidades(7, "PrePago");
+                        GerarCidades(6, "PosPago");
+                        GerarCidades(8, "Controle");
+                        GerarCidades(10, "ComboResidencial");
+                        GerarCidades(11, "ComboConectado");
+                        GerarCidades(12, "ComboSolucaoCompleta");
+                        GerarCidades(13, "ComboTvFixo");
+                        GerarCidades(14, "ComboPlay");
+                        GerarCidades(3, "BandaLarga");
+                        GerarCidades(2, "Fixo");
+                        GerarCidades(1, "TV");
                         break;
                     }
                 default:
