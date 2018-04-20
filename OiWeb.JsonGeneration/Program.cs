@@ -83,7 +83,7 @@ namespace OiWeb.JsonGeneration
                 case '1':
                     {
                         Console.Clear();
-                        GerarCidades(1,"TV");
+                        GerarCidades(1,"TvHd");
                         break;
                     }
                 case '2':
@@ -146,7 +146,7 @@ namespace OiWeb.JsonGeneration
                         GerarCidades(14, "ComboPlay");
                         GerarCidades(3, "BandaLarga");
                         GerarCidades(2, "Fixo");
-                        GerarCidades(1, "TV");
+                        GerarCidades(1, "TvHd");
                         break;
                     }
                 default:
@@ -253,7 +253,7 @@ namespace OiWeb.JsonGeneration
                 {
                     case 1:
                         {
-                            TextWriter sw1 = new StreamWriter(@"C:\JsonGeneration\API\Cities\TV\" + city.idCity + ".json");
+                            TextWriter sw1 = new StreamWriter(@"C:\JsonGeneration\API\Cities\TvHd\" + city.idCity + ".json");
                             sw1.Write(json);
                             sw1.Close();
                             break;

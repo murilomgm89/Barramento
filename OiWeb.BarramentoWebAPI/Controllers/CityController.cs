@@ -109,6 +109,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
 
             var GenericPages = new Dictionary<string, dynamic>();            
             var Modal = new Dictionary<string, int>();
+            var Common = new Dictionary<string, int>();            
 
             foreach (var page in groupCustomDataPages)
             {
@@ -126,19 +127,23 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     {
                         GenericPages.Add(page.Page.name, new
                         {
-                            page.Page.idPage                           
+                            page.idGroup                           
                         });
                     }
                     else
                     {
                         GenericPages.Add(page.Page.name, new
                         {
-                            page.Page.idPage,
+                            page.idGroup,
                             Modal
                         });
                     }
                    
                     Modal = new Dictionary<string, int>();
+                }
+                else
+                {
+                    Common.Add(page.Page.name, page.idGroup);
                 }
             }
             
@@ -154,7 +159,8 @@ namespace OiWeb.BarramentoWebAPI.Controllers
                     "City",  new Dictionary<int, dynamic>() 
                     {                
                         { 
-                            city.idCity, new {
+                            city.idCity, new {                                
+                                Common,
                                 GenericPages
                             }
                         }                
