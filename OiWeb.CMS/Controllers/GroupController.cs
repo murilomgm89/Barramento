@@ -116,6 +116,25 @@ namespace OiWeb.CMS.Controllers
 
             return Redirect("/Grupos");
         }
+
+        [GET("/Grupos/Detalhes/Editar/{idPriceGroup}")]
+        public ActionResult GetUpdateGroup(int idPriceGroup)
+        {
+            ViewBag.breadcrumbViewModel = new BreadcrumbViewModel("Editar Detalhes", "fa-table", "Editar Detalhes"); 
+            return View("/Views/Group/GroupEditDetailsView.cshtml", Business.Groups.GetPriceGroup(idPriceGroup));
+        }
+
+        [POST("/Grupos/UpdateGroup")]
+        public RedirectResult SetUpdateGroup(PriceGroupViewModel group)
+        {
+            Entity.PriceGroup entity = new Entity.PriceGroup();
+            entity.description = group.description;
+            entity.name = group.name;
+            entity.idPriceGroup = group.idPriceGroup;
+            Business.Groups.Update(entity);
+            return Redirect("/Grupos");
+        }
+
         [POST("/Grupos/Cidades")]
         public RedirectResult SaveNewCities(Entity.PriceGroup group)
         {

@@ -61,5 +61,17 @@ namespace OiWeb.Business
                 context.SaveChanges();
             }
         }
+        public static void Update(Entity.PriceGroup priceGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var query = (from c in context.PriceGroups
+                             where c.idPriceGroup == priceGroup.idPriceGroup
+                             select c).First();
+                query.name = priceGroup.name;
+                query.description = priceGroup.description;
+                context.SaveChanges();
+            }
+        }
     }
 }

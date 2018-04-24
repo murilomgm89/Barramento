@@ -2,9 +2,9 @@
 
 namespace OiWeb.CMS.Models
 {
-    public class GroupCustomDataViewModel
+    public class PriceGroupViewModel
     {
-        public int idGroup { get; set; }
+        public int idPriceGroup { get; set; }
         public string name { get; set; }
         public string description { get; set; }
     }

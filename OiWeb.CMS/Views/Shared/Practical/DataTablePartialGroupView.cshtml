@@ -7,6 +7,7 @@
             <th class="sortable">Nome</th>
             <th class="sortable">Produto</th>
             <th class="sortable">Status</th>
+            <th class="sortable"></th>
         </tr>
     </thead>
     @{
@@ -17,6 +18,16 @@
                 <td class="text-truncate"><a href="/Grupos/@(Html.Raw(group.idPriceGroup))">@Html.Raw(group.name)</a></td>
                 <td class="text-truncate">@Html.Raw(group.Product.name) (<strong>SKU - @Html.Raw(group.Product.idProduct)</strong> )</td>
                 <td class="text-truncate"><span class="lable-tag @Html.Raw(group.isActive == true ? "tag-success" : "tag-unpaid")">@Html.Raw(group.isActive == true ? "Ativo" : "Inativo")</span></td>
+                <td class="text-truncate">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Grupos/@(Html.Raw(group.idPriceGroup))">Detalhes</a></li>
+                            <li><a href="/Grupos/Detalhes/Editar/@(Html.Raw(group.idPriceGroup))">Alterar Nome</a></li>                            
+                            @*<li><a href="/Modal/@(Html.Raw(group.idModal))/excluir">Excluir</a></li>*@
+                        </ul>
+                    </div>
+                </td>
             </tr>
         }
     }
