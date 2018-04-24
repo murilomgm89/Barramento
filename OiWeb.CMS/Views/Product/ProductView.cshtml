@@ -12,7 +12,7 @@
                         <li class="list-group-item">Criado em: <strong>@Html.Raw(Model.dtCreate)</strong></li>
                         <li class="list-group-item">SKU: <strong>@Html.Raw(Model.idProduct)</strong></li>
                         <li class="list-group-item">Família: <strong>@Html.Raw(Model.ProductFamily.name)</strong></li>
-                        <li class="list-group-item">Quantidade de Regionalização: <strong>@Html.Raw(Model.PriceGroups.Count())</strong></li>                     
+                        @*<li class="list-group-item">Quantidade de Regionalização: <strong>@Html.Raw(Model.PriceGroups.Where(p => p.PriceGroupCities.Count > 0).Count())</strong></li>*@                     
                     </ul>
                 </div>
             </div>
@@ -23,7 +23,10 @@
                         @{
                             foreach (var group in Model.PriceGroups)
                             {
-                                <li class="list-group-item"><a href="/Grupos/@Html.Raw(group.idPriceGroup)">ID: @Html.Raw(group.idPriceGroup) (@Html.Raw(group.name))</a></li>
+                                if (group.PriceGroupCities.Count != 0)
+                                {
+                                    <li class="list-group-item"><a href="/Grupos/@Html.Raw(group.idPriceGroup)">ID: @Html.Raw(group.idPriceGroup) ( @Html.Raw(group.name) )</a><br>Cidade Teste: @Html.Raw(group.PriceGroupCities.FirstOrDefault().City.name)<br><a href='/Grupos/PriceGroup/Desvincular/Group/@Html.Raw(Model.idProduct)/@Html.Raw(group.idPriceGroup)' class='btn btn-success btn-rounded'>Desvincular</a></li>
+                                }
                             }
                         }
                     </ul>
@@ -34,17 +37,17 @@
                     <h4>
                          Planos de @Html.Raw(Model.name)
                         <a href="/Produto/@Html.Raw(Model.idProduct)/Plano" class="btn btn-success btn-rounded">Criar novo Plano</a>
-                    </h4>                    
+                    </h4>
                     @RenderPage("~/Views/Shared/Practical/DataTablePartialView.cshtml", Model)
                 </div>
             </div>
         </div>
-    </section>   
+    </section>
 </div>
 @*<script src="/Content/plugins/tables/dataTables.min.js"></script>
 <script type="text/javascript">
     window.onload = function () {
-        $('.table').DataTable({           
+        $('.table').DataTable({
             "info": false
         });
     };

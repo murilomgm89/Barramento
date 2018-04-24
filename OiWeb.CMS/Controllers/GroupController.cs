@@ -87,6 +87,12 @@ namespace OiWeb.CMS.Controllers
             return Redirect("/Grupos/" + idPriceGroup);
         }
 
+        [GET("/Grupos/PriceGroup/Desvincular/Group/{idProduct}/{idGroupPrice}")]
+        public RedirectResult DesvincularPriceGroup(int idProduct, int idGroupPrice)
+        {
+            Business.Groups.Desvincular(idProduct, idGroupPrice);
+            return Redirect("/Produto/" + idProduct);
+        }
 
         [POST("/Grupos/SaveGroup")]
         public RedirectResult SaveNewGroup(Entity.PriceGroup group)

@@ -16,9 +16,12 @@ namespace OiWeb.BarramentoWebAPI.Controllers
         public string GetCity(int idCity, int? idProduct)
         {
             Entity.Product product = new Entity.Product();
-            if (idProduct != null)
+            if (idProduct != null && idProduct != 15)
             {
                 product = Business.Product.GetProduct(idProduct);
+            }
+            if(idProduct == 15){
+                product.name = "InternetMovel";
             }
            
             var city = Business.City.GetCity(idCity);

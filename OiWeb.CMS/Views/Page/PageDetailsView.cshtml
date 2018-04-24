@@ -22,7 +22,7 @@
                         @{
                             foreach (var group in Model.groups)
                             {                               
-                               @Html.Raw("<li class='list-group-item'><a href='/Grupos/CustomData/Editar/" + group.idGroup + "'>ID: " + group.idGroup + " (" + group.name + ")</a><br>Cidade Teste: " + group.GroupCustomDataPages.FirstOrDefault().City.name + "<br><a href='/Grupos/CustomData/Paginas/Desvincular/" + Model.idPage + "/" + group.idGroup + "' class='btn btn-success btn-rounded'>Desvincular</a></li>");
+                               @Html.Raw("<li class='list-group-item'><a href='/Grupos/CustomData/Editar/" + group.idGroup + "'>ID: " + group.idGroup + " (" + group.name + ")</a><br>Cidade Teste: " + group.GroupCustomDataPages.FirstOrDefault().City.name + "<br><a href='/Grupos/CustomData/Paginas/Desvincular/" + Model.page.idPage + "/" + group.idGroup + "' class='btn btn-success btn-rounded'>Desvincular</a></li>");
                             }
                         } 
                     </ul>

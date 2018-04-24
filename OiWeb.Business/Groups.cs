@@ -35,6 +35,24 @@ namespace OiWeb.Business
                 return query.FirstOrDefault();
             }
         }
+        public static void Desvincular(int idProduct, int idPriceGroup)
+        {
+            using (var context = new Entity.OiWeb())
+            {
+                var dataPrices = context.Prices.Where(p => p.idPriceGroup == idProduct).ToList();
+                if (dataPrices != null)
+                {
+                    context.Prices.RemoveRange(dataPrices);
+                    context.SaveChanges();
+                }
+                var dataPriceGroupCities = context.PriceGroupCities.Where(p => p.idProduct == idProduct && p.idPriceGroup == idPriceGroup).ToList();
+                if (dataPriceGroupCities != null)
+                {
+                    context.PriceGroupCities.RemoveRange(dataPriceGroupCities);
+                    context.SaveChanges();
+                }
+            }
+        }
         public static void Save(Entity.PriceGroup group)
         {
             using (var context = new Entity.OiWeb())

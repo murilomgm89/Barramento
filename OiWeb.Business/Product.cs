@@ -42,6 +42,8 @@ namespace OiWeb.Business
                                 _P.idProduct == idProduct
                             select _P;
                 query = query.Include(a => a.PriceGroups);
+                query = query.Include(a => a.PriceGroups.Select(p => p.PriceGroupCities));
+                query = query.Include(a => a.PriceGroups.Select(p => p.PriceGroupCities.Select(aa => aa.City)));
                 query = query.Include(a => a.PlanProducts);
                 query = query.Include(a => a.PlanProducts.Select(p => p.PlanGroups));               
                 query = query.Include(a => a.ProductFamily);
