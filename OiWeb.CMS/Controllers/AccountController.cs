@@ -138,8 +138,7 @@ namespace OiWeb.CMS.Controllers
                     if (model.returnUrl == null)
                         model.returnUrl = "Dashboard";
                     #region Registra Acesso
-                    accountLoginLog.idAccount = user.idAccount;
-                    accountLoginLog.IP = Session.Contents["IP"].ToString();
+                    accountLoginLog.idAccount = user.idAccount;                    
                     accountLoginLog.IsValid = true;
                     accountLoginLog.dtRegister = DateTime.Now;
                     Business.CMS_AccountLoginLog.Create(accountLoginLog);
@@ -153,8 +152,7 @@ namespace OiWeb.CMS.Controllers
                     account = Business.CMS_Account.IsValidEmail(account);
                     if (account != null)
                     {
-                        accountLoginLog.idAccount = account.idAccount;
-                        accountLoginLog.IP = Session.Contents["IP"].ToString();
+                        accountLoginLog.idAccount = account.idAccount;                        
                         accountLoginLog.IsValid = false;
                         accountLoginLog.dtRegister = DateTime.Now;
                         Business.CMS_AccountLoginLog.Create(accountLoginLog);

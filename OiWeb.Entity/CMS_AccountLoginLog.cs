@@ -16,7 +16,6 @@ namespace OiWeb.Entity
     {
         public int idAccountLoginLog { get; set; }
         public int idAccount { get; set; }
-        public string IP { get; set; }
         public bool IsValid { get; set; }
         public System.DateTime dtRegister { get; set; }
     

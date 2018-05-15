@@ -23,9 +23,9 @@ namespace OiWeb.Entity
         public decimal value { get; set; }
         public Nullable<decimal> valueCombo { get; set; }
     
+        public virtual PlanProduct PlanProduct { get; set; }
         public virtual PriceLoyalty PriceLoyalty { get; set; }
         public virtual PricePaymentMethod PricePaymentMethod { get; set; }
         public virtual PriceTypeClient PriceTypeClient { get; set; }
-        public virtual PlanProduct PlanProduct { get; set; }
     }
 }

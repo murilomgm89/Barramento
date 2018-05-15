@@ -16,9 +16,10 @@ namespace OiWeb.Entity
     {
         public Product()
         {
-            this.PriceGroupCities = new HashSet<PriceGroupCity>();
+            this.Pages = new HashSet<Page>();
             this.PlanProducts = new HashSet<PlanProduct>();
             this.PriceGroups = new HashSet<PriceGroup>();
+            this.PriceGroupCities = new HashSet<PriceGroupCity>();
         }
     
         public int idProduct { get; set; }
@@ -28,9 +29,10 @@ namespace OiWeb.Entity
         public string valueGroupPrice { get; set; }
         public Nullable<System.DateTime> dtCreate { get; set; }
     
-        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
-        public virtual ProductFamily ProductFamily { get; set; }
+        public virtual ICollection<Page> Pages { get; set; }
         public virtual ICollection<PlanProduct> PlanProducts { get; set; }
         public virtual ICollection<PriceGroup> PriceGroups { get; set; }
+        public virtual ICollection<PriceGroupCity> PriceGroupCities { get; set; }
+        public virtual ProductFamily ProductFamily { get; set; }
     }
 }

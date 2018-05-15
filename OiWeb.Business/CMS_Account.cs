@@ -42,8 +42,7 @@ namespace OiWeb.Business
             using (var context = new Entity.OiWeb())
             {
                 var query = from o in context.CMS_Account                            
-                            select o;
-                query = query.Include(g => g.CMS_Permission);             
+                            select o;                             
                 return query.ToList();
             }
         }
@@ -54,8 +53,7 @@ namespace OiWeb.Business
             {
                 var query = from o in context.CMS_Account
                             where o.idAccount == idAccount
-                            select o;
-                query = query.Include(g => g.CMS_Permission);
+                            select o;                
                 return query.First();
             }
         }
@@ -81,8 +79,7 @@ namespace OiWeb.Business
                 }                
                 query.password = account.password;
                 query.email = account.email;
-                query.isActive = account.isActive;
-                query.idPermission = account.idPermission;
+                query.isActive = account.isActive;                
                 context.SaveChanges();
             }
         }

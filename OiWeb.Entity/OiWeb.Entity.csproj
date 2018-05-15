@@ -128,9 +128,6 @@
     <Compile Include="CMS_AccountLoginLog.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>
-    <Compile Include="CMS_Permission.cs">
-      <DependentUpon>OiWeb.tt</DependentUpon>
-    </Compile>
     <Compile Include="ComponentPage.cs">
       <DependentUpon>OiWeb.tt</DependentUpon>
     </Compile>

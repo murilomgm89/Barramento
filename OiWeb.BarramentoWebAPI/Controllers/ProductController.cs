@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AttributeRouting.Web.Mvc;
 using System.Web;
+using System.Net.Http;
+using System.Web.Http;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using OiWeb.BarramentoWebAPI.Models;
