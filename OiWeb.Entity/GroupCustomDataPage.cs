@@ -19,8 +19,8 @@ namespace OiWeb.Entity
         public int idPage { get; set; }
         public int idGroup { get; set; }
     
-        public virtual GroupCustomData GroupCustomData { get; set; }
         public virtual City City { get; set; }
+        public virtual GroupCustomData GroupCustomData { get; set; }
         public virtual Page Page { get; set; }
     }
 }

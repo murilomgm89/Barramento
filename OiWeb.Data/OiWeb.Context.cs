@@ -25,31 +25,30 @@ namespace OiWeb.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<CMS_Account> CMS_Account { get; set; }
+        public virtual DbSet<CMS_AccountLoginLog> CMS_AccountLoginLog { get; set; }
         public virtual DbSet<ComponentPage> ComponentPages { get; set; }
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<CustomData> CustomDatas { get; set; }
         public virtual DbSet<GroupCustomData> GroupCustomDatas { get; set; }
-        public virtual DbSet<PlanGroup> PlanGroups { get; set; }
-        public virtual DbSet<PlanRegulation> PlanRegulations { get; set; }
-        public virtual DbSet<PriceGroupCity> PriceGroupCities { get; set; }
-        public virtual DbSet<PriceLoyalty> PriceLoyalties { get; set; }
-        public virtual DbSet<PricePaymentMethod> PricePaymentMethods { get; set; }
-        public virtual DbSet<PriceTypeClient> PriceTypeClients { get; set; }
-        public virtual DbSet<ProductFamily> ProductFamilies { get; set; }
-        public virtual DbSet<VersionAPI> VersionAPIs { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
-        public virtual DbSet<PlanProduct> PlanProducts { get; set; }
-        public virtual DbSet<CMS_Account> CMS_Account { get; set; }
-        public virtual DbSet<CMS_AccountLoginLog> CMS_AccountLoginLog { get; set; }
-        public virtual DbSet<CMS_Permission> CMS_Permission { get; set; }
+        public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
         public virtual DbSet<GroupModal> GroupModals { get; set; }
         public virtual DbSet<GroupModalCity> GroupModalCities { get; set; }
         public virtual DbSet<GroupModalPage> GroupModalPages { get; set; }
         public virtual DbSet<Modal> Modals { get; set; }
-        public virtual DbSet<PriceGroup> PriceGroups { get; set; }
-        public virtual DbSet<GroupCustomDataPage> GroupCustomDataPages { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Page> Pages { get; set; }
+        public virtual DbSet<PlanGroup> PlanGroups { get; set; }
+        public virtual DbSet<PlanProduct> PlanProducts { get; set; }
+        public virtual DbSet<PlanRegulation> PlanRegulations { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
+        public virtual DbSet<PriceGroup> PriceGroups { get; set; }
+        public virtual DbSet<PriceGroupCity> PriceGroupCities { get; set; }
+        public virtual DbSet<PriceLoyalty> PriceLoyalties { get; set; }
+        public virtual DbSet<PricePaymentMethod> PricePaymentMethods { get; set; }
+        public virtual DbSet<PriceTypeClient> PriceTypeClients { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductFamily> ProductFamilies { get; set; }
+        public virtual DbSet<VersionAPI> VersionAPIs { get; set; }
     }
 }
