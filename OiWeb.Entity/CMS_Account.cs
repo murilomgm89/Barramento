@@ -20,14 +20,12 @@ namespace OiWeb.Entity
         }
     
         public int idAccount { get; set; }
-        public int idPermission { get; set; }
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public bool isActive { get; set; }
         public System.DateTime dtCreate { get; set; }
     
-        public virtual CMS_Permission CMS_Permission { get; set; }
         public virtual ICollection<CMS_AccountLoginLog> CMS_AccountLoginLog { get; set; }
     }
 }

@@ -23,8 +23,8 @@ namespace OiWeb.Entity
         public int idGroup { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public System.DateTime dtCreate { get; set; }
         public bool isActive { get; set; }
+        public System.DateTime dtCreate { get; set; }
     
         public virtual ICollection<CustomData> CustomDatas { get; set; }
         public virtual ICollection<GroupCustomDataPage> GroupCustomDataPages { get; set; }

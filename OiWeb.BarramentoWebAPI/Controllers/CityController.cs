@@ -101,6 +101,7 @@ namespace OiWeb.BarramentoWebAPI.Controllers
             return Newtonsoft.Json.JsonConvert.SerializeObject(cityRaiz); 
         }
 
+
         [GET("/City/GenericPages/{idCity}")]
         public string GetCityGenericPage(int idCity)
         {

@@ -44,17 +44,7 @@
                                     <input type="text" class="form-control" name="NewPasswordConfirmation" id="NewPasswordConfirmation" placeholder="Confirme a senha" value="">
                                     <span class="fa form-control-feedback" aria-hidden="true"></span>
                                 </div>
-                            </div>
-                            <div class="col-md-6" style="display:none">
-                                <div class="form-group has-feedback">
-                                    <label class="control-label">Perfil de Acesso</label>
-                                    <select class="form-control" name="idPermission">
-                                        <option value="1" @Html.Raw(Model.idPermission == 1 ? "selected" : "")>Gestão</option>
-                                        <option value="2" @Html.Raw(Model.idPermission == 2 ? "selected" : "")>Edição - Inserção</option>
-                                        <option value="3" @Html.Raw(Model.idPermission == 3 ? "selected" : "")>Consultas</option>
-                                    </select>
-                                </div>
-                            </div>
+                            </div>                            
                             <div class="col-md-6" style="display:none">
                                 <div class="form-group has-feedback">
                                     <label class="control-label">Status</label>

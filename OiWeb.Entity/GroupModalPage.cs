@@ -15,9 +15,9 @@ namespace OiWeb.Entity
     public partial class GroupModalPage
     {
         public int idGroupModalPage { get; set; }
+        public int idModal { get; set; }
         public int idPage { get; set; }
         public int idGroupModal { get; set; }
-        public int idModal { get; set; }
     
         public virtual GroupModal GroupModal { get; set; }
         public virtual Modal Modal { get; set; }
